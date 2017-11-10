@@ -1,0 +1,181 @@
+\documentclass[../paper.tex]{subfiles}
+
+
+\begin{document}
+
+%TODO: Mention that p_1, p_2, ..., p_d are always listed in increasing 
+% order unless said not to be.
+\section{The Algorithm}
+
+\subsection{The Primative Abundant Tree Structure}
+
+We want to construct a useful structure that relates the primative
+abundant odd prime factors. 
+
+Let $\mathbf{P}$ be a set of 'nodes' such that each $n \in 
+\mathbf{P}$ is defined as a pair including a prime greater 
+than or equal to 3 and a set of primes before it. $n$ takes the 
+form $(p4, \{p1, p2, p3\})$. Examle: $(11, \{3, 5\})$.
+$n$ can also be in the form $(1, \{\})$
+
+Let $V$ be a set of pairs of nodes, called edges.
+
+Finally, we define an acyclic connected graph $G_d(\mathbf{P},V)$ 
+for some positive integer $d \geq 3$ where $G_d$ satisfies the 
+following rules: 
+
+\begin{enumerate}
+
+\item $(1, \{\}) \in \mathbf{P}$. Call this node $n_0$ for the next 
+      statement.
+
+\item If $p_1^{m_1}p_2^{m_2}...p_d^{m_d}$ is an primative abundant 
+      odd for positive integers $\{m_1, m_2, ..., m_d\}$, then
+			the following are true: 
+
+      i. $ (p_1, \{\}), (p_2, \{p_1\}), (p_3, \{p_2, p_1\}), ..., 
+        (p_d, \{p_1, p_2, p_3, ..., p_{d-1}\}) \in \mathbf{P} $
+			Call these nodes $n_1, n_2, ..., n_d$ for simplicity in the 
+			next statement.
+
+      ii. $ (n_0, n_1), (n_1, n_2), (n_2, n_3), ..., (n_{d-1}, n_{d}) 
+      \in V $
+
+\end{enumerate}
+
+Note that this graph contains a finite number of nodes since 
+there are a finite number of primative odd abundant numbers with
+d divisors. 
+
+When a diagram is drawn, the nodes are represented by the prime
+value they hold, and the set of primes before it can be deduced
+from the edges in the graph. See the diagram of $G_3$ and $G_4$
+below.
+
+\subsection{Modification for the Algorithm}
+
+We need to associate two statements with each node for the 
+algorithm.
+
+We define the statement $E_{(d,P)}$ for some set of primes P such 
+that $E_{(d,P)} = $ "There exists a node $n \in G_d$ such that the set 
+of primes $P$ is associated with $n$". In other words this state that 
+there exists some primative abundant with $d$ divisors whose prime
+factors are $P$.
+
+We also define the 'exhausted' statement $X_{(d,P)}$ for some set of 
+primes $P = \{p_1, p_2, ..., p_i\}$   by $X_{(d,P)} = $ "all primes 
+$q_{i+1}, q_{i+2}, ..., q_d$ have been found such that $p_1,p_2, 
+..., p_i, q_{i+1}, q_{i+2}, ...q_d$ are all the prime factors to some
+primative abundant odd". This statement is specific to the algorithm 
+and when a new node is created in the algorithm this will be included
+as a third paramater that will be false by default. 
+
+
+\subsection{The Algorithm}
+\textbf{Algorithm} 
+
+Consider $G_d$. We want to determine what nodes are in $G_d$, 
+which will eventually allow us to determine the primative abundant 
+odds with $d$ divisors.
+
+We will allow the nodes in $\mathbf{P}$ to have a boolean 
+attribute to them. This boolean will represent the statement in 
+the previous section known as $X_{(d,P)}$. Thus a node of 
+$\mathbf{P}$ will be in the form 
+$(p_i, \{p_1, p_2, ..., p_{i-1}\}, true/false)$.
+
+\noindent
+We define a few simple functions here:
+
+Let $n \in \mathbf{P}$.
+%
+We define $n.P()$ will retrieve the prime associated with n, as
+well as the set of primes associated with n, returning them as a 
+sequence, from least to greatest prime.
+
+\noindent
+Now we define a few more advanced functions in the algorithm 
+notation.
+
+
+Let $G = (\mathbf{P}, V)$, and
+let $n \in \mathbf{P}$ such that n has no child nodes. 
+%Todo: Define a child node
+%
+We define $delete(n, G)$ in the following way.  
+
+
+
+
+let 
+
+\begin {algorithmic}
+\STATE TODO: 
+
+\end {algorithmic}
+
+{\setlength{\parindent}{0cm}
+
+\textbf{Algorithm: ExtractPrimativeAbundantOdds}
+
+\textbf{INPUT:} d, desired divisors.
+
+\textbf{OUTPUT:} All Primative Abundant Odds with d divisors.
+
+}
+
+\begin{algorithmic}
+
+\STATE $\mathbf{P} := \{(1, \{\}, FALSE)\}$
+\STATE $V := \{\}$
+\STATE $G_d := (\mathbf{P},V)$
+% |P| = i
+% NOTE: a LOT of graph and algorithm notation is borrowed from
+%the book INTRODUCTION TO ALGORITHMS, THIRD EDITON (Cormen)(2011)
+%WE NEED TO CITE OUR SOURCE, so people will know where to look to
+%understand the notation here.
+\WHILE {$(1, \{\}, FALSE) \in \mathbf(P)$}
+	\STATE $newnode = Insert(p,\mathbf{P})$ 
+	%TODO define insert - insert element into list
+	\STATE $P = newnode.P()$
+	\STATE
+
+
+	\IF {$b(p_1 p_2 p_3 ... p_i) \geq 2$}	
+		\IF {$i = d$}
+			\STATE
+		\ENDIF
+	\ENDIF
+	\IF{$b_{\infty}(p_1, p_2, ..., p_i) > 2$}
+		\IF {}
+			\STATE 
+		\ENDIF
+	\ELSE
+		\STATE
+	\ENDIF
+
+\ENDWHILE
+% What this does is checks if the element FAlSE in the initial
+% node that includes 1 as it's 'prime' has not changed its 
+% boolean value 'exhausted' to True.
+  %\WHILE {$(1, \{\}, FALSE) \in \mathbf{P}$ do}
+	%	\STATE test
+	%
+%
+\end{algorithmic}
+
+\textbf{END}
+
+
+ALGORITHM:
+
+
+
+\textit{Proof of correctness of the algorithm:}
+%Todo : Start writing up algorithm in notebook.
+We first start by considering 
+
+
+
+\end{document}

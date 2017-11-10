@@ -1,0 +1,81 @@
+\documentclass[../paper.tex]{subfiles}
+
+
+\begin{document}
+
+\section{Preliminary Theorems}
+
+%TODO: Mention that p_1, p_2, ..., p_d are always listed in increasing 
+% order unless said not to be.
+
+
+% 
+% ---------- RELEVANCE OF THE BELOW CONJECTIURE ----------
+%		This conjecture allows us to conclude that if some set
+% of primes p_1, p_2, ..., p_{i-1}, q, is NOT going to be
+% the first i primes of some prim. ab. odd with d divisors
+% then NO prime after q will. For if not, this conjecture 
+% woudl be false. There would be a 'hole' in the primes
+% and in the graph. 
+% --------------------------------------------------------
+% NOTE: Need to prove that for some primes p_1 p_2 .. p_i
+% if these are the start of some prim ab odd with d divisrs
+% then exists consecutive primes q_i+1, q_i+2, ..., q_d s.t.
+% there exists prim ab odd with prime divisors p-1 p_2 ...
+% p_i q_i+1 q_i+2 ... q_d.
+
+% This will allow us to 'construct' consecutive primes for 
+% r.
+
+% Repeat of NOTE  below, reworded.
+
+% So yet another theorem will be needed: Given that there 
+% exists a seq of primes P that represent the first i primes
+% for some prim ab odd, then there exists a prim ab odd
+% whose first primes are P and all after are consecutive 
+% starting at q_1. 
+
+% So we can consider the consecutive set of primes following
+% r. This conscutive set will be either the primes following
+% r itself or will be the smallest consecutive set following
+% q_1. This should avoid r not being non-primative
+
+% This will allow us to find the primes after r.
+
+% Possibly important: For the max q such that p_1, p_2, ...
+% p_i-1, q,  such that these are the first i divisors of 
+% some prim ab odd with d > i divisors, then that prim
+% ab odd will have consecutive primes after q.
+\textbf{Conjecture?:} Suppose that there exists a primative abundant
+odd whose first i prime divisors are $p_1, p_2, p_3, ..., p_{i-1}, 
+q_1$ and a primative abundant odd whose prime divisors are $p_1, p_2, 
+..., p_{d-1}, q_2$ with $q_2 \geq q_1$. Then for each prime $r$ 
+between $q_1$ and $q_2$ there exists a primative abundant odd whose 
+first $i$ prime divisors are $p_1, p_2, p_3, ..., p_{i-1}, r$.
+
+\textit{Proof:} 
+%
+Since there exists some primative abundant whose first d divisors
+are ... there exists a primative abundant such that 
+.
+.
+.
+
+
+\textbf{Corollary:} 
+Let $n \leq d$. Let $P = \{p_1, p_2, ..., p_n\}$ be a set of primes
+such that $p_1 p_2 p_3 ... p_n$ is not an abundant number.
+If there does not exist a primative abundand odd with $d$ divisors
+whose first $n$ prime divisors compose P, then if $q$ is a prime 
+greater than $p_d$, there does not exist a primative abundant odd
+with $d$ divisors whose first $n$ divisors are $p_1, p_2, ...,
+p_{n-1}, q$.
+
+\textbf{Theorem:} If there exists a weird number that is odd, 
+then the smallest odd weird number will be primative abundant.
+
+\textbf{Corollary:} If no primative weird abundant odd exists
+with d or less divisors, then no odd weird exists with d or less
+divisors.
+
+\end{document}

@@ -1,0 +1,30 @@
+%Paper.tex:
+%The general paper, combining split files.
+
+\documentclass[]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{algorithmic}
+
+%For splitting this project into multiple files:
+\usepackage{subfiles}
+
+%opening
+\title{The Number of Prime divisors of odd weird and odd perfect numbers}
+\author{Jacob P. Liddy, Jeffrey M. Riedl}
+
+\begin{document}
+
+\maketitle
+
+\subfile{intro/intro}
+
+\subfile{algtheorems/theorems}
+
+\subfile{graph/graph}
+
+\end{document}
