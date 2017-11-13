@@ -144,15 +144,28 @@ let
 
 	\IF {$b(p_1 p_2 p_3 ... p_i) \geq 2$}	
 		\IF {$i = d$}
-			\STATE
+			\STATE $success(newnode)$
+		\ELSE
+			%TODO: Define deficient prime == ALSO DETAILS ABOUT EDGES@!!!1!!!!!
+			% REALLY IMPORTANT THAT YOU TALK ABOUT NOT CHANGING CONNECTIONS
+			% GODDAMN IMPORTANT THAT IF (11, ...) -> (17, ...) AND 17
+			% IS CHANGED TO 19 THAT THE CONNECTION REMAINS!!
+			% (11, ...) -> (19, ...);
+			\STATE $deficientNode(newnode)$
+			\STATE $P \leftarrow newnode.P()$
 		\ENDIF
 	\ENDIF
-	\IF{$b_{\infty}(p_1, p_2, ..., p_i) > 2$}
-		\IF {}
-			\STATE 
+	\IF{$b_{\infty}(p_0, p_2, ..., p_i) > 2$}
+		\IF {$i == d$}
+			\STATE $fail(newnode)$
 		\ENDIF
-	\ELSE
-		\STATE
+	\ELSIF {$i == d$}
+		%TODO: define this function.
+		\IF {$expFind(P)$}
+			\STATE $success(newnode)$
+		\ELSE
+			\STATE $fail(newnode)$
+		\ENDIF
 	\ENDIF
 
 \ENDWHILE

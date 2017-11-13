@@ -5,10 +5,28 @@
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{amsthm}
+%\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{algorithmic}
+
+
+\usepackage[thmmarks,  thref, amsmath]{ntheorem}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\newtheorem{case}{Case}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\scshape}
+\theorembodyfont{\upshape}
+\theoremsymbol{\ensuremath{ _{\box}}}
+\theorempostwork{\setcounter{case}{0}}
+\newtheorem{proof}{Proof}
+
 
 %For splitting this project into multiple files:
 \usepackage{subfiles}
@@ -22,6 +40,8 @@
 \maketitle
 
 \subfile{intro/intro}
+
+\subfile{prelims/prelims}
 
 \subfile{algtheorems/theorems}
 

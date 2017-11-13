@@ -1,0 +1,35 @@
+\documentclass[../paper.tex]{article}
+
+\begin{document}
+
+\section{Preliminaries}
+
+We define $b(n): \mathbb{N} \mapsto \mathbb{Q}$ by
+%
+$$b(n) = \frac{\sigma(n)}{n} $$
+%
+Hence $n$ is abundant if and only if $b(n) \geq 2$
+
+Note that if $n=p_1^{m_1}p_2^{m_2}p_3^{m_3}...p_{k}^{m_k}$,
+It can be shown that 
+%
+$$\sigma(n) = \prod_{1 \leq i \leq k} \frac{p_i^{m_i + 1} -1}{p_i -1}$$
+%
+Thus, $b(n)$ can be expressed as:
+
+$$b(n) = \frac{\alpha(n)}{n} = \prod_{1 \leq i \leq k} 
+\frac{p_i^{m_i + 1} -1}{(p_i -1)p_{i}^{m_{i}}}$$
+
+	Suppose $n=p_1^{m_1}p_2^{m_2}...p_{k}^{m_k}$, and suppose 
+$n'=p_1^{m_1}p_2^{m_2}...p_i^{m_i + 1}...p_{k}^{m_k}$. We want
+to define a function such that $b(n') = b(n) f$. We call this
+function $\Delta_{+}(p_i, m_i)$, hence $b(n') = b(n) \Delta_{+}(p,m)$.
+Thus 
+%
+$$\Delta_{+}(p_i, m_i) = \frac{b(n')}{b(n)} = 
+\frac{p_i^{m_i+2} - 1}{ p_i (p_i^{m_i + 1} - 1)}$$
+%
+
+
+
+\end{document} 

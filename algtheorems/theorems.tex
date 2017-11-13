@@ -1,9 +1,161 @@
 \documentclass[../paper.tex]{subfiles}
 
-
 \begin{document}
 
 \section{Preliminary Theorems}
+
+\section*{Lemmas And Theorems}\par\hspace{4ex}
+\textbf{Lemma 1: } Consider the set of primes 
+%
+$P = \{p_{1}, p_{2}, p_{3}, .... , p_{k}\}$.
+%
+There exists infinity many abundant integer $n$ whose prime 
+factors are in the set $P$  if and only if
+%
+$$\prod_{1 \leq i \leq k} (\frac{p_{i}}{p_{i} -1}) > 2$$
+%
+
+\begin{proof}
+
+Note that
+%  
+$$\prod_{1 \leq i \leq k} (\frac{p_{i}}{p_{i} -1}) 
+%
+= \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} 
+%
+( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}). $$
+
+First we assume that
+
+  
+$$\prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} 
+( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) > 2$$
+
+Hence there exists arbitrary integers $\{m_1, m_2, ... , m_k\}$ 
+such that 
+%
+$$\prod_{1 \leq i \leq k} \frac{p_i^{m{i} + 1} -1}
+{(p_i -1)p_{i}^{m_{i}}}) > 2$$
+%
+
+Thus we let $n=p_1^{m_1}p_2^{m_2}p_3^{m_3}...p_{k}^{m_k}$. 
+Since $b(n) > 2$, it follows that $n$ is abundant. Note that an 
+abundant number multiplied by a natural number is an abundant 
+number. Hence $n$ can be multiplied by any one of its prime 
+factors, and an abundant number will be the product. Thus there
+are infinity many abundant integers $n$ whose prime factors are 
+in the set $P$
+
+Now we assume that there exists infinity many abundant integers 
+$n$ whose prime factors are in the set $P$. Let $p_i \in P$. Note
+that $np_i^r$ is abundant and has prime factors in $P$ for all 
+natural numbers r. This implies that the exponents of the prime 
+factors of $n$ can be increased and the product will remain abundant. Hence,
+  $$\prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} ( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) > 2$$
+
+\end{proof}
+
+We call the limit product above $b_{\infty}(P)$ , given a set of primes
+$P$. Suppose $P = \{p_1, p_2, ..., p_i \}$. We define $b_1(P)$ as
+$b(p_1^1 p_2^1 ... p_i^1)$. \\
+
+\textbf{FALSE Lemma:} Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
+and $b_{\infty}(P) > 2$, then $P$ is the set of prime divisors of 
+some primative abundant odd with $d$ divisors.\\ COUNTEREXAMPLE:
+3 5 7 1003 not P. AB. ever.
+
+\begin{proof}
+
+Let $M$ be a set of $d$ positive integers that will represent
+the exponents of a primative abundant number whose prime factors
+compose $P$. We 'initialize' M to be
+%
+$M = \{m_1=1, m_2=1, ..., m_d=1 \}$. 
+%
+First we check if raising any exponent $m_i$ by $1$ will make 
+$p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$ abundant. We will break off
+by cases depending on if this is possible.
+\begin{case}
+	Suppose raising some exponent by 1 will make $n = p_1^{m_1} 
+p_2^{m_2} ... p_d^{m_d}$ abundant. Find all exponents that can be
+raised to make the product abundant, and select the exponent $m_i$
+such that $\Delta_{+}(p_i, m_i)$ is smallest. Raise this exponent,
+and call the resultant product $n'$
+%Or pick largest Delta_-??
+
+When this exponent is raised, we will have an abundant number. It
+remains to prove that this number will also be primative. Since
+we have that $b(n') = \Delta_{+}(p_i, m_i) b(n) \geq 2$. Since 
+this is the minimum $\Delta_{+}$, we have that any other ...
+\end{case}
+
+\begin{case}
+If there is one 
+%
+\end{case}
+\end{proof}
+
+
+\textbf{Theorem:} Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
+and $b_{\infty}(P) > 2$, then the following algorithm will extract all primative
+abundant odd numbers whose prime divisors compose $P$.
+
+
+\textbf{Lemma:} Suppose that $P = \{ p_1 \geq 3, p_2, ..., p_i\}$ are 
+the first $i$ divisors of some primative abundant odd which has
+$d$ prime divisors. Then there exists consecutive prime divisors
+$Q = q_1, q_2, ..., q_{d - 1}$ with $p_i < q_1$ such that 
+$P \cup Q$ compose the prime divisors of some primative abundant 
+odd.
+
+\begin{proof}
+	Since $P$ consists of the first $i$ prime divisors of some 
+primative abundant n, there exists at least one
+$R = {r_1 > p_1, r_2, ..., r_{d-i}}$ such that $P \cup R$ are the 
+prime divisors of some primative abundant odd. Choose an R with the
+largest $r_1$ possible. Since there is a finite number of 
+primative abundant odds with $d$ divisors we can choose such an
+$r_1$. We wish to argue that this $r_1$ is in fact a possibility
+for $q_1$.
+
+	Suppose that the $R$ chosen was a set of sequential primes. 
+Then we are done and the Theorem is true.
+
+	Suppose that $R$ is non-sequential. We want to show that the 
+sequence of primes following $r_1$ is the desired sequence of 
+primes to satisfy the theorem. Call this sequence $R'$. Note that
+$b_{\infty}(P \cup R) = b_{\infty}(P) b_{\infty}(R) > 2$. Given 
+any $j \in \{1, 2, ..., d-i\}$ we have that $r'_j \geq r_j$, since
+$R'$ is sequential. Thus $b_{\infty}(R') \geq b_{\infty}(R)$. Hence
+we have that $b_{\infty}(P \cup R') > 2$. Thus for high enough 
+exponents, 
+%
+$$p_1^{m_1}  p_2^{m_2} ... p_i^{m_i} (r'_1)^{m_{i+1}} ... (r'_{d-i})^{m_d}$$
+%
+is an abundant odd.
+
+	It remains to prove that we can find a primative abundant odd 
+of the above form.
+
+	Note that there exists exponents such that 
+%
+$p_1^{m_1}  p_2^{m_2} ... p_i^{m_i} r_1^{m_{i+1}} ... r_{d-i}^{m_d}$
+%
+(Here it is not r' but r). Suppose, to the contrary, that there 
+does not exists exponents to make $P \cup R'$ the prime divisors 
+of some primative abundant odd. Thus any abundant odd whose prime
+factors are in $P \cup R'$ are the product of some primative 
+abundant odd whose prime factors are all in $P \cup R'$ but lacks
+a single divisor in $P \cup R'$. If this is the case, is $r_1$ truely
+the largest prime such that $P \cup R$
+
+\textbf{TODO: Finish ME!!!!!!!!!!!!!!!!!!!?}
+%TODO:
+
+\end{proof}
+
+
+ 
 
 %TODO: Mention that p_1, p_2, ..., p_d are always listed in increasing 
 % order unless said not to be.
@@ -46,6 +198,7 @@
 % p_i-1, q,  such that these are the first i divisors of 
 % some prim ab odd with d > i divisors, then that prim
 % ab odd will have consecutive primes after q.
+
 \textbf{Conjecture?:} Suppose that there exists a primative abundant
 odd whose first i prime divisors are $p_1, p_2, p_3, ..., p_{i-1}, 
 q_1$ and a primative abundant odd whose prime divisors are $p_1, p_2, 
@@ -73,6 +226,8 @@ p_{n-1}, q$.
 
 \textbf{Theorem:} If there exists a weird number that is odd, 
 then the smallest odd weird number will be primative abundant.
+In fact, all weird numbers will have at least as many prime
+divisors as the smallest weird odd number.
 
 \textbf{Corollary:} If no primative weird abundant odd exists
 with d or less divisors, then no odd weird exists with d or less
