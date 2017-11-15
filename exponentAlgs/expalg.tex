@@ -1,0 +1,92 @@
+\documentclass[../paper.tex]{subfiles}
+
+\begin{document}
+
+\section{Exponent Algorithms}
+
+\textbf{Theorem:} Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
+and $b_{\infty}(P) > 2$, then the following algorithm will extract all primative
+abundant odd numbers whose prime divisors compose $P$.
+
+% The algorithm:
+%
+% * Set initial exponents to 1 
+%
+% * Check if abundant. If so check if primative
+%   * If not primative, no abundant odds 
+%		* If primative, this is 
+%
+% * If b(p1^e1 p2^e2 ... pd^ed) >= 2
+%		* If primative this is an option : return true
+%		* If not return false
+%
+%	* Check to see if any exponent increases will cause abundance
+%    If any do cause abundance, check if primative.
+%    Always start with the exponents of highest 'influence'
+%		 then move on to lower 'influence' exponents. influence
+%    is measured by which exponents increase b(n) the most
+%    Del_pos is exactly the measure of this.
+%
+%	* Once the first exponent which does not cause abundance is found
+%    we want to check which exponents can be raised to 'infinity'
+%    to eventually produce an abundant number. We raise the exponents
+%    NEED TO TALK ABOUT ORDER OF INFLUENCE HERE. IN THE ALGORITHM
+%    WE ASSUME INFINITE INFLUENCE IS DIRECTLY RELATED TO FINITE
+%    SINGLE EXPONENT INFLUENCE? IS THIS TRUE? I DONT KNOW.
+%				*Infinite influence: Take a prime-exp pair p^e -> p^infinity
+%				*Finite influence  : Take a prime-exp pair p^e -> p^(e+1)
+%       Are they related?
+% ^ * Mixed b: Raise exponents of low influence pairs to see if they
+%     mixed with others will eventually go on to infinity
+% ^ * If so raise 
+
+% THIS is going to be UGLY.
+% NEW THEorem added - may be important
+
+\begin{algorithmic}
+%E represents exponents
+\STATE $E := \{e_1 = 1,e_2 = 1,...,e_n = 1\}$
+\STATE $A := \{ \}$ %primative-abunant odds
+
+\STATE $expAbundant(P, E, A)$
+
+\RETURN $A$
+
+\end{algorithmic}
+
+expAbundant:
+
+\begin{algorithmic}
+\IF $b(P, E) \geq 2$
+	\IF $primative(P, E)$
+		\STATE $A := A & (P,E)$
+		\RETURN TRUE
+	\ENDIF
+	\RETURN FALSE
+\ENDIF
+
+\RETURN $orderDelPos(P,E,A,|P| - 1)$
+
+\end{algorithmic}
+
+orderDelPos:
+Parameters: pset, expset, A, startat)
+
+\begin{algorithmic}
+
+\STATE $e_found :=$ TRUE
+%Index of delta_pos in order of 
+%of ascending order:
+% The last element as the most influence
+% G is for generate: Make this function
+\STATE $I_{\Delta_{+}} := G{ \Delta_{+}}(P,E)$
+
+\STATE $i_{\Delta_{+}} := s$ %Index in I_delta
+\STATE $i_p := 0$ %Prime index
+
+
+
+
+
+\end{algorithmic}
+\end{document}
