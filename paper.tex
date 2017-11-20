@@ -1,7 +1,7 @@
 %Paper.tex:
 %The general paper, combining split files.
 
-\documentclass[]{article}
+\documentclass[12pt]{article}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -10,6 +10,10 @@
 \usepackage{enumitem}
 \usepackage{algorithmic}
 
+\usepackage[scale=0.77,a4paper,margin=.75in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section}
 
 %\usepackage[thmmarks,  thref, amsmath]{ntheorem}
 
@@ -43,10 +47,10 @@
 
 \subfile{prelims/prelims}
 
-\subfile{exponentAlgs/expalg}
+%\subfile{exponentAlgs/expalg}
 
-\subfile{algtheorems/theorems}
+%\subfile{algtheorems/theorems}
 
-\subfile{graph/graph}
+%\subfile{graph/graph}
 
 \end{document}

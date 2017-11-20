@@ -2,12 +2,81 @@
 
 \begin{document}
 
-\section{Exponent Algorithms}
+\section{Exponent Theorems and Algorithm}
 
-\textbf{Theorem:} Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
+We Want to define $G_{\Delta_{+}}(P,E)$ as a function which lists
+the indicies $i$ of prime/exponent pairs in sequences P and E
+in order of least $\Delta_{+}(p_i, e_i)$ to greatest.
+
+For example, here is how $G_{\Delta_{+}}(\{3,5,11\}, \{1,2,1\})$:
+%TODO: FINISH THIS EXPONENT EXAMPLE:
+
+We also need some theorems on determining when numbers are 
+primative abundants and not just abundant.
+
+No divisor of a primative abundant number is abundant, so 
+we have that decreasing any exponent of any prime factor will
+produce a deficient number. Thus we formally prove the below
+theorem.
+
+\begin{theorem}
+Suppose a number $n = p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$ is 
+abundant. Then $n$ is primative if and only if the 
+following property holds:
+
+Given any index of any prime/exponent pair $i$, we have that
+$$b(n) \Delta_{-}(p_i, e_i) = b(p_1^{m_1} p_2^{m_2} ...  
+p_i^{m_i - 1} p_{i+1}^{m_{i+1}}... p_d^{m_d}) < 2$$
+\end{theorem}
+
+\begin{proof}
+	First suppose that $n$ is a primative abundant. Then any divisor of $n$
+is deficient. Since decreasing any exponent in the prime 
+factorization of $n$ produces a divisor of $n$, and since any
+divisor of $n$ is deficient by nature of $n$ being primative,
+we have that 
+$$b(p_1^{m_1} p_2^{m_2} ...   p_i^{m_i - 1} p_{i+1}^{m_{i+1}}
+... p_d{m_d}) < 2$$
+Thus the property holds.
+
+	Suppose the property holds, and that $n$ is abundant. Suppose $d$
+is a proper divisor of $n$. Since $d$ is a proper divisor, it must
+be a divisor smaller than $n$. Thus at least one of its prime factors
+will have multiplicity less than $n$. This implies that $d$ is a 
+divisor of
+$n' = p_1^{m_1} p_2^{m_2} ...   p_i^{m_i - 1} p_{i+1}^{m_{i+1}}
+... p_d{m_d})$ 
+for some $i$ such that $1 \leq i \leq d$. Hence $b(d) \leq b(n')$.
+Since our property holds, we have that $b(n') < 2$. Since $d$ is
+a divisor of $n'$, we have that $b(d) \leq b(n') < 2$. Thus we
+have that all proper divisors of $n$ are deficient, and hence $n$ is 
+a primative abundant number.
+\end{proof}
+
+Suppose $P = \{p_0, p_1, ...,p_{d-1}\}$ are primes and 
+$E = \{e_0, e_1, ..., e_{d-1} \}$ are positve integers.
+We define $primative(P,E)$ as a statement that yeilds true
+if $p_0^{e_0} p_1^{e_1} ... p_{d-1}^{e_{d-1}}$ is a primative
+abundant number, and false otherwise.
+
+%TODO: aDD THEOREM.
+
+%MIXED B mb function:
+We want to define a function that will determine if raising specific
+exponents of a prime factoization will create an abundant number.
+These specific exponents can be raised as high as desired, but
+the other exponents should be completely left alone. This will
+be useful in determining what exponents a primative abundant number
+can have.
+
+We call this function \textit{mixed-b} 
+
+
+\begin{theorem} 
+Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
 and $b_{\infty}(P) > 2$, then the following algorithm will extract all primative
 abundant odd numbers whose prime divisors compose $P$.
-
+\end{theorem}
 % The algorithm:
 %
 % * Set initial exponents to 1 
@@ -43,9 +112,12 @@ abundant odd numbers whose prime divisors compose $P$.
 % THIS is going to be UGLY.
 % NEW THEorem added - may be important
 
+\textit{In the below algorithm, the set of primes P is indexed 
+starting at 0, not 1. In other words, $P = \{p_0, p_1, ..., p_{d-1}\}$}
+
 \begin{algorithmic}
 %E represents exponents
-\STATE $E := \{e_1 = 1,e_2 = 1,...,e_n = 1\}$
+\STATE $E := \{e_0 = 1,e_1 = 1,...,e_n = 1\}$
 \STATE $A := \{ \}$ %primative-abunant odds
 
 \STATE $expAbundant(P, E, A)$
@@ -57,9 +129,9 @@ abundant odd numbers whose prime divisors compose $P$.
 expAbundant:
 
 \begin{algorithmic}
-\IF $b(P, E) \geq 2$
-	\IF $primative(P, E)$
-		\STATE $A := A & (P,E)$
+\IF {$b(P, E) \geq 2$}
+	\IF {$primative(P, E)$}
+		\STATE $A := A \& (P,E)$
 		\RETURN TRUE
 	\ENDIF
 	\RETURN FALSE
@@ -74,7 +146,7 @@ Parameters: pset, expset, A, startat)
 
 \begin{algorithmic}
 
-\STATE $e_found :=$ TRUE
+\STATE $e_{found} :=$ FALSE
 %Index of delta_pos in order of 
 %of ascending order:
 % The last element as the most influence
@@ -82,11 +154,92 @@ Parameters: pset, expset, A, startat)
 \STATE $I_{\Delta_{+}} := G{ \Delta_{+}}(P,E)$
 
 \STATE $i_{\Delta_{+}} := s$ %Index in I_delta
+
 \STATE $i_p := 0$ %Prime index
 
+\WHILE {$i_{\Delta_{+}} \geq 0$}
+	\STATE $i_p := I_{\Delta_{+}}[ i_{\Delta_{+}} ]$
+
+	%\STATE $\Delta_{+} := \Delta_{+}(P_{i+p})$
+
+	\IF {$b(P,E) \Delta_{+}(P[i_p], E[i_p]) \geq 2$}
+		\STATE \COMMENT{$E_{new}$ is the new exponents raising the exponent that
+		allows the number to be abundant}
+		\STATE $E_{new} := E$
+		\STATE $E_{new}[ i_p ] := E_{new}[ i_p ] + 1 $
+		
+		\IF {$primative(P, E_{new})$}
+			\STATE $A := A\&(P,E)$
+			\STATE $e_{found} := $ TRUE
+		\ENDIF
+
+		\STATE $i_{\Delta_{+}} := i_{\Delta_{+}} - 1$  
+	
+	\ELSE
+		\STATE break;
+	\ENDIF
+\ENDWHILE
 
 
-
+\IF {$i_{\Delta_+} \geq 0$}
+	\STATE \COMMENT{Not all indexed exponents
+	were able to make an abundant when raised one power}
+	\IF {$expIncAlg(P, E, A, I_{\Delta_{+}}, i_{\Delta_{+}})$}
+		\STATE $e_{found} := $ TRUE
+	\ENDIF
+\ENDIF
 
 \end{algorithmic}
+expIncAlg: Parameters - P, E, A, Indexed Delt+'s in order, current index
+in last parameter
+
+\begin{algorithmic}
+
+\STATE $e_{found} :=$ FALSE
+\STATE $i_{\Delta_{+}}  := s$
+
+\WHILE {$i_{\Delta_{+}} \geq 0$}
+	\STATE \COMMENT{ exponent indicies that,when increased by 1, 
+do not change the fact that n is deficient}
+	\STATE $I_{b < 2} := \{I_{\Delta_{+}}[0], I_{\Delta_{+}}[1], 
+	                       ..., I_{\Delta_{+}}[i_{\Delta_{+}}],\}$
+
+	\IF {$mb(P, E, I) \geq 2$}
+		\STATE \COMMENT{When other exponents that would not normally
+cause n to be abundant by themselves are increased, this
+exponent combined with other exponents in the stated situation
+will eventually allow n to be an abundant number. Try increasing
+it.}
+		\STATE $E_{new} := E$
+		
+		%Exponent index:
+		\STATE $e_i := I_{\Delta_{+}}[i_{\Delta_{+}}]$
+		\STATE $E_{new}[e_i] := E_{new}[e_i] + 1$
+
+		% TODO: here we start at i_delt+. How can we assume this?
+		% Is it okay to start from the beginning to avoid this assumption?
+
+		% I think it is because if one exponet prime set changes,
+		% then I shifts over none or by one. If none, we are double
+		% checking the prime-exp-pair
+		% otherwise should we move back one or is this fine?
+
+		%                                 _ | _
+		%                                  \|/
+    %                                   .
+		\IF {$OrderDelPos(P, E_{new}, A, i_{\Delta_{+}})$}
+			\STATE $e_{found} :=$ TRUE
+		\ENDIF
+
+	\STATE $i_{\Delta_{+}} :=  i_{\Delta_{+}} - 1$
+
+	\ENDIF 
+
+\ENDWHILE
+
+\end{algorithmic}
+
+
+
+
 \end{document}
