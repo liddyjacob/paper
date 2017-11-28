@@ -4,12 +4,34 @@
 
 \section{Exponent Theorems and Algorithm}
 
+In this section we will understand some of the conditions that
+exponents of primative abundant odd numbers must follow. In order
+to do this we first must define some functions and prove theorems 
+that will allow us to determine some meaningful information about
+exponents of primative abundant odds.
+
 We Want to define $G_{\Delta_{+}}(P,E)$ as a function which lists
 the indicies $i$ of prime/exponent pairs in sequences P and E
 in order of least $\Delta_{+}(p_i, e_i)$ to greatest.
+\\
 
-For example, here is how $G_{\Delta_{+}}(\{3,5,11\}, \{1,2,1\})$:
-%TODO: FINISH THIS EXPONENT EXAMPLE:
+To demonstrate the above function, we calculate 
+$G_{\Delta_{+}}(\{3,5,11\}, \{1,2,1\})$.
+
+First we calculate each of $\Delta_{+}(3,1)$, $\Delta_{+}(5,2)$, 
+and $\Delta_{+}(11,1)$. We find that 
+$\Delta_{+}(3,1) = \frac{13}{12}$,
+$\Delta_{+}(5,2) = \frac{156}{155}$, and
+$\Delta_{+}(11,1)= \frac{133}{132}$.
+Thus the order of $\Delta_{+}$ is as follows:
+
+$$ \Delta_{+}(3,1) > \Delta_{+}(11,1) > \Delta_{+}(5,2)$$
+
+Giving the primes indicies based off its order in the prime
+factorization of $3^1 5^2 11^1$ starting at zero, we obtain that
+
+$$G_{\Delta_{+}}(\{3,5,11\}, \{1,2,1\}) = \{1,2,0\}$$
+\\
 
 We also need some theorems on determining when numbers are 
 primative abundants and not just abundant.
@@ -58,19 +80,7 @@ $E = \{e_0, e_1, ..., e_{d-1} \}$ are positve integers.
 We define $primative(P,E)$ as a statement that yeilds true
 if $p_0^{e_0} p_1^{e_1} ... p_{d-1}^{e_{d-1}}$ is a primative
 abundant number, and false otherwise.
-
-%TODO: aDD THEOREM.
-
-%MIXED B mb function:
-We want to define a function that will determine if raising specific
-exponents of a prime factoization will create an abundant number.
-These specific exponents can be raised as high as desired, but
-the other exponents should be completely left alone. This will
-be useful in determining what exponents a primative abundant number
-can have.
-
-We call this function \textit{mixed-b} 
-
+%TODO: ADD theorem? what does this mean?
 
 \begin{theorem} 
 Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
@@ -117,6 +127,21 @@ starting at 0, not 1. In other words, $P = \{p_0, p_1, ..., p_{d-1}\}$}
 
 \begin{algorithmic}
 %E represents exponents
+
+
+{\setlength{\parindent{0cm}}
+
+\textbf{The main algorithm}
+
+\textbf{INPUT:} The set of primes 
+$P = \{p_0, p_1, ..., p_{d-1}\}$.
+
+\textbf{OUTPUT:} All primative abundant odds whose prime factors
+compose $P$
+
+}
+
+
 \STATE $E := \{e_0 = 1,e_1 = 1,...,e_n = 1\}$
 \STATE $A := \{ \}$ %primative-abunant odds
 
@@ -126,7 +151,18 @@ starting at 0, not 1. In other words, $P = \{p_0, p_1, ..., p_{d-1}\}$}
 
 \end{algorithmic}
 
-expAbundant:
+{\setlength{\parindent{0cm}}
+
+\textbf{Algorithm: expAbundant}
+
+\textbf{INPUT:} The set of primes 
+$P = \{p_0, p_1, ..., p_{d-1}\}$, the exponents to those 
+primes $E$, and the primative abundants found so far, $A$.
+
+\textbf{OUTPUT:} True or false, depending on if the algorithm has found any
+primative abundant numbers.
+
+}
 
 \begin{algorithmic}
 \IF {$b(P, E) \geq 2$}

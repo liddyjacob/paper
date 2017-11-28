@@ -18,9 +18,50 @@ $$\sigma(n) = \prod_{1 \leq i \leq k} \frac{p_i^{m_i + 1} -1}{p_i -1}$$
 Thus, $b(n)$ can be expressed as:
 
 $$b(n) = \frac{\alpha(n)}{n} = \prod_{1 \leq i \leq k} 
-\frac{p_i^{m_i + 1} -1}{(p_i -1)p_{i}^{m_{i}}}$$
+\frac{p_i^{m_i + 1} -1}{(p_i -1)p_{i}^{m_{i}}}
+%
+=\prod_{1 \leq i \leq k} b(p_i^{m_i})
+$$
 
-	Suppose $n=p_1^{m_1}p_2^{m_2}...p_{k}^{m_k}$, and suppose 
+$b(n)$ also has the following properties. If $n$ and $m$ are positive
+integers greater than 1, then 
+
+\begin{equation}\label{inc_ineq}
+  b(n) < b(nm) \leq b(m)b(n)
+\end{equation}
+
+To show this, we first suppose that $m$ and $n$ share no prime factors.
+Thus if the prime factorization of $n$ is $p_1^{m_1} p_2^{m_2} ... p_i^{m_i}$ 
+and the prime factorization of $m$ is $r_1^{l_1} r_2^{l_2} ... r_j^{l_j}$.
+Then the unique prime factorization of $mn$ is 
+$$mn = p_1^{m_1} p_2^{m_2} ... p_i^{m_i} r_1^{l_1} r_2^{l_2} ... r_j^{l_j}$$
+Thus $b(mn) = b(n)b(m)$. Since $b(n) > 1$ as $\alpha(n) > n$, we have that 
+$b(n) < b(nm) = b(n)b(m)$. 
+
+To show that that (\ref{inc_ineq}) is true in general, we need to prove 
+$b(n) < b(mn)$ as well as $b(nm) \leq b(n) b(m)$.
+we first note that given any prime $p$ and
+any positive integer $m$, we can show that $b(p^m) < b(p^{m + 1})$.
+Let $n = p_1^{m_{p1}} p_2^{m_{p2}}... p_d^{m_{pd}}$ 
+Let $m$ be written in the prime factorization 
+$m = q_1^{m_{q1}} q_2^{m_{q2}} ... q_i^{m_{qi}} 
+r_1^{l_1} r_2^{l_2} ... r_j^{l_j}$ where 
+$q_1, q_2, ..., q_i$ are prime factors that $n$ and $m$ share. 
+Suppose that $m$ and $n$ share at least one prime factor, as the 
+other case was discussed in the previous paragraph.
+%
+Let $n' = n q_1^{m_1} q_2^{m_2} ... q_i^{m_i} =
+p_1^{m'_1} p_2^{m'_2} ... p_d^{m'_d}$, where each $m'_i \geq m_i$,as
+$n'$ has the same prime factors as $n$ but with some higer powers.
+Hence $b(n) < b(n')$. Since $n'$ and $r_1^{l_1} r_2^{l_2} ... r_j^{l_j}$
+share no prime factors, we have that 
+$b(n') \leq b(n' r_1^{l_1} ... r_j^{l_j}) = b(nm)$.
+Thus $b(n) < b(n') \leq b(mn)$.
+
+Hence $b(n)$ is a multiplicativly increasing function.
+
+
+Suppose $n=p_1^{m_1}p_2^{m_2}...p_{k}^{m_k}$, and suppose 
 $n'=p_1^{m_1}p_2^{m_2}...p_i^{m_i + 1}...p_{k}^{m_k}$. We want
 to define a function such that $b(n') = b(n) f$. We call this
 function $\Delta_{+}(p_i, m_i)$, hence $b(n') = b(n) \Delta_{+}(p,m)$.
@@ -53,32 +94,35 @@ $$\prod_{1 \leq i \leq k} (\frac{p_{i}}{p_{i} -1}) > 2$$
 
 \begin{proof}
 
+First we assume that  
+%
+$\prod_{1 \leq i \leq k} (\frac{p_{i}}{p_{i} -1}) > 2$.
+%
 Note that
 %  
 $$\prod_{1 \leq i \leq k} (\frac{p_{i}}{p_{i} -1}) 
 %
 = \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} 
 %
-( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}). $$
-
-First we assume that
-
-  
-$$\prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} 
-( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) > 2$$
+( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) $$
 
 Hence there exists arbitrary integers $\{m_1, m_2, ... , m_k\}$ 
 such that 
 %
 $$\prod_{1 \leq i \leq k} \frac{p_i^{m{i} + 1} -1}
-{(p_i -1)p_{i}^{m_{i}}}) > 2$$
+{(p_i -1)p_{i}^{m_{i}}} = \prod_{1 \leq i \leq k} b(p^{m_i}) > 2$$
 %
 
 Thus we let $n=p_1^{m_1}p_2^{m_2}p_3^{m_3}...p_{k}^{m_k}$. 
 Since $b(n) > 2$, it follows that $n$ is abundant. Note that an 
-abundant number multiplied by a natural number is an abundant 
-number. Hence $n$ can be multiplied by any one of its prime 
-factors, and an abundant number will be the product. Thus there
+abundant number multiplied by any positive integer greater than two
+is an abundant number. This is because b(n) is an increasing function
+when $n$ is multiplied. Hence $n$ can be multiplied by any one of its prime 
+factors, and an abundant number will be the product. In other words,
+%
+$$2 < b(n) < b(np_1) < b(np_1^2) < ...$$
+%
+Thus there
 are infinity many abundant integers $n$ whose prime factors are 
 in the set $P$
 
@@ -87,7 +131,9 @@ $n$ whose prime factors are in the set $P$. Let $p_i \in P$. Note
 that $np_i^r$ is abundant and has prime factors in $P$ for all 
 natural numbers r. This implies that the exponents of the prime 
 factors of $n$ can be increased and the product will remain abundant. Hence,
-  $$\prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} ( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) > 2$$
+%
+$$\prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} 
+( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) > 2$$
 
 \end{proof}
 
