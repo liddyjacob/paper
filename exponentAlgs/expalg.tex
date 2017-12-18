@@ -183,16 +183,15 @@ primative abundant numbers.
 \textbf{Algorithm: orderDelPos}
 
 \textbf{INPUT:} The set of primes 
-$P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1, ...\}
+$P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
+...\}$, the set of primative abundant numbers found $A$,
+and the starting index $s$ of the $G_{\Delta_{+}}(P,E)$.
 
 \textbf{OUTPUT:} All primative abundant odds whose prime factors
 compose $P$
 
 }
 
-
-orderDelPos:
-Parameters: pset, expset, A, startat)
 
 \begin{algorithmic}
 
@@ -201,7 +200,7 @@ Parameters: pset, expset, A, startat)
 %of ascending order:
 % The last element as the most influence
 % G is for generate: Make this function
-\STATE $I_{\Delta_{+}} := G{ \Delta_{+}}(P,E)$
+\STATE $I_{\Delta_{+}} := G_{ \Delta_{+}}(P,E)$
 
 \STATE $i_{\Delta_{+}} := s$ %Index in I_delta
 
@@ -269,15 +268,17 @@ it.}
 		% TODO: here we start at i_delt+. How can we assume this?
 		% Is it okay to start from the beginning to avoid this assumption?
 
+    % TOO HARD TO PROVE, we shold not assume
+
 		% I think we can assume because if one exponet prime set changes,
 		% then I shifts over none or by one. If none, we are double
 		% checking the prime-exp-pair
 		% otherwise should we move back one or is this fine?
 
-		%                                 _ | _
-		%                                  \|/
-    %                                   .
-		\IF {$OrderDelPos(P, E_{new}, A, i_{\Delta_{+}})$}
+		%                                           _ | _
+		%                                            \|/
+    %                                             .
+		\IF {$OrderDelPos(P, E_{new}, A, |P| - 1)$}%, i_{\Delta_{+}})$}
 			\STATE $e_{found} :=$ TRUE
 		\ENDIF
 
@@ -288,6 +289,9 @@ it.}
 \ENDWHILE
 
 \end{algorithmic}
+
+
+TODO: DISCUSSION ON HOW THIS ALGORITHM WORKS?
 
 \begin{proof}
   In order to prove that this theorem we need to show that if $n$
@@ -312,14 +316,106 @@ possible $n$ with prime divisors composing P.
 %contra positive. The contradiction would be this algorithm will
 %not find $n$ for some primative abundant $n$.
 
-  We now assume that at least one exponent $m_i$ is greater than
+  We now assume that at least one exponent $m_t$ is greater than
 two, hence $b_1(P) < 2$. Suppose, to the contrary, that $n$ is not
-obtained with the above algorithm, where $n$ is primative. Note that 
-$p_0^{m_0}...p_i^{m_i - 1}...p_{d-1}^{m_{d-1}}$ is deficient because 
-$n$ is primative. If the algorithm passes this deficient number, 
-i.e. $E = \{m_0, m_1, ..., m_i - 1, ..., m_d \}$ occurrs in this 
+obtained with the above algorithm, where $n$ is primative(When
+this algorithm runs, we will have that $(P,E) \notin A$). Note that 
+$n' = p_0^{m_0}...p_t^{m_t - 1}...p_{d-1}^{m_{d-1}}$ is deficient 
+because $n$ is primative and therefore all of the divisors of $n$
+are deficient. 
+
+  The algorithm may pass this divisor of $n$, or perhaps it may
+not. We proceed by cases:
+
+\textbf{Case 1:}
+  If the algorithm passes this deficient number, 
+i.e. $E' = \{m_0, m_1, ..., m_t - 1, ..., m_d \}$ occurrs in this 
 algorithm, we want to determine where it will occurr such that 
-$m_i - 1$ is not increased by the algorithm. If $E$ is 
+$m_t - 1$ is not increased by the algorithm. $E'$ can occurr for
+the first time at one of three possible places: In $expAbundant$, 
+$orderDelPos$ or $ExpIncAlg$.
+
+\textbf{Case 1.1:}  
+  Suppose that the algorithm passed $E'$ in expAbundant. If this
+is the case, then all of the exponents in the prime factorization
+of $n'$ are $1$. This is because the algorithm only passes
+$expAbundant$ at the very beginning, and that is when all elements
+in $E$ are one. As this is a deficient number, the $expAbundant$
+will return the value of $orderDelPos(P,E,A,|P| - 1)$.
+
+
+  Recall that $G_{Delta_+}$ is the sequence of $\Delta_+(p_j e_j)$
+where $p_j = P[j]$ and $e_j = E[j]$ ordered from least to greatest.
+The loop will check to see what exponent increases will lead to
+abundant numbers, and by checking the end of $G\Delta_+(p_j, e_j)$
+first, the algorithm will check the exponents of greatest
+influence first, i.e. the exponent which, if increased, will
+increase $b(P,E)$ the most. The loop will terminate once it
+has found all primes whose exponent increased by one makes an
+abundant number. We know that $n = p_0^1 p_2^1 ... p_t^2...
+p_{d-1}^1$ as $n' = p_0^1 ... p_t^1 ... p_{d-1}^1$.
+ Clearly, rasing the exponent of $p_t$ in $n'$ by one will
+produce an abundant number as $n = p_0^{1} ... p_t^{2} ...
+p_{d-1}^1$ is primative abundant. Thus the loop will check if $n$
+is primative, which it is, and therefore $(P,E) \in A$, which we
+assumed was false.
+
+\textbf{Case 1.2:}
+  Suppose that the algorithm creates $E'$ for the first time in
+$orderDelPos$. The only place in which any exponent set is created
+or updated is where $E_{new}$ is created here:
+\begin{algorithmic}
+ 
+	\IF {$b(P,E) \Delta_{+}(P[i_p], E[i_p]) \geq 2$}
+		\STATE $E_{new} := E$
+		\STATE $E_{new}[ i_p ] := E_{new}[ i_p ] + 1 $
+		
+		\IF {$primative(P, E_{new})$}
+			\STATE $A := A\&(P,E)$
+			\STATE $e_{found} := $ TRUE
+		\ENDIF 
+
+  \ENDIF
+\end{algorithmic}
+  Thus we suppose that $E'$ is obtained here as $E_{new} = E'$.
+However, the condition of the if-statement above implies that
+$E_{new} = E'$ is such that $b(P,E_{new}) = b(P,E') > 2$, which
+implies that $n'$ is abundant. This contradicts the fact that $n'$
+is a divisor of a primative abundant number and thus $n'$ is
+deficient.   
+
+\textbf{Case 1.3: The Complex Case}
+  Suppose that the algorithm creates $E'$ for the first time in
+$expIncAlg$. $E'$ would, again, be concieved as $E' = E_{new}$. 
+
+%
+%We
+%first show that $t \in I_{b > 2}$ 
+
+%  Suppose, to the contrary, that $t \notin I_{b > 2}$. Also,
+%let $E''$ be the exponent set that was used to create $E_{new}$.
+%Thus $E'' = \{m_0, m_1, ..., m_t - 1, ..., m_u - 1, ..., m_{d-1}\}$, 
+%$E'' = \{m_0, m_1, ..., m_t - 2, ..., m_{d-1}\}$ or $E'' = \{ m_0,
+%m_1, ..., m_u - 1, ..., m_t - 1, ... m_{d-1}\}$. 
+
+%If $E'' = \{m_0, m_1, ..., m_t - 2, ..., m_{d-1}\}$, then the
+%algorithm raised $m_t$ by one to create $E'$, and therefore 
+%$\Delta_+(p_t, m_t - 2) = I_{del}[]$
+%2 =
+
+%i_(\Delta_+)$ which implies $t = i_{\Delta_+}$. 
+
+
+Then we have that $I_{\Delta_+} = G_{\Delta_+}(P, E'')$. 
+%In order to achive a desired contradiction, We need to have that 
+%$t \in I_{b > 2}$. If 
+
+
+\textbf{Case 2:}
+  If the algorithm does not pass this deficient number, then we want
+to show that the algorithm passes none of it's divisors. Suppose
+
+Supp 
 %Work backwards until exponents are all one? Show that $n$ will
 % be found?
 %Properties of this algorithm important?
