@@ -41,7 +41,7 @@ we have that decreasing any exponent of any prime factor will
 produce a deficient number. Thus we formally prove the below
 theorem.
 
-\begin{theorem}
+\begin{theorem}\label{del_minus_thm}
 Suppose a number $n = p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$ is 
 abundant. Then $n$ is primative if and only if the 
 following property holds:
@@ -83,8 +83,8 @@ abundant number, and false otherwise.
 %TODO: ADD theorem? what does this mean?
 
 \begin{theorem} 
-Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
-and $b_{\infty}(P) > 2$, then the following algorithm will extract all primative
+Let $P$ be a set of $d$ odd primes. If $b_{\infty}(P) > 2$, then the 
+following algorithm will extract all primative
 abundant odd numbers whose prime divisors compose $P$.
 \end{theorem}
 % The algorithm:
@@ -125,11 +125,9 @@ abundant odd numbers whose prime divisors compose $P$.
 \textit{In the below algorithm, the set of primes P is indexed 
 starting at 0, not 1. In other words, $P = \{p_0, p_1, ..., p_{d-1}\}$}
 
-\begin{algorithmic}
-%E represents exponents
 
 
-{\setlength{\parindent{0cm}}
+{\setlength{\parindent}{0cm}
 
 \textbf{The main algorithm}
 
@@ -142,6 +140,9 @@ compose $P$
 }
 
 
+\begin{algorithmic}
+%E represents exponents
+
 \STATE $E := \{e_0 = 1,e_1 = 1,...,e_n = 1\}$
 \STATE $A := \{ \}$ %primative-abunant odds
 
@@ -151,7 +152,7 @@ compose $P$
 
 \end{algorithmic}
 
-{\setlength{\parindent{0cm}}
+{\setlength{\parindent}{0cm}
 
 \textbf{Algorithm: expAbundant}
 
@@ -176,6 +177,19 @@ primative abundant numbers.
 \RETURN $orderDelPos(P,E,A,|P| - 1)$
 
 \end{algorithmic}
+
+{\setlength{\parindent}{0cm}
+
+\textbf{Algorithm: orderDelPos}
+
+\textbf{INPUT:} The set of primes 
+$P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1, ...\}
+
+\textbf{OUTPUT:} All primative abundant odds whose prime factors
+compose $P$
+
+}
+
 
 orderDelPos:
 Parameters: pset, expset, A, startat)
@@ -255,7 +269,7 @@ it.}
 		% TODO: here we start at i_delt+. How can we assume this?
 		% Is it okay to start from the beginning to avoid this assumption?
 
-		% I think it is because if one exponet prime set changes,
+		% I think we can assume because if one exponet prime set changes,
 		% then I shifts over none or by one. If none, we are double
 		% checking the prime-exp-pair
 		% otherwise should we move back one or is this fine?
@@ -275,6 +289,52 @@ it.}
 
 \end{algorithmic}
 
+\begin{proof}
+  In order to prove that this theorem we need to show that if $n$
+is primative with prime factors composing $P$ then $n$ 
+will be gathered by this algorithm. Suppose that $n$ has the
+prime factorization $n = p_0^{m_0} p_1^{m_1} ...
+p_{d-1}^{m_{d-1}}$, where the prime factors $P$ follow the
+conditions $b_1(P) < 2$ and $b_{\infty}(P) \geq 2$. Also note 
+that $n$ has the property described in Theorem
+{\ref{del_minus_thm}}, as $n$ is a primative abundant number. 
+We want to show that the algorithm will gather the exponents 
+$m_0, m_1, ..., m_{d-1}$. 
+
+  First assume that all exponents of $n$ are one. Then this
+algorithm will check if $n$ is primative, which it is, and
+terminate. Thus this algorithm terminates and finds the only
+possible $n$ with prime divisors composing P. 
+
+%The theorem can be stated as Let $n$ be a compsite number whose
+%prime divisors compose n. if $n$ is primative abundant, then this algorithm
+%will find $n$. Therefore, we can attempt the contradition or
+%contra positive. The contradiction would be this algorithm will
+%not find $n$ for some primative abundant $n$.
+
+  We now assume that at least one exponent $m_i$ is greater than
+two, hence $b_1(P) < 2$. Suppose, to the contrary, that $n$ is not
+obtained with the above algorithm, where $n$ is primative. Note that 
+$p_0^{m_0}...p_i^{m_i - 1}...p_{d-1}^{m_{d-1}}$ is deficient because 
+$n$ is primative. If the algorithm passes this deficient number, 
+i.e. $E = \{m_0, m_1, ..., m_i - 1, ..., m_d \}$ occurrs in this 
+algorithm, we want to determine where it will occurr such that 
+$m_i - 1$ is not increased by the algorithm. If $E$ is 
+%Work backwards until exponents are all one? Show that $n$ will
+% be found?
+%Properties of this algorithm important?
+
+%The issue with the below statement is it assumes the thing we are
+%trying to prove, so contradiction will be used above instead.
+
+Thus, $n$ was either discovered in the 
+\textbf{if} $primative(P,E_{new})$ statement of OrderDelPos or
+expIncAlg. Suppose that $n$ was discovered in OrderDelPos.
+
+
+\end{proof}
+
+TODO: PROPERTIES of THE ABOVE ALGORITHM~
 
 
 
