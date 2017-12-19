@@ -278,7 +278,7 @@ it.}
 		%                                           _ | _
 		%                                            \|/
     %                                             .
-		\IF {$OrderDelPos(P, E_{new}, A, |P| - 1)$}%, i_{\Delta_{+}})$}
+		\IF {$OrderDelPos(P, E_{new}, A |P| - 1)$}%, i_{\Delta_{+}})$}
 			\STATE $e_{found} :=$ TRUE
 		\ENDIF
 
@@ -328,7 +328,7 @@ are deficient.
 not. We proceed by cases:
 
 \textbf{Case 1:}
-  If the algorithm passes this deficient number, 
+  If the algorithm passes some deficient divisor of the above form, 
 i.e. $E' = \{m_0, m_1, ..., m_t - 1, ..., m_d \}$ occurrs in this 
 algorithm, we want to determine where it will occurr such that 
 $m_t - 1$ is not increased by the algorithm. $E'$ can occurr for
@@ -377,22 +377,125 @@ or updated is where $E_{new}$ is created here:
 
   \ENDIF
 \end{algorithmic}
+
   Thus we suppose that $E'$ is obtained here as $E_{new} = E'$.
 However, the condition of the if-statement above implies that
 $E_{new} = E'$ is such that $b(P,E_{new}) = b(P,E') > 2$, which
 implies that $n'$ is abundant. This contradicts the fact that $n'$
-is a divisor of a primative abundant number and thus $n'$ is
-deficient.   
+is a deficient as it is a divisor of a primative abundant number.
+deficient. Thus $E'$ can't be obtained in OrderDelPos.
 
-\textbf{Case 1.3: The Complex Case}
+\textbf{Case 1.3:}
   Suppose that the algorithm creates $E'$ for the first time in
 $expIncAlg$. $E'$ would, again, be concieved as $E' = E_{new}$. 
+
+\begin{algorithmic}
+\WHILE {$i_{\Delta_{+}} \geq 0$}
+  \STATE $I_{b < 2} := \{I_{\Delta_{+}}[0], I_{\Delta_{+}}[1], 
+	                       ..., I_{\Delta_{+}}[i_{\Delta_{+}}],\}$
+
+	\IF {$mb(P, E, I) \geq 2$}
+
+  	\STATE $E_{new} := E$
+		
+		\STATE $e_i := I_{\Delta_{+}}[i_{\Delta_{+}}]$
+		\STATE $E_{new}[e_i] := E_{new}[e_i] + 1$
+
+  	\IF {$OrderDelPos(P, E_{new}, A, |P| - 1)$}
+			\STATE $e_{found} :=$ TRUE
+		\ENDIF
+
+	\STATE $i_{\Delta_{+}} :=  i_{\Delta_{+}} - 1$
+
+	\ENDIF 
+
+\ENDWHILE
+
+\end{algorithmic}
+
+If this is the case, $E'$ will be run through $OrderDelPos(P, E',
+A, |P| - 1)$. Here we will have that the exponents of $E'$ that
+will make $E'$ abundant will be raised, and since raising $m_t -1$
+will make an abundant number, we have that $n$ will be discovered
+in the algorithm, a desired contradiction.
+
+
+\textbf{Case 2:}
+  If the algorithm does not pass any of the deficient numbers in
+the form $n' = p_0^{m_0}...p_{t}^{m_t - 1}...p_{d-1}^{m_{d-1}}$ , then 
+we want to show that $n$ is not a primative abundant number. 
+
+TODO: Think about proving this
+\end{proof}
+
+\subsection{Properties of the Exponent Algorithm}
+
+\begin{theorem}[Property 1]
+
+\end{theorem}
+
+\begin{theorem}[The Fundamental Property]:
+Let $q \leq r$ be primes. Suppose that $p_0, p_1, p_2, ..., 
+p_{l-2}, q$ are the first l divisors of some primative abundant
+odd with $d$ prime divisors. Suppose $p_0, p_1, ..., p_{l-2},r$ 
+are also the first $l$ divisors of some primative abundant odd
+with $d$ prime divisors. Then, given any prime $s$ such that $q \leq s 
+\leq r$, we have that $p_0, p_1,..., p_{l-2}, s$ are the first $l$
+divisors of some primative abundant odd with $d$ divisors.
+\end{theorem}
+
+\begin{proof}
+  TODO: Use the exponent algorithm.
+\end{proof}
+
+
+%upp 
+%Work backwards until exponents are all one? Show that $n$ will
+% be found?
+%Properties of this algorithm important?
+
+%The issue with the below statement is it assumes the thing we are
+%trying to prove, so contradiction will be used above instead.
+
+%Thus, $n$ was either discovered in the 
+%\textbf{if} $primative(P,E_{new})$ statement of OrderDelPos or
+%expIncAlg. Suppose that $n$ was discovered in OrderDelPos
+
+%% Old stuff where we assumed we did not have to change indicies
+%would normally go here, but that makes the proof extemely
+%difficult. It is probably commented out hiding at the bottom.
+
+
+%We denote the first version of $I_{b>2}$ as $I_{max}$, i.e. the
+%version that was first created when the while loop ran for the
+%first time. We want to show that $t \in I_{max}$.
+
+%If $t \notin I_{max}$ then we have that t was possibly increased
+%in 
+
+%of this loop if it was in a
+%previous version of $I_{b>2}$, i.e. the 
+% See notebook
+
+
+% 
+% Two MORE cases: t = i_{\Delta} or t != i_delta
+% We need to show that if t = i_{\delta} then
+% upon regeneration of G we will not move t.
+% Note when m_t is increased it will
+% have LESS influence on G and therefore 
+% t will be moved up.
+% that 
+
+
 
 %
 %We
 %first show that $t \in I_{b > 2}$ 
 
-%  Suppose, to the contrary, that $t \notin I_{b > 2}$. Also,
+% Either t in I or t notin I
+
+%  Suppose that $t \notin I_{b > 2}$. Also,
 %let $E''$ be the exponent set that was used to create $E_{new}$.
 %Thus $E'' = \{m_0, m_1, ..., m_t - 1, ..., m_u - 1, ..., m_{d-1}\}$, 
 %$E'' = \{m_0, m_1, ..., m_t - 2, ..., m_{d-1}\}$ or $E'' = \{ m_0,
@@ -406,32 +509,9 @@ $expIncAlg$. $E'$ would, again, be concieved as $E' = E_{new}$.
 %i_(\Delta_+)$ which implies $t = i_{\Delta_+}$. 
 
 
-Then we have that $I_{\Delta_+} = G_{\Delta_+}(P, E'')$. 
+%Then we have that $I_{\Delta_+} = G_{\Delta_+}(P, E'')$. 
 %In order to achive a desired contradiction, We need to have that 
 %$t \in I_{b > 2}$. If 
-
-
-\textbf{Case 2:}
-  If the algorithm does not pass this deficient number, then we want
-to show that the algorithm passes none of it's divisors. Suppose
-
-Supp 
-%Work backwards until exponents are all one? Show that $n$ will
-% be found?
-%Properties of this algorithm important?
-
-%The issue with the below statement is it assumes the thing we are
-%trying to prove, so contradiction will be used above instead.
-
-Thus, $n$ was either discovered in the 
-\textbf{if} $primative(P,E_{new})$ statement of OrderDelPos or
-expIncAlg. Suppose that $n$ was discovered in OrderDelPos.
-
-
-\end{proof}
-
-TODO: PROPERTIES of THE ABOVE ALGORITHM~
-
 
 
 \end{document}
