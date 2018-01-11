@@ -75,12 +75,30 @@ have that all proper divisors of $n$ are deficient, and hence $n$ is
 a primative abundant number.
 \end{proof}
 
+We define the order of a divisor d (with respect to some multiple
+$n$) as the difference in the sum of the exponents between a
+divisor and some multiple of that divisor. Suppose $n = p_0^{m_0}
+p_1^{m_1} ... p_{d-1}^{m_{d-1}}$ is an integer and $d = p_0^{\ell_0}
+p_1^{\ell_1} ... p_{d-1}^{\ell_{d-1}}$. As $d$ is a divisor of
+$n$, we have that $m_i \leq \ell_i$ for each $i$. The
+\textit{order of $d$ with respect to $n$} is defined as $\sum {m_i
+- \ell_i}$. If $d$ is not a divisor of $n$, then the order of $d$
+is undefined and meaningless. If the prime factorization of $d$ is
+missing some prime factor, then the exponent of that prime factor
+is zero.
+
+
 Suppose $P = \{p_0, p_1, ...,p_{d-1}\}$ are primes and 
 $E = \{e_0, e_1, ..., e_{d-1} \}$ are positve integers.
 We define $primative(P,E)$ as a statement that yeilds true
 if $p_0^{e_0} p_1^{e_1} ... p_{d-1}^{e_{d-1}}$ is a primative
 abundant number, and false otherwise.
 %TODO: ADD theorem? what does this mean?
+
+%TODO: Talk about subtraction order divisors and immedient
+%divisors.
+
+
 
 \begin{theorem} 
 Let $P$ be a set of $d$ odd primes. If $b_{\infty}(P) > 2$, then the 
@@ -394,7 +412,7 @@ $expIncAlg$. $E'$ would, again, be concieved as $E' = E_{new}$.
   \STATE $I_{b < 2} := \{I_{\Delta_{+}}[0], I_{\Delta_{+}}[1], 
 	                       ..., I_{\Delta_{+}}[i_{\Delta_{+}}],\}$
 
-	\IF {$mb(P, E, I) \geq 2$}
+	\IF {$mb(P, E, I_{b < 2}) \geq 2$}
 
   	\STATE $E_{new} := E$
 		
@@ -422,10 +440,96 @@ in the algorithm, a desired contradiction.
 
 \textbf{Case 2:}
   If the algorithm does not pass any of the deficient numbers in
-the form $n' = p_0^{m_0}...p_{t}^{m_t - 1}...p_{d-1}^{m_{d-1}}$ , then 
-we want to show that $n$ is not a primative abundant number. 
+the form $n' = p_0^{m_0}...p_{t}^{m_t - 1}...p_{d-1}^{m_{d-1}}$ ,
+then  we want to show that the algorithm will not find any of the
+divisors. If we can show this from the given information, it will
+contradict the fact that the algorithm has already found $ p_0 p_1
+p_2 ... p_{d-1}$.
 
-TODO: Think about proving this
+In order to prove that the algorithm will find none of the
+divisors of $n$, we will use induction to show that if the
+algorithm does not find any divisors of order $v$, then the
+algorithm will not find any divisors of order $v + 1$. The base
+case is true since the algorithm does not find any divisors of
+order 0(i.e. $n$) and the algorithm does not find any divisors of
+order 1(The immedient divisors $n'= ...$).
+
+Suppose, to the contrary, that the algorithm does not find any
+divisors of order $v$ yet does find at least one divisor of order
+$v+1$. Call the found divisor $n^{(v+1)'}  = p_0^{m_0} p_1^{m_1} ...
+p_{i_1}^{m_{i_1} - l_1} ... p_{i_2}^{m_{i_2} - l_2} ... ...
+p_{i_k}^{m_{i_K} - l_k} ... p_{d-1}^{m_{d-1}}$, where $\sum_{1 \leq j
+\leq k} l_j = v + 1$.
+
+Note that $n^{(v+1)'}$ can be found in one of three places. Call 
+the exponent sequece of $n^{(v+1)'}$ by $E_{v+1}$ 
+We will break this up into cases:
+
+\textbf{Case 2.1:} 
+  Suppose that the algorithm creates $E_{v+1}$ for the first time in
+$expAbundant$. Then $n^{(v+1)} = p_0^1 p_1^1 ... p_{d-1}^1$. As all
+divisors of order $v$ are not found in the algorithm, the
+algorithm   
+
+we have that
+only exponents i can be raised such that $p_i | n$ yet $p_i^2
+\nmid n$. 
+
+  As the algorithm moves into $orderDelPos$, we have that a few
+exponent increases may lead to an abundant number, but these will
+not lead to $n$, unless $v = 0$. In other words, if $v= 0$, then
+the algorithm will find a divisor of order $v = 0$, which is $n$.
+This can't be the case, as we assumed that the algorithm does not
+find any divisor of order $v = 0$.
+
+  Thus we assume that $v \geq 1$. If that is the case, we will
+have some exponents that, when raised multiple times, will create
+an abundant number. Thus the algorithm will move on to
+$expIncAlg(P,E_{v+1},A, I_{\Delta_+}, s)$.
+
+  We write $n^{(v + 1)}$ in a form such that $n^{(v + 1)} =
+p_0^{m_0 - v_0} p_1 ^{m_1 - v_1} ... p_{d-1}^{m_{d-1} - v_{d-1}}$,
+where $\sum v_i = v$. Now construct a set $I_{v+1}$ of indicies 
+$i$ such that if $v_i \neq 0$ then $v_i \in I_{v+1}$. Notice that
+raising exponents with these indicies alone will not produce an 
+abundant number, Thus these exponents will all appear in $I_{b >
+2}$. Consider the element of $I_{v+1}$ that is furthest in the
+sequence $I_{b > 2}$. Call this element $i_{max}$. Note here that
+$mb(P,E,I_{v+1}) > 2$ as rasing exponents with indicies in 
+$I_{v+1}$ will eventually produce an abundant number. Notice that the
+algorithm will increase all exponents that come after $i_{max}$ in
+$I_{b+1}$,
+as we have that $I_{v + 1} \subseteq I_{b > 2} = 
+                          \{I_{\Delta_{+}}[0], I_{\Delta_{+}}[1], 
+	                        ..., I_{\Delta_{+}}[i_{max}],...,
+                          I_{\Delta_{+}}[i_{\Delta_+}]\}$.
+
+as the function $mb(P,E,I)$ has the property that, if $X \subseteq
+Y$, then $mb(P,E,X) < mb (P,E,Y)$. This is because $b_{\infty}(p)
+b(p,e)$. Therefore when the algorithm is such that
+$i_{\Delta_{+}} = i_{max}$, we will have that $m_{i_{max}}$ will
+be increased, and we will have that the new resulting number is a
+divisor of $n$, and is a divisor of order $v$, which contradicts
+the the fact that no divisors of order $v$ are discovered in the
+algorithm.  
+
+\textbf{Case 2.2:}
+Impossible...
+\textbf{Case 2.3:}
+Similar to Case 2.1?
+If $n^{(v+1)}$ is discovered here , then it will be passed into
+$orderDelPos$, which will bring us back to case 2.1/
+
+Hence, we have that no divisors of $n$ can be discovered in the
+algorithm, by some convoluted induction scheme. However, this
+contradicts the fact that $p_0 p_1 p_2 ... p_{d-1}$ is a divisor
+of $n$ and is discovered in the algorithm, thus the original
+assumption is false.
+
+In both case, the assumptions were false, thus the assumption that
+$n$ was not discovered in the algorithm is false, and therefore
+$n$ IS discovered in the algorithm, proving the theorem.
+
 \end{proof}
 
 \subsection{Properties of the Exponent Algorithm}
@@ -434,7 +538,7 @@ TODO: Think about proving this
 
 \end{theorem}
 
-\begin{theorem}[The Fundamental Property]:
+\begin{conj}[The Fundamental Property]:
 Let $q \leq r$ be primes. Suppose that $p_0, p_1, p_2, ..., 
 p_{l-2}, q$ are the first l divisors of some primative abundant
 odd with $d$ prime divisors. Suppose $p_0, p_1, ..., p_{l-2},r$ 
@@ -442,11 +546,18 @@ are also the first $l$ divisors of some primative abundant odd
 with $d$ prime divisors. Then, given any prime $s$ such that $q \leq s 
 \leq r$, we have that $p_0, p_1,..., p_{l-2}, s$ are the first $l$
 divisors of some primative abundant odd with $d$ divisors.
-\end{theorem}
+\end{conj}
 
-\begin{proof}
+i\begin{proof}
   TODO: Use the exponent algorithm.
 \end{proof}
+
+
+%todo TODO todo TODO fixme TODO:
+% TALK ABOUT IMMEDIENT DIVISORS!!
+% (exponents of prime factors minus one.)
+
+
 
 
 %upp 
