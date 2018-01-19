@@ -538,7 +538,7 @@ $n$ IS discovered in the algorithm, proving the theorem.
 
 \end{theorem}
 
-\begin{conj}[The Fundamental Property]:
+\begin{conj}[Continuity of Primative Abundant Numbers]:
 Let $q \leq r$ be primes. Suppose that $p_0, p_1, p_2, ..., 
 p_{l-2}, q$ are the first l divisors of some primative abundant
 odd with $d$ prime divisors. Suppose $p_0, p_1, ..., p_{l-2},r$ 
@@ -548,8 +548,62 @@ with $d$ prime divisors. Then, given any prime $s$ such that $q \leq s
 divisors of some primative abundant odd with $d$ divisors.
 \end{conj}
 
-i\begin{proof}
-  TODO: Use the exponent algorithm.
+\begin{proof}
+  We will use induction to prove this theorem. The base case is
+the following statement:
+
+  \textit{Suppose that $p_0, p_1, p_2, ..., 
+p_{d-2}, q$ are the divisors of some primative abundant
+odd with $d$ prime divisors. Suppose $p_0, p_1, ..., p_{d-2},r$ 
+are also the divisors of some primative abundant odd
+with $d$ prime divisors. Then, given any prime $s$ such that $q \leq s 
+\leq r$, we have that $p_0, p_1,..., p_{d-2}, s$ are the 
+divisors of some primative abundant odd with $d$ divisors.}
+
+And our inductive step will be:
+
+  \textit{Assume that the theorem is true for the last $k$
+divisors. Prove that the theorem is true for that last $k + 1$
+divisors.}
+
+We start this proof with the base case. Note that since each set
+of primes will produce a primative abundant number, we have that
+the exponent algorithm will produce all possible combinations of
+exponents that create abundant numbers for the prime sequences $Q = 
+\{p_0, p_1, ..., p_{d-2}, q\}$ and $R = \{p_0, p_1, ..., p_{d-2},
+r\}$. Also, notice that both Q and R will have the same initial
+$G_{\Delta_+}$ values when used with the initial exponent sequence
+in the exponent algorithm. And as the primes are in increasing
+order, the $G_{\Delta_+}$ values are going to be exactly the same
+for Q and R, and in fact (giving q and r indicies of d-1) we have
+that $G_{\Delta_+}(Q, \{1,1,1,...\}) = G_{\Delta_+}(R,
+\{1,1,1,...\}) = \{(d-1), (d-2), ..., 1, 0\}$. Because of this,
+the exponent algorithm will follow the same path for a while for
+both $Q$ and $R$.
+
+
+There are two occurances that will stop Q and R's algorithm from
+running paralell:
+\begin{enumerate}
+  \item q's exponent is increased before r's expoent is.
+  \item Q's algorithm produces a primative abundant number and R's
+algorithm has not yet.
+\end{enumerate}
+
+Possibilities:
+  * Q and R produce a primative abundant number before diverging.
+  * Q's algorithm produces an abundant number and R has not yet produced an
+abundbat number, they have not diverged before this.
+  * Q and R has not produced an abundant number, and are about to
+diverge. with different exponent increases
+
+Is this exhaustive??
+
+Is the last * possible? probablty. If so will it be hard to
+discuss and prove? Yes. Talk about s's index appearing inbetween
+q and r.
+
+
 \end{proof}
 
 
