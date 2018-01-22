@@ -101,7 +101,7 @@ abundant number, and false otherwise.
 
 
 \begin{theorem} 
-Let $P$ be a set of $d$ odd primes. If $b_{\infty}(P) > 2$, then the 
+Let $P$ be a sequence of $d$ odd primes. If $b_{\infty}(P) > 2$, then the 
 following algorithm will extract all primative
 abundant odd numbers whose prime divisors compose $P$.
 \end{theorem}
@@ -140,7 +140,7 @@ abundant odd numbers whose prime divisors compose $P$.
 % THIS is going to be UGLY.
 % NEW THEorem added - may be important
 
-\textit{In the below algorithm, the set of primes P is indexed 
+\textit{In the below algorithm, the sequence of primes P is indexed 
 starting at 0, not 1. In other words, $P = \{p_0, p_1, ..., p_{d-1}\}$}
 
 
@@ -149,7 +149,7 @@ starting at 0, not 1. In other words, $P = \{p_0, p_1, ..., p_{d-1}\}$}
 
 \textbf{The main algorithm}
 
-\textbf{INPUT:} The set of primes 
+\textbf{INPUT:} The sequence of primes 
 $P = \{p_0, p_1, ..., p_{d-1}\}$.
 
 \textbf{OUTPUT:} All primative abundant odds whose prime factors
@@ -174,7 +174,7 @@ compose $P$
 
 \textbf{Algorithm: expAbundant}
 
-\textbf{INPUT:} The set of primes 
+\textbf{INPUT:} The sequence of primes 
 $P = \{p_0, p_1, ..., p_{d-1}\}$, the exponents to those 
 primes $E$, and the primative abundants found so far, $A$.
 
@@ -200,7 +200,7 @@ primative abundant numbers.
 
 \textbf{Algorithm: orderDelPos}
 
-\textbf{INPUT:} The set of primes 
+\textbf{INPUT:} The sequence of primes 
 $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
 ...\}$, the set of primative abundant numbers found $A$,
 and the starting index $s$ of the $G_{\Delta_{+}}(P,E)$.
@@ -288,7 +288,7 @@ it.}
 
     % TOO HARD TO PROVE, we shold not assume
 
-		% I think we can assume because if one exponet prime set changes,
+		% I think we can assume because if one exponet prime sequence changes,
 		% then I shifts over none or by one. If none, we are double
 		% checking the prime-exp-pair
 		% otherwise should we move back one or is this fine?
@@ -380,7 +380,7 @@ assumed was false.
 
 \textbf{Case 1.2:}
   Suppose that the algorithm creates $E'$ for the first time in
-$orderDelPos$. The only place in which any exponent set is created
+$orderDelPos$. The only place in which any exponent sequence is created
 or updated is where $E_{new}$ is created here:
 \begin{algorithmic}
  
@@ -566,7 +566,7 @@ And our inductive step will be:
 divisors. Prove that the theorem is true for that last $k + 1$
 divisors.}
 
-We start this proof with the base case. Note that since each set
+We start this proof with the base case. Note that since each sequence
 of primes will produce a primative abundant number, we have that
 the exponent algorithm will produce all possible combinations of
 exponents that create abundant numbers for the prime sequences $Q = 
@@ -661,7 +661,7 @@ q and r.
 % Either t in I or t notin I
 
 %  Suppose that $t \notin I_{b > 2}$. Also,
-%let $E''$ be the exponent set that was used to create $E_{new}$.
+%let $E''$ be the exponent sequence that was used to create $E_{new}$.
 %Thus $E'' = \{m_0, m_1, ..., m_t - 1, ..., m_u - 1, ..., m_{d-1}\}$, 
 %$E'' = \{m_0, m_1, ..., m_t - 2, ..., m_{d-1}\}$ or $E'' = \{ m_0,
 %m_1, ..., m_u - 1, ..., m_t - 1, ... m_{d-1}\}$. 
