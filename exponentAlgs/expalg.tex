@@ -5,10 +5,10 @@
 \section{Exponent Theorems and Algorithm}
 
 In this section we will understand some of the conditions that
-exponents of primative abundant odd numbers must follow. In order
+exponents of primitive abundant odd numbers must follow. In order
 to do this we first must define some functions and prove theorems 
 that will allow us to determine some meaningful information about
-exponents of primative abundant odds.
+exponents of primitive abundant odds.
 
 We Want to define $G_{\Delta_{+}}(P,E)$ as a function which lists
 the indicies $i$ of prime/exponent pairs in sequences P and E
@@ -34,16 +34,16 @@ $$G_{\Delta_{+}}(\{3,5,11\}, \{1,2,1\}) = \{1,2,0\}$$
 \\
 
 We also need some theorems on determining when numbers are 
-primative abundants and not just abundant.
+primitive abundants and not just abundant.
 
-No divisor of a primative abundant number is abundant, so 
+No divisor of a primitive abundant number is abundant, so 
 we have that decreasing any exponent of any prime factor will
 produce a deficient number. Thus we formally prove the below
 theorem.
 
 \begin{theorem}\label{del_minus_thm}
 Suppose a number $n = p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$ is 
-abundant. Then $n$ is primative if and only if the 
+abundant. Then $n$ is primitive if and only if the 
 following property holds:
 
 Given any index of any prime/exponent pair $i$, we have that
@@ -52,10 +52,10 @@ p_i^{m_i - 1} p_{i+1}^{m_{i+1}}... p_d^{m_d}) < 2$$
 \end{theorem}
 
 \begin{proof}
-	First suppose that $n$ is a primative abundant. Then any divisor of $n$
+	First suppose that $n$ is a primitive abundant. Then any divisor of $n$
 is deficient. Since decreasing any exponent in the prime 
 factorization of $n$ produces a divisor of $n$, and since any
-divisor of $n$ is deficient by nature of $n$ being primative,
+divisor of $n$ is deficient by nature of $n$ being primitive,
 we have that 
 $$b(p_1^{m_1} p_2^{m_2} ...   p_i^{m_i - 1} p_{i+1}^{m_{i+1}}
 ... p_d^{m_d}) < 2$$
@@ -72,7 +72,7 @@ for some $i$ such that $1 \leq i \leq d$. Hence $b(d) \leq b(n')$.
 Since our property holds, we have that $b(n') < 2$. Since $d$ is
 a divisor of $n'$, we have that $b(d) \leq b(n') < 2$. Thus we
 have that all proper divisors of $n$ are deficient, and hence $n$ is 
-a primative abundant number.
+a primitive abundant number.
 \end{proof}
 
 We define the order of a divisor d (with respect to some multiple
@@ -90,8 +90,8 @@ is zero.
 
 Suppose $P = \{p_0, p_1, ...,p_{d-1}\}$ are primes and 
 $E = \{e_0, e_1, ..., e_{d-1} \}$ are positve integers.
-We define $primative(P,E)$ as a statement that yeilds true
-if $p_0^{e_0} p_1^{e_1} ... p_{d-1}^{e_{d-1}}$ is a primative
+We define $primitive(P,E)$ as a statement that yeilds true
+if $p_0^{e_0} p_1^{e_1} ... p_{d-1}^{e_{d-1}}$ is a primitive
 abundant number, and false otherwise.
 %TODO: ADD theorem? what does this mean?
 
@@ -102,23 +102,23 @@ abundant number, and false otherwise.
 
 \begin{theorem} 
 Let $P$ be a sequence of $d$ odd primes. If $b_{\infty}(P) > 2$, then the 
-following algorithm will extract all primative
+following algorithm will extract all primitive
 abundant odd numbers whose prime divisors compose $P$.
 \end{theorem}
 % The algorithm:
 %
 % * Set initial exponents to 1 
 %
-% * Check if abundant. If so check if primative
-%   * If not primative, no abundant odds 
-%		* If primative, this is 
+% * Check if abundant. If so check if primitive
+%   * If not primitive, no abundant odds 
+%		* If primitive, this is 
 %
 % * If b(p1^e1 p2^e2 ... pd^ed) >= 2
-%		* If primative this is an option : return true
+%		* If primitive this is an option : return true
 %		* If not return false
 %
 %	* Check to see if any exponent increases will cause abundance
-%    If any do cause abundance, check if primative.
+%    If any do cause abundance, check if primitive.
 %    Always start with the exponents of highest 'influence'
 %		 then move on to lower 'influence' exponents. influence
 %    is measured by which exponents increase b(n) the most
@@ -152,7 +152,7 @@ starting at 0, not 1. In other words, $P = \{p_0, p_1, ..., p_{d-1}\}$}
 \textbf{INPUT:} The sequence of primes 
 $P = \{p_0, p_1, ..., p_{d-1}\}$.
 
-\textbf{OUTPUT:} All primative abundant odds whose prime factors
+\textbf{OUTPUT:} All primitive abundant odds whose prime factors
 compose $P$
 
 }
@@ -160,9 +160,12 @@ compose $P$
 
 \begin{algorithmic}
 %E represents exponents
+\IF {$b_{\infty}(P) \leq 2$}
+  \RETURN $\{\}$
+\ENDIF
 
 \STATE $E := \{e_0 = 1,e_1 = 1,...,e_n = 1\}$
-\STATE $A := \{ \}$ %primative-abunant odds
+\STATE $A := \{ \}$ %primitive-abunant odds
 
 \STATE $expAbundant(P, E, A)$
 
@@ -176,19 +179,14 @@ compose $P$
 
 \textbf{INPUT:} The sequence of primes 
 $P = \{p_0, p_1, ..., p_{d-1}\}$, the exponents to those 
-primes $E$, and the primative abundants found so far, $A$.
+primes $E$, and the primitive abundants found so far, $A$.
 
-\textbf{OUTPUT:} True or false, depending on if the algorithm has found any
-primative abundant numbers.
-
+\textbf{OUTPUT:} No output. However, $A$ will be modified.
 }
 
 \begin{algorithmic}
-\IF {$b_{\infty}(P) \leq 2$}
-  \RETURN 
-\ENDIF
 \IF {$b(P, E) \geq 2$}
-	\IF {$primative(P, E)$}
+	\IF {$primitive(P, E)$}
 		\STATE $A := A \& (P,E)$
 		\RETURN
 	\ENDIF
@@ -205,9 +203,9 @@ $orderDelPos(P,E,A)$
 
 \textbf{INPUT:} The sequence of primes 
 $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
-...\}$, the set of primative abundant numbers found $A$.
+...\}$, the set of primitive abundant numbers found $A$.
 
-\textbf{OUTPUT:} True or False, depending on if the algorithm found any primative abundants.
+\textbf{OUTPUT:} True or False, depending on if the algorithm found any primitive abundants.
 }
 
 
@@ -225,7 +223,7 @@ $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
 \STATE $i_p := 0$ %Prime index
 
 \WHILE {$g \geq 0$}
-	\STATE $i_p := G[ g ]$
+	\STATE $i_p := G[g]$
 
 	%\STATE $\Delta_{+} := \Delta_{+}(P_{i+p})$
 
@@ -235,7 +233,7 @@ $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
 		\STATE $E_{new} := E$
 		\STATE $E_{new}[ i_p ] := E_{new}[ i_p ] + 1 $
 		
-		\IF {$primative(P, E_{new})$}
+		\IF {$primitive(P, E_{new})$}
 			\STATE $A := A\&(P,E)$
 			\STATE $e_{found} := $ TRUE
 		\ENDIF
@@ -259,18 +257,19 @@ $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
 \RETURN $e_found$
 
 \end{algorithmic}
-expIncAlg: Parameters - P, E, A, Indexed Delt+'s in order, current index
-in last parameter
+expIncAlg: Parameters - P, E, A, s
 
 \begin{algorithmic}
 
 \STATE $e_{found} :=$ FALSE
 \STATE $g  := s$
+\STATE $G = G_{\Delta_+}(P,E)$
+
 
 \WHILE {$g \geq 0$}
-	\STATE \COMMENT{ exponent indicies that,when increased by 1, 
-do not change the fact that n is deficient}
-	\STATE $I_{b < 2} := \{G[0], G[1], 
+%	\STATE \COMMENT{ exponent indicies that,when increased by 1, 
+%do not change the fact that n is deficient}
+	\STATE $G_{b < 2} := \{G[0], G[1], 
 	                       ..., G[g],\}$
 
 	\IF {$mb(P, E, I) \geq 2$}
@@ -281,9 +280,9 @@ will eventually allow n to be an abundant number. Try increasing
 it.}
 		\STATE $E_{new} := E$
 		
-		%Exponent index:
-		\STATE $e_i := G[g]$
-		\STATE $E_{new}[e_i] := E_{new}[e_i] + 1$
+		%Prime index
+		\STATE $i_p := G[g]$
+		\STATE $E_{new}[i_p] := E_{new}[i_p] + 1$
 
 		% TODO: here we start at i_delt+. How can we assume this?
 		% Is it okay to start from the beginning to avoid this assumption?
@@ -316,37 +315,36 @@ TODO: DISCUSSION ON HOW THIS ALGORITHM WORKS?
 
 \begin{proof}
   In order to prove that this theorem we need to show that if $n$
-is primative with prime factors composing $P$ then $n$ 
+is primitive with prime factors composing $P$ then $n$ 
 will be gathered by this algorithm. Suppose that $n$ has the
 prime factorization $n = p_0^{m_0} p_1^{m_1} ...
 p_{d-1}^{m_{d-1}}$, where the prime factors $P$ follow the
 conditions $b_1(P) < 2$ and $b_{\infty}(P) \geq 2$. Also note 
 that $n$ has the property described in Theorem
-{\ref{del_minus_thm}}, as $n$ is a primative abundant number. 
+{\ref{del_minus_thm}}, as $n$ is a primitive abundant number. 
 We want to show that the algorithm will gather the exponents 
 $m_0, m_1, ..., m_{d-1}$. 
 
   First assume that all exponents of $n$ are one. Then this
-algorithm will check if $n$ is primative, which it is, and
+algorithm will check if $n$ is abundant, which it is, and
 terminate. Thus this algorithm terminates and finds the only
 possible $n$ with prime divisors composing P. 
 
 %The theorem can be stated as Let $n$ be a compsite number whose
-%prime divisors compose n. if $n$ is primative abundant, then this algorithm
+%prime divisors compose n. if $n$ is primitive abundant, then this algorithm
 %will find $n$. Therefore, we can attempt the contradition or
 %contra positive. The contradiction would be this algorithm will
-%not find $n$ for some primative abundant $n$.
+%not find $n$ for some primitive abundant $n$.
 
   We now assume that at least one exponent $m_t$ is greater than
 two, hence $b_1(P) < 2$. Suppose, to the contrary, that $n$ is not
-obtained with the above algorithm, where $n$ is primative(When
+obtained with the above algorithm, where $n$ is primitive(When
 this algorithm runs, we will have that $(P,E) \notin A$). Note that 
 $n' = p_0^{m_0}...p_t^{m_t - 1}...p_{d-1}^{m_{d-1}}$ is deficient 
-because $n$ is primative and therefore all of the divisors of $n$
-are deficient. 
+as it is a divisor of $n$. 
 
-  The algorithm may pass this divisor of $n$, or perhaps it may
-not. We proceed by cases:
+  The algorithm may pass a divisor of form $n'$, or it may not
+We proceed by cases:
 
 \textbf{Case 1:}
   If the algorithm passes some deficient divisor of the above form, 
@@ -377,8 +375,8 @@ abundant number. We know that $n = p_0^1 p_2^1 ... p_t^2...
 p_{d-1}^1$ as $n' = p_0^1 ... p_t^1 ... p_{d-1}^1$.
  Clearly, rasing the exponent of $p_t$ in $n'$ by one will
 produce an abundant number as $n = p_0^{1} ... p_t^{2} ...
-p_{d-1}^1$ is primative abundant. Thus the loop will check if $n$
-is primative, which it is, and therefore $(P,E) \in A$, which we
+p_{d-1}^1$ is primitive abundant. Thus the loop will check if $n$
+is primitive, which it is, and therefore $(P,E) \in A$, which we
 assumed was false.
 
 \textbf{Case 1.2:}
@@ -391,7 +389,7 @@ or updated is where $E_{new}$ is created here:
 		\STATE $E_{new} := E$
 		\STATE $E_{new}[ i_p ] := E_{new}[ i_p ] + 1 $
 		
-		\IF {$primative(P, E_{new})$}
+		\IF {$primitive(P, E_{new})$}
 			\STATE $A := A\&(P,E)$
 			\STATE $e_{found} := $ TRUE
 		\ENDIF 
@@ -403,7 +401,7 @@ or updated is where $E_{new}$ is created here:
 However, the condition of the if-statement above implies that
 $E_{new} = E'$ is such that $b(P,E_{new}) = b(P,E') > 2$, which
 implies that $n'$ is abundant. This contradicts the fact that $n'$
-is a deficient as it is a divisor of a primative abundant number.
+is a deficient as it is a divisor of a primitive abundant number.
 deficient. Thus $E'$ can't be obtained in OrderDelPos.
 
 \textbf{Case 1.3:}
@@ -412,10 +410,10 @@ $expIncAlg$. $E'$ would, again, be concieved as $E' = E_{new}$.
 
 \begin{algorithmic}
 \WHILE {$g \geq 0$}
-  \STATE $I_{b < 2} := \{G[0], G[1], 
+  \STATE $G_{b < 2} := \{G[0], G[1], 
 	                       ..., G[g],\}$
 
-	\IF {$mb(P, E, I_{b < 2}) \geq 2$}
+	\IF {$mb(P, E, G_{b < 2}) \geq 2$}
 
   	\STATE $E_{new} := E$
 		
@@ -438,7 +436,6 @@ If this is the case, $E'$ will be run through $OrderDelPos(P, E',
 A, |P| - 1)$. Here we will have that the exponents of $E'$ that
 will make $E'$ abundant will be raised, and since raising $m_t -1$
 will make an abundant number, we have that $n$ will be discovered
-in the algorithm, a desired contradiction.
 
 
 \textbf{Case 2:}
@@ -523,6 +520,7 @@ Impossible, since
 \textbf{Case 2.3:}
 If $n^{(v+1)}$ is discovered here , then it will be passed into
 $orderDelPos$, which will bring us back to case 2.1/
+$orderDelPos$, which will bring us back to case 2.1/
 
 Hence, we have that no divisors of $n$ can be discovered in the
 algorithm, by some convoluted induction scheme. However, this
@@ -544,12 +542,12 @@ $n$ IS discovered in the algorithm, proving the theorem.
 
 \begin{conj}[Continuity of Primative Abundant Numbers]:
 Let $q \leq r$ be primes. Suppose that $p_0, p_1, p_2, ..., 
-p_{l-2}, q$ are the first l divisors of some primative abundant
+p_{l-2}, q$ are the first l divisors of some primitive abundant
 odd with $d$ prime divisors. Suppose $p_0, p_1, ..., p_{l-2},r$ 
-are also the first $l$ divisors of some primative abundant odd
+are also the first $l$ divisors of some primitive abundant odd
 with $d$ prime divisors. Then, given any prime $s$ such that $q \leq s 
 \leq r$, we have that $p_0, p_1,..., p_{l-2}, s$ are the first $l$
-divisors of some primative abundant odd with $d$ divisors.
+divisors of some primitive abundant odd with $d$ divisors.
 \end{conj}
 
 \begin{proof}
@@ -557,12 +555,12 @@ divisors of some primative abundant odd with $d$ divisors.
 the following statement:
 
   \textit{Suppose that $p_0, p_1, p_2, ..., 
-p_{d-2}, q$ are the divisors of some primative abundant
+p_{d-2}, q$ are the divisors of some primitive abundant
 odd with $d$ prime divisors. Suppose $p_0, p_1, ..., p_{d-2},r$ 
-are also the divisors of some primative abundant odd
+are also the divisors of some primitive abundant odd
 with $d$ prime divisors. Then, given any prime $s$ such that $q \leq s 
 \leq r$, we have that $p_0, p_1,..., p_{d-2}, s$ are the 
-divisors of some primative abundant odd with $d$ divisors.}
+divisors of some primitive abundant odd with $d$ divisors.}
 
 And our inductive step will be:
 
@@ -571,7 +569,7 @@ divisors. Prove that the theorem is true for that last $k + 1$
 divisors.}
 
 We start this proof with the base case. Note that since each sequence
-of primes will produce a primative abundant number, we have that
+of primes will produce a primitive abundant number, we have that
 the exponent algorithm will produce all possible combinations of
 exponents that create abundant numbers for the prime sequences $Q = 
 \{p_0, p_1, ..., p_{d-2}, q\}$ and $R = \{p_0, p_1, ..., p_{d-2},
@@ -585,17 +583,95 @@ that $G_{\Delta_+}(Q, \{1,1,1,...\}) = G_{\Delta_+}(R,
 the exponent algorithm will follow the same path for a while for
 both $Q$ and $R$.
 
+Suppose first that $Q$ and $R$ both hit an abundant number without
+diverging. Then using the same exponent set, $S$ will be
+primitive.
+
+\textbf{CASE 2:}
+
+Now suppose that $Q$ hits an abundant and $R$ has not, yet the
+algorithm has not diverged. 
+
+\textbf{CASE 2.1}
+
+Suppose first that $S$ is abundant
+with exponents generated by $Q$'s algorithm path. Then $S$ will be
+primitive with the exponents generated, for if not, we have that
+a divisor of $S,E$ is going to be primitive abundant. We do not
+care if this divsor shares the same prime factors, we only care if
+the primitive abundant divisors are missing a prime factor: In
+this case, we will have that $b(d = p_0^{m_0} ... p_{i-1}^{m_{i-1}}
+p_{i + 1}^{m_{i+1}}... p_{d-2}^{m_{d-2}} s^{m_{d-1}}) > 2$,
+however, it is easy to show that this divisor $d$ is such that
+$b(d) < b(p_0^{m_0} p_1^{m_1} ... p_{d-2}^{m_{d-2}}) < 2$, as the
+entry on the right of the equality is a divisor of our primitive
+abundant odd generated by $Q,E$. Thus $S,E$ (or one of its
+divisors) is primitive abundant number(with primes composing $P$).
+
+\textbf{CASE 2.2}
+
+THIS CASE ALSO COVERS WHEN $Q$ AND $R$ DIVERGE EARLY, SO THE BASE
+CASE SHOULD BE DONE!
+
+What would happen if $S,E$ is not abundant when $Q,E$ is?
+
+Set $E$ to be the exponent set of the primitive abundant number
+whose prime divisors compose $R$.
+
+Suppose that $S,E$ is an abundant number but is not primitive and
+none of its divisors who lose no prime factors are primitive. Then
+$S,E$ has abundant divisor $d = p_0^{m_0} ... p_{i-1}^{m_{i-1}}
+p_{i+1}^{m_{i+1}} ... s^{m_{d-1}}$. Note that this divisor has the
+following property:
+
+$$b(d) < b(p_0^{m_0} p_1^{m_1} ... p_{d-1}^{m_{d-1}}) < 2$$
+
+And this is the case as the divisor in the middle is a proper
+divisor of primitive abundant $R,E$.
+
+
+%% CONJECTURE: FIRST FIND IN THE ALGORITHM WILL NOT BE TURNED DOWN 
+Note that
+
+
+
+We have a few interesting cases here: 
+
+  1. The algorithms for Q and R follow the same path, and at some
+point both algorithms produce a primitive abundant number for P
+and Q with the same exponents E(As Q and R followed the same
+path).
+
+  2. The Algorithms for Q and R followed the same path, until an
+exponent of Q was raised that made it primitive abundant, yet that
+same exponent increase in R did not cause a primitive abundant.
+
+  3. Neither Q or R produced an abundant number, however, the
+algorithms split off.
+
+Let's focus on Case 1: In this case, we have that there exists
+exponents $E = \{e_0, e_1, ..., e_{d-1}\}$ such that $n_q =
+p_0^{e_0} p_1^{e_1} ... p_{d-2}^{e_{d-2}} q^{e_{d-1}}$ is abundant
+and $n_r$ is also abundant. Using {\ref{\del_minus_thm}}, we have
+that $n_s$ must also be primitive. This is because $q < s < r$
+implies $\Delta_{-}(q,e) < \Delta_{-}(s,e) < \Delta_{-}(r,e)$.
+
+
+Now Case 2 and 3 are much more difficult:
+
+Case 2:
+
 
 There are two occurances that will stop Q and R's algorithm from
 running paralell:
 \begin{enumerate}
   \item q's exponent is increased before r's expoent is.
-  \item Q's algorithm produces a primative abundant number and R's
+  \item Q's algorithm produces a primitive abundant number and R's
 algorithm has not yet.
 \end{enumerate}
 
 Possibilities:
-  * Q and R produce a primative abundant number before diverging.
+  * Q and R produce a primitive abundant number before diverging.
   * Q's algorithm produces an abundant number and R has not yet produced an
 abundbat number, they have not diverged before this.
   * Q and R has not produced an abundant number, and are about to
@@ -627,7 +703,7 @@ q and r.
 %trying to prove, so contradiction will be used above instead.
 
 %Thus, $n$ was either discovered in the 
-%\textbf{if} $primative(P,E_{new})$ statement of OrderDelPos or
+%\textbf{if} $primitive(P,E_{new})$ statement of OrderDelPos or
 %expIncAlg. Suppose that $n$ was discovered in OrderDelPos
 
 %% Old stuff where we assumed we did not have to change indicies
