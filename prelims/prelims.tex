@@ -4,7 +4,7 @@
 
 \section{Preliminaries}
 
-We define $b(n): \mathbb{N} \mapsto \mathbb{Q}$ by
+We define the function /$b: \mathbb{N} \mapsto \mathbb{Q}$ by
 %
 $$b(n) = \frac{\sigma(n)}{n} $$
 %
@@ -24,8 +24,7 @@ Thus, $b(n)$ can be expressed as:
   =\prod_{1 \leq i \leq k} b(p_i^{m_i})
 \end{equation}
 
-$b(n)$ also has the following properties. If $n$ and $m$ are positive
-integers greater than 1, then 
+Also, If $n$ and $m$ are positive integers greater than 1, then
 
 \begin{equation}\label{inc_ineq}
   b(n) < b(nm) % \leq b(n)b(m)
@@ -70,20 +69,15 @@ multiplicativly increasing function.
 We want to see what happens to $b(n)$ when exponents in the prime
 factorization of $n$ become larger and larger. Taking the limit of
 $b(p^m)$ as $m$ goes to infinity, we have that:
-$$\lim_{m \rightarrow \infty}(b(p^m)) = \frac{p}{p-1}$$
-Applying this to a sequence of prime $P = \{p_1, p_2, ..., p_d\}$,
-we denote the following
+$$\lim_{m \rightarrow \infty}b(p^m) = \frac{p}{p-1}$$
+Applying this to the sequence of primes $P = \{p_1, p_2, ..., p_d\}$,
+we define $b_{\infty}(P)$ by
 
 \begin{equation}\label{b_inf_def}
   b_{\infty}(P) 
-  = \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty}(b(p^m))
+  = \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty}b(p^m)
                 = \prod_{1 \leq i \leq k}(\frac{p_i}{p_i - 1})
 \end{equation}
-
-
-We call the limit product above $b_{\infty}(P)$ , given a set of primes
-$P$. Suppose $P = \{p_1, p_2, ..., p_i \}$. We define $b_1(P)$ as
-$b(p_1^1 p_2^1 ... p_i^1)$.
 
 
 \begin{theorem}\label{b_inf_1}
@@ -91,28 +85,29 @@ Consider the set of primes
 %
 $P = \{p_{1}, p_{2}, p_{3}, .... , p_{k}\}$.
 %
-There exists infinity many abundant integer $n$ whose prime 
+There exists infinity many abundant integers $n$ whose prime 
 factors compose the set $P$  if and only if $b_{\infty}(P) > 2$
 
 \end{theorem}
 
 \begin{proof}
 
-First we assume that $b_\infty > 2$. Let $L = b_\infty(P)$. 
+First we assume that $b_{\infty}(P) > 2$. Let $L = b_\infty(P)$. 
 Note that
 %  
 $$L 
 %
-= \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty}(b(p_i^{m_i})) 
+= \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty}b(p_i^{m_i}) 
 %
 = \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} 
 %
 ( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}})$$
 
 Hence , we can allow
-$\prod_{1 \leq i \leq k} \frac{p_i^{m_{i} + 1} -1}
-{(p_i -1)p_{i}^{m_{i}}}$ to be aribrarily close to L for large 
-enough exponents $m$. Since L is greater than two, there exists a
+$$\prod_{1 \leq i \leq k} \frac{p_i^{m_{i} + 1} -1}
+{(p_i -1)p_{i}^{m_{i}}}$$ 
+to be arbitrarily close to $L$ for large 
+enough exponents $m$. Since $L$ is greater than two, there exists a
 collection of positive integers $m_1, m_2, ... , m_k$ such that 
 % 
 $$L > \prod_{1 \leq i \leq k} \frac{p_i^{m_{i} + 1} -1}
@@ -127,7 +122,7 @@ will be the product. In other words,
 %
 $$2 < b(n) < b(np_1) < b(np_1^2) < ...$$
 %
-Thus there are infinity many abundant integers $n$ whose prime
+Thus there are infinitely many abundant integers $n$ whose prime
 factors are in the set $P$.
 
 Now we assume that there exists infinitly many abundant integers 
@@ -141,13 +136,13 @@ $$\prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty}
 \end{proof}
 
 \begin{theorem}
-If $b_{\infty}(P) \leq 2$, then there are no abundant numbers 
-whose prime factors compose $P$.
+If $b_{\infty}(P) \leq 2$, then there does not exist an abundant
+number whose prime factors compose $P$.
 \end{theorem}
 
 \begin{proof}
-Let $P = \{p_1, p_2, ..., p_d\}$
-Since $b_{\infty}(P) \leq 2$, and $b(p_1^{m_1} p_2^{m_2} ... p_d^{m_d})$
+Let $P = \{p_1, p_2, ..., p_d\}$.
+Since $b_{\infty}(P) \leq 2$ and $b(p_1^{m_1} p_2^{m_2} ... p_d^{m_d})$
 is increasing as the exponents $m_1, m_2, ..., m_d$ increase, we have that
 $b(p_1^{m_1} p_2^{m_2} ... p_d^{m_d}) < b_{\infty}(P) \leq 2$ for any 
 given exponents. Thus $b(n) < 2$ for any $n$ whose prime factors
@@ -158,14 +153,14 @@ prime factors compose $P$.
 
 Another important function we will need describes what happens 
 when some exponents are fixed and some exponents are allowed to
-increase without limit. A mixed $b_{\infty}$ and $b$ function, 
-say $mb$. The function will take a set of primes and exponents,
-as well as the indicies of certain prime factors which are not
+increase without limit. 
+The function will take a set of primes and exponents,
+as well as the indices of certain prime factors which are not
 limited in exponent increase. Let $P$ be the sequence of primes 
 and $E$ be the respective exponents for 
-$p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$. Let $I$ be a set of indicies
-ranging from $1$ to $d$, the indicies in which the corresponding
-primes are desired to be raised without limit. We define $mb$ as 
+$p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$. Let $I$ be a a subset of
+$\{1, 2, ..., d\}$ describing the indices in which the corresponding
+exponents are desired to be raised without limit. We define $mb$ as 
 follows:
 
 \begin{equation}\label{mb_def}
@@ -173,46 +168,42 @@ follows:
   \prod_{1 \leq j \leq d | j \notin I} b(p_j^{m_j})
 \end{equation}
 
-We now prove the following theorem, making use of the above definition:
+%Informally, if we let $Q = \{p_{j} \mid j \in I\} = \{q_1, q_2,
+%..., q_h\}$ and $R = \{p_{j} \mid j \notin I\} = \{r_1, r_2, ...,
+%r_k\}$ be subsets of P, then $$mb(P,E,I) '=' b(q_1^\infty
+%q_2^\infty ... q_h^\infty r_1^)$$ and 
+
+For convenience, we define the positive integer $\nu(P,E)$ by
+$\nu(P,E) = p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$. 
+
+We now prove the following theorem, making use of the above
+definitions:
 
 \begin{theorem}
-Let $p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$ be a prime factorization 
-in which we choose to raise exponents of certain primes Let the 
-indicies of these primes be the set $I$. Let I be non-empty.
-$mb(P,E,I) > 2$ if and only if we can raise the exponents of primes with 
-indicies in $I$ and eventually get an abundant number.
+Let $P = \{p_1, p_2, ... p_d\}$ be a sequence of primes, and let
+$E = \{m_1, m_2, ..., m_d\}$ be a sequence of exponents. Let $n =
+\nu(P,E)$. Let I be a nonempty subset of $\{1, ..., d\}$. The 
+condition $mb(P,E,I)$ holds if and only if there exists an 
+abundant number $k$ such that $n$ divides $k$ and every prime 
+divisor of $k/n$ is a member of ${p_i \mid i \in I}$.
 \end{theorem}
 
-We (currently) leave the proof to the reader. It is extremely 
+We (currently) leave the proof to the reader. It is 
 similar to the proof of Theorem {\ref{b_inf_1}}.
 
-Define the multivariable function $\Delta_+(p,m)$ as
+For any given prime $p$ and positive integer $m$, we define the
+rational numbers $\Delta_+(p,m)$ by
 $$\Delta_+(p,m) = \frac{p^{m+2} - 1}{ p (p^{m + 1} -
-1)}$$. 
-Also, define $\Delta_-(p,m)$ as 
-$$\Delta_-(p,m) = \frac{p(p^{m} - 1)}{ p^{m + 1} - 1}$$.
-
-These functions have the following useful properties:
+1)}$$
 
 \begin{theorem}[Property]\label{dp_def}
 Suppose $n = p_1^{m_1} p_2^{m_2} ... p_i^{m_i} ... p_d^{m_d}$.
 Then,
 
-$$ b(n) * \Delta_+(p_i, m_i) = b(p_i * n)$$
+$$ b(n) \Delta_+(p_i, m_i) = b(p_i n)$$
 
 \end{theorem}
 
-\begin{theorem}[Property]\label{dm_def}
-Suppose $n = p_1^{m_1} p_2^{m_2} ... p_i^{m_i} ... p_d^{m_d}$ and
-that $n' = p_1^{m_1} p_2^{m_2} ... p_i^{m_i - 1} ... p_d^{m_d}$. Then,
-
-$$ b(n) * \Delta_-(p_i, m_i) = b(n')$$
-
-\end{theorem}
-
-The proofs for {\ref{dp_def}} and {\ref{dm_def}} are nearly identical.
-In fact, $\Delta_+$ and $\Delta_-$ were constructed such that
-these properties would be true. Using a bit of algebra, it is not
-hard to show that these propeties are true.
+The proof for {\ref{dp_def}} is straightforward.
 
 \end{document} 
