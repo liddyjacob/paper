@@ -3,170 +3,121 @@
 
 \begin{document}
 
-\section{Exponent Theorems and Algorithm}
+\section{Exponent Theorems and The Exponent Algorithm}
 
-In this section we will understand some of the conditions that
-exponents of primitive abundant odd numbers must follow. In order
-to do this we first must define some functions and prove theorems 
-that will allow us to determine some meaningful information about
-exponents of primitive abundant odds.
+Let $r$ and $n$ be positive integers such that $r$ divides $n$. We
+say $r$ is a divisor of $n$ of order $0$ if and only of $r = n$.
+For each $i \geq 1$, we say that $r$ is a divisor of $n$ of order
+$i$ in case there exists a prime $p$ such that $pr$ is a divisor
+of $n$ of order $i - 1$. We remark that each divisor $r$ of $n$ has
+order $k$ for some nonnegative integer $k$.
 
-We define the order of a divisor $r$ (with respect to some multiple
-$n$) as the difference in the sum of the exponents between a
-divisor and some multiple of that divisor. Suppose $n = p_0^{m_0}
-p_1^{m_1} ... p_{d-1}^{m_{d-1}}$ is an integer and $r = p_0^{\ell_0}
-p_1^{\ell_1} ... p_{d-1}^{\ell_{d-1}}$ divides $n$. 
-As $r$ is a divisor of $n$, we have that $m_i \leq \ell_i$ for 
-each $i$. The \textit{order of $r$ with respect to $n$} is defined
-as $\sum {m_i - \ell_i}$. If $r$ is not a divisor of $n$, then the
-order of $r$ is undefined and meaningless. If the prime 
-factorization of $r$ is missing some prime factors, then the 
-exponents of those missing prime factors are zero.
+A related notion is \textit{incomplete primes}. Suppose $r$ divides 
+$n$. We say that $p$ is incomplete in $r$ with respect to $n$ 
+if $pr$ divides $n$. In this case, if $r$ is a divisor of $n$ of
+order $k$, then $pr$ is a divisor of $n$ of order $k - 1$.
 
-A related notion is \textit{incomplete primes}. Let $n$ be a
-number. Let $d$ be a divisor of that number.
-Write $n$ and $r$ as $n = p_0^{m_0} p_1^{m_0}...
-p_{d-1}^{m_{d-1}}$, $r = p_0^{m'_0} p_1^{m'_0} ... 
-p_{d-1}^{m'_{d-1}}$ respectivly. We say a prime $p_i$ is 
-incomplete in $r$ if $m'_i < m_i$. An equivalent definition is: 
-Suppose $r$ divides $n$. We say that $p_i$ is incomplete in $r$ 
-if $p_i * r | n$. Note that if $r$ had order $k$, then $r * p_i$
-has order $k-1$(with respect to $n$). 
+Yet another notion is \textit{crucial primes}. Let $n = \nu (P,E)$ 
+be a positive integer. Suppose that $p \in P$. If $pn$ is
+abundant, then we say that $p$ is a crucial prime in $n$. 
+%Note that crucial primes have nothing to do with divisors.
 
-Yet another notion is \textit{crucial primes}. Let $n = (P,E)$ 
-be a number, in its factored form above. Suppose that $p_i \in P$.
-If $p_i * n = p_0^{m_0} p_1^{m_1} ... p_{i}^{m_i + 1} ...
-p_{d-1}^{m_{d-1}}$ is abundant, then $p_i$ is a crucial prime in
-$n$. Note that crucial primes have nothing to do with divisors in
-this definition.
+For any given sequence of primes $P$ and corresponding sequence of
+nonnegative exponents $E$, whose cardinalities are both $d$, we
+wish to define $G_{\Delta_+}(P,E)$ as a particular ordering of
+$\{0, 1, ..., d-1\}$. Given any distinct $i,j \in \{0, 1, ..., 
+d - 1\}$, we order $G_{\Delta_+}(P, E)$ such that $i$ precedes 
+$j$ in $G_{\Delta_+}(P, E)$ if $\Delta_+(p_i, e_i) < 
+\Delta_+(p_j, e_j)$. In the case where  $\Delta_+(p_i, e_i) =
+\Delta_+(p_j, e_j)$, it does not matter which element is the
+predecessor or successor in $G_{\Delta_+}(P,E)$.
 
-We want to define $G_{\Delta_{+}}(P,E)$ as a function which lists
-the indicies $i$ of prime/exponent pairs in sequences P and E
-in order of least $\Delta_{+}(p_i, e_i)$ to greatest. The tuple
-(P, E) is ment to represent some integer $n = p_0^{m_0} p_1^{m_1}
-... p_{d-1}^{m_{d-1}}$ with prime factors $P = \{p_0, p_1, ..., 
-p_{d-1}\}$ and respective exponents $E = \{m_0, m_1, ...,
-m_{d-1}\}$ 
+\begin{theorem}\label{g_ordering}
+Suppose $n = \nu(P, E)$, where $P = \{p_0, p_1, ..., p_{d-1}\}$
+and $E = \{e_0, ..., e_{d-1}\}$. Let $G_{\Delta_+}(P,E) = \{g_0, 
+g_1, ..., g_{d-1}\}$. Then $b(n) < b(n p_{g_0}) \leq b(n p_{g_1})
+\leq ... \leq b(n p_{g_{d-1}})$
+\end{theorem}
+
+The proof of {\ref{g_ordering}} is straightforward.
 \\
 
-To demonstrate the above function, we calculate 
-$G_{\Delta_{+}}(\{3,5,11\}, \{1,2,1\})$.
+To demonstrate how $G_{\Delta_+}(P,E)$ is defined, we calculate
+$G_{\Delta_+}(P,E)$ for $P = \{3, 5, 11\}$ and $E = \{1, 2, 1\}$.
+
 
 First we calculate each of $\Delta_{+}(3,1)$, $\Delta_{+}(5,2)$, 
 and $\Delta_{+}(11,1)$. We find that 
 $\Delta_{+}(3,1) = \frac{13}{12}$,
 $\Delta_{+}(5,2) = \frac{156}{155}$, and
 $\Delta_{+}(11,1)= \frac{133}{132}$.
-Thus the order of $\Delta_{+}$ is as follows:
+Listing these values in order from least to greatest, we have
 
-$$ \Delta_{+}(3,1) > \Delta_{+}(11,1) > \Delta_{+}(5,2)$$
+$$\Delta_{+}(5,2) < \Delta_{+}(11,1) < \Delta_{+}(3,1).$$
 
-Giving the primes indicies based off its order in the prime
-factorization of $3^1 5^2 11^1$ starting at zero, we obtain that
-
-$$G_{\Delta_{+}}(\{3,5,11\}, \{1,2,1\}) = \{1,2,0\}$$
-\\
-
-Note that $G_{\Delta_+}$ has the following property:
+Note $p_0 = 3$, $p_1 = 5$, and $p_2 = 11$. Since $\Delta_+(5,2)$
+is the smallest while $p_1 = 5$, the ordering on $\{0, 1, 2\}$
+begins with $1$. Since $\Delta_+(11,1)$ is the next smallest while
+$p_2 = 11$, the corresponding index $2$ succedes $1$ in our
+ordering on $\{0,1,2\}$. Finally, since $\Delta_+(3,1)$ is the largest
+while $p_0 = 3$, the corresponding index $0$ succedes $2$ in our
+ordering. Hence our ordering is $\{1, 2, 0\}$ and we write 
+$G_{\Delta_+}(P,E) = \{1, 2, 0\}$ 
 
 \begin{theorem}\label{crucial_thm}
-Let $G_{\Delta_+}(P,E) = G$ for some integer $n = (P,E)$
-Suppose $i$ appears before $j$ in $G$. If $p_i$ is crucial in n,
-then $p_j$ is crucial in $n$. In otherwords, there exists some $g$
-such that all elements that come before $G[g]$ are not crucial and
-all elements that come after $G[g]$ are crucial.
+Let $G_{\Delta_+}(P,E) = G$ for some integer $n = \nu (P,E)$.
+Suppose $i$ precedes $j$ in $G$. If $p_i$ is crucial in n,
+then $p_j$ is crucial in $n$. In other words, there exists some $g$
+such that all elements that precede $G[g]$ are not indices of
+crucial primes and all elements that succeed $G[g]$ are indices of
+crucial primes.
 \end{theorem}
 
 The above theorm states that $G_{\Delta_+}(P,E)$ 'looks like'
 
-$$ G_{\Delta_+}(P, E) = (\text{... non-crucial indicies} 
-                        | \text{crucial indicies...}) $$
+$$ G_{\Delta_+}(P, E) = (\text{... non-crucial prime indices} 
+                        | \text{crucial prime indices...}) $$
 
 \begin{proof}
 
-Let $n = p_0^{m_0} ... p_{d-1}^{m_{d-1}} = (P, E)$. Suppose that
-$p_i$ is crucial in $n$, so $2 \leq b(p_i * n)$. Since $i$ comes
-before $j$ in $G$, we have that $\Delta_+(p_i, m_i) \leq 
-\Delta_+(p_j, m_j)$. This implies $b(n)\Delta_+(p_i, m_i) \leq
-b(n)\Delta_+(p_j, m_j)$. Thus,
-
-\begin{equation}
-\begin{split}
-2 \leq b(p_i * n) & = b(n)\Delta_+(p_i, m_i) \\
-               & \leq b(n)\Delta_+(p_j, m_j) = b(p_j * n)
-\end{split}
-\end{equation}
-
-Thus $p_j$ is crucial in $n$.
+Suppose that
+$p_i$ is crucial in $n$, so $2 \leq b(n p_i)$. Since $i$ precedes 
+$j$ in $G$, Theorem {\ref{g_ordering}} tells us that $b(n p_i) \leq b(n
+p_j)$. Thus $2 \leq b(n p_j)$, which tells us $p_j$ is crucial in $n$.
 
 \end{proof}
 
 
 \begin{theorem}\label{del_minus_thm}
-Suppose a number $n = p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$ is 
-abundant. Then $n$ is primitive if and only if all of its first
-order divisors are deficient.
+Suppose a positive integer $n$ is abundant. Then $n$ is primitive if and 
+only if all of its first order divisors are deficient.
 \end{theorem}
 
 \begin{proof}
-	First suppose that $n$ is a primitive abundant. Then any proper 
-divisor of $n$ is deficient. As any first order divisor is a
-proper divisor, we have that this direction is trivially true.
+	First suppose that $n$ is a primitive abundant and let $r$ be a
+divisor of $n$ of order $1$. Since $r$ is a proper divisor of $n$,
+indeed $r$ cannot be abundant and is therefore deficient.
 
-	Suppose that $n$ is abundant, and that all first order divisors
-are deficient. Note that any proper divisor of $n$ must divide
-some first order divisor of $n$. Also, any divisor of a deficient 
-number is deficient. Since and all proper divisiors of $n$ divide 
-a first order divisor, we have that all proper divisors of $n$ divide a
-deficient number. Thus $n$ is a primitive abundant number, proving
-the theorem.  
+	Suppose that every divisor of $n$ order $1$ is deficient. Let 
+$r$ be any proper divisor in $n$. Then there exists a divisor $k$ 
+of $n$ of order $1$ such that $r$ divides k. Since $k$ is 
+deficient while $r$ divides $k$, indeed $r$ is deficient. Thus $n$
+is abundant and all proper divisors of $n$ are deficient. By 
+definition, $n$ is primitive. 
 \end{proof}
 
-Suppose $P = \{p_0, p_1, ...,p_{d-1}\}$ are primes and 
-$E = \{e_0, e_1, ..., e_{d-1} \}$ are nonnegative integers.
-We define $primitive(P,E)$ as a statement that yeilds true
-if $p_0^{e_0} p_1^{e_1} ... p_{d-1}^{e_{d-1}}$ is a primitive
-abundant number, and false otherwise.
+
+Suppose $P$ is a sequence of $d$ primes and $E$ is a sequence of
+$d$ nonnegative integers.
+We define $primitive(P,E)$ as a statement that yields true
+if $n = \nu (P, E)$ is a primitive abundant number, and false 
+otherwise.
 
 \begin{theorem} 
 Let $P$ be a sequence of $d$ odd primes. The 
 following algorithm will extract all primitive
 abundant odd numbers whose prime divisors compose $P$.
 \end{theorem}
-% The algorithm:
-%
-% * Set initial exponents to 1 
-%
-% * Check if abundant. If so check if primitive
-%   * If not primitive, no abundant odds 
-%		* If primitive, this is 
-%
-% * If b(p1^e1 p2^e2 ... pd^ed) >= 2
-%		* If primitive this is an option : return true
-%		* If not return false
-%
-%	* Check to see if any exponent increases will cause abundance
-%    If any do cause abundance, check if primitive.
-%    Always start with the exponents of highest 'influence'
-%		 then move on to lower 'influence' exponents. influence
-%    is measured by which exponents increase b(n) the most
-%    Del_pos is exactly the measure of this.
-%
-%	* Once the first exponent which does not cause abundance is found
-%    we want to check which exponents can be raised to 'infinity'
-%    to eventually produce an abundant number. We raise the exponents
-%    NEED TO TALK ABOUT ORDER OF INFLUENCE HERE. IN THE ALGORITHM
-%    WE ASSUME INFINITE INFLUENCE IS DIRECTLY RELATED TO FINITE
-%    SINGLE EXPONENT INFLUENCE? IS THIS TRUE? I DONT KNOW.
-%				*Infinite influence: Take a prime-exp pair p^e -> p^infinity
-%				*Finite influence  : Take a prime-exp pair p^e -> p^(e+1)
-%       Are they related?
-% ^ * Mixed b: Raise exponents of low influence pairs to see if they
-%     mixed with others will eventually go on to infinity
-% ^ * If so raise 
-
-% THIS is going to be UGLY.
-% NEW THEorem added - may be important
 
 \textit{In the below algorithm, the sequence of primes P is indexed 
 starting at 0, not 1. In other words, $P = \{p_0, p_1, ...,
@@ -174,6 +125,8 @@ p_{d-1}\}$}
 
 %\subfile{flowcharts/expflow.tex}
 
+%--------------------------MAIN ALGORITHM------------------------------
+\noindent\fbox{\begin{minipage}{\linewidth}
 {\setlength{\parindent}{0cm}
 
 \textbf{The main algorithm}
@@ -183,11 +136,8 @@ $P = \{p_0, p_1, ..., p_{d-1}\}$.
 
 \textbf{OUTPUT:} All primitive abundant odds whose prime factors
 compose $P$
-
 }
-
-
-
+\noindent\rule{\textwidth}{1pt}
 \begin{algorithmic}
 %E represents exponents
 \IF {$b_{\infty}(P) \leq 2$}
@@ -202,7 +152,12 @@ compose $P$
 \RETURN $A$
 
 \end{algorithmic}
+\end{minipage}}
+%----------------------------------------------------------------
 
+
+%-------------------EXPONENT ABUNDANT ALGORITHM----------------
+\noindent\fbox{\begin{minipage}{\linewidth}
 {\setlength{\parindent}{0cm}
 
 \textbf{Algorithm: expAbundant}
@@ -215,10 +170,11 @@ primes $E$, and the primitive abundants found so far, $A$.
 \textbf{OUTPUT:} No output. However, $A$ will be modified.
 }
 
+\noindent\rule{\textwidth}{1pt}
 \begin{algorithmic}
 \IF {$b(P, E) \geq 2$}
 	\IF {$primitive(P, E)$}
-		\STATE $A := A \& (P,E)$
+		\STATE $A := A \& \nu (P,E)$
 		\RETURN
 	\ENDIF
 	\RETURN
@@ -227,7 +183,11 @@ $orderDelPos(P,E,A)$
 \RETURN
 
 \end{algorithmic}
+\end{minipage}}
+%-----------------------------------------------
 
+%------------ ORDER DELTA POSITIVE --------------
+\noindent\fbox{\begin{minipage}{\linewidth}
 {\setlength{\parindent}{0cm}
 
 \textbf{Algorithm: orderDelPos}
@@ -237,10 +197,11 @@ $orderDelPos(P,E,A)$
 $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
 ...\}$, the set of primitive abundant numbers found $A$.
 
-\textbf{OUTPUT:} True or False, depending on if the algorithm found any primitive abundants.
+\textbf{OUTPUT:} True or False, depending on if the algorithm
+found any primitive abundant numbers.
 }
 
-
+\noindent\rule{\textwidth}{1pt}
 \begin{algorithmic}
 
 \STATE $e_{found} :=$ FALSE
@@ -259,14 +220,14 @@ $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
 
 	%\STATE $\Delta_{+} := \Delta_{+}(P_{i+p})$
 
-	\IF {$p_i$ is critical}
+	\IF {$p_i$ is crucial}
 		\STATE \COMMENT{$E_{new}$ is the new exponents raising the exponent that
 		allows the number to be abundant}
 		\STATE $E_{new} := E$
 		\STATE $E_{new}[ i_p ] := E_{new}[ i_p ] + 1 $
 		
 		\IF {$primitive(P, E_{new})$}
-			\STATE $A := A\&(P,E)$
+			\STATE $A := A\& \nu (P,E)$
 			\STATE $e_{found} := $ TRUE
 		\ENDIF
 
@@ -278,7 +239,7 @@ $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
 \ENDWHILE
 
 
-\IF {$i_{\Delta_+} \geq 0$}
+\IF {$g \geq 0$}
 	\STATE \COMMENT{Not all indexed exponents
 	were able to make an abundant when raised one power}
 	\IF {$expIncAlg(P, E, A, g)$}
@@ -287,8 +248,15 @@ $P = \{p_0, p_1, ..., p_{d-1}\}$, exponents $E = \{ m_0, m_1,
 \ENDIF
 
 \RETURN $e_found$
-
 \end{algorithmic}
+\end{minipage}}
+
+%-------------------------------------------------------
+
+
+%------------------- EXP INC ALGORITHM -----------------
+
+\noindent\fbox{\begin{minipage}{\linewidth}
 {\setlength{\parindent}{0cm}
 
 \textbf{Algorithm: expIncAlg}
@@ -301,6 +269,8 @@ index, $s$.
 
 \textbf{OUTPUT:} True or False.
 }
+
+\noindent\rule{\textwidth}{1pt}
 \begin{algorithmic}
 
 \STATE $e_{found} :=$ FALSE
@@ -313,7 +283,7 @@ index, $s$.
 	\STATE $G_{b < 2} := \{G[0], G[1], 
 	                       ..., G[g],\}$
 
-	\IF {$mb(P, E, G_{b < 2}) \geq 2$}
+	\IF {$mb(P, E, G_{b < 2}) > 2$}
 		\STATE $E_{new} := E$	
 		%Prime index
 		\STATE $i_p := G[g]$
@@ -331,54 +301,56 @@ index, $s$.
 \ENDWHILE
 
 \RETURN $e_{found}$
-
 \end{algorithmic}
+\end{minipage}}
 
-
+%-----------------------------------------------------
 TODO: DISCUSSION ON HOW THIS ALGORITHM WORKS?
 
 \begin{proof}
-  In order to prove the theorem we need to show that it
-'collects' all odd primitive abundant numbers whose prime factors
-compose $P$. Let $P = \{p_0, p_1, ..., p_{d-1}\}$.
+  Let $n = \nu (P, E)$ be an odd primitive abundant number for a
+sequence of primes $P$ and a sequence of positive integers $E$,
+where $E$ and $P$ have the same cardinality. We want to show that
+$n$ is collected in $A$, as this would prove our theorem.
+We say that $m = \sum_{e \in E}(e)$
 
-  Let $n$ be an odd primitive abundant number whose divisors
-compose $P$. We want to show that $n$ is gathered by the
-algorithm, as this would prove our theorem. Suppose that $n =
-p_0^{m_0}p_1^{m_1} ... p_{d-1}^{m_{d-1}}$. We say that $m = m_0
-+ m_1 + ... + m_{d-1}$. 
+  Let $\ell = (P, E')$ be a divisor of $n$. We say that $\ell$ is
+\textit{passed} in the algorithm if the exponent sequence $E'$ is
+stored in either $E$ or $E'$ at some point when the algorithm is
+being executed. The \textit{first appearance} of $\ell$ is the
+first time in which $\ell$ is passed during the execution of the
+algorithm.
 
   We will use reverse finite induction for our proof. We want to show that
-the algorithm will collect at least one divisors of of order $m -
-d, m - d + 1, m - d + 2, ..., 0$ to order $0$. This proves the
-theorem since the only divisor with order $0$ is $n$.
+the algorithm will pass at least one divisors of of order $m -
+d, m - d + 1, m - d + 2, ..., 0$.
+
 Our base case is: \textit{The algorithm passes divisor of order $m
 - d$.} This is clearly true as $\ell = p_0 p_1 ... p_{d-1}$ is the 
 first integer the algorithm passes, and this divisor has order 
 $m-d$.
 
 Our inductive step is:
-\textit{Suppose the algorithm collects a divisor of order $k$,
+\textit{Suppose the algorithm passes a divisor of order $k$,
 where $0 < k \leq m - d $. We want to show there exists a divisor
 of order $k - 1$ that is passed in this algorithm.}
 
-  The first appearance of a divisor $\ell$ is where the exponents were
-modified and $\ell = (P, E')$ was the result. This will be used
-througout the proof.
 
-Denote our divisor $\ell_k$. Note that
-$\ell_k$ can appear for the first time in the algorithm in a two
-places: It can appear in $expAbundant$ or $expIncAlg$. Note that
-this divisor cannot appear in $orderDelPos$, for if $\ell_k$ first
-appeared here, the conditions for $\ell_k$ to first appear here
-would be such that $\ell_k$ is abundant.
+Assume the inductive hypothesis is true for some divisor of $n$ of
+order $k$. Denote this divisor $\ell_k = (P, E_k)$. Note that
+$\ell_k$ can only make its first appeance whenever $E$ is modified
+or an $E'$ is created. Thus $\ell_k$ can only make its first
+appearance in one of two places: It can appear in $expAbundant$ or
+$expIncAlg$. Note that this divisor cannot appear in $orderDelPos$
+, for if $\ell_k$ first appeared here, the conditions for $\ell_k$ 
+to first appear here would be such that $\ell_k$ is abundant.
 
-  I will now argue that regaurdless of where $\ell_k$ first
+  I will now argue that regardless of where $\ell_k$ first
 appears, the algorithm will call $orderDelPos(P,E_k,A)$:
 \\
 
 Suppose that $\ell_k$ first appears in $expAbundant$. Note that, 
-as $k \neq 1$, we have that $b(\ell_k) < 2$. Thus the algorithm 
+as $k \neq 0$, we have that $b(\ell_k) < 2$. Thus the algorithm 
 moves on to $orderDelPos(P, E_k, A)$.
 \\
 
@@ -393,81 +365,61 @@ At this point it is important to split off into cases: The case
 where $k = 1$ and the case where $2 \leq k \leq m - d$.
 
 \textbf{Case 1($2 \leq k \leq m - d$):} In $orderDelPos$, notice 
-that $G = (P,E_k)$ is formed. Since $k \geq 2$, we claim that
+that $G_{\Delta_+}(P,E_k)$ is formed. Since $k \geq 2$, we claim that
 all incomplete primes in $\ell_k$ are \textit{non}-crucial primes.
-Let $p$ be an incomplete prime in $\ell_k$. Then $\ell_k * p | n$,
-and in fact $\ell_k * p$ has order $k - 1$. Since $k \geq 2$, we
-have that $k - 1 \geq 1$. Thus $\ell_k * p$ is a proper divisor of
+Let $p$ be an incomplete prime in $\ell_k$. Then $\ell_k p | n$,
+and in fact $\ell_k p$ has order $k - 1$. Since $k \geq 2$, we
+have that $k - 1 \geq 1$. Thus $\ell_k p$ is a proper divisor of
 $n$ and is therefore deficient. Thus $p$ is not a crucial prime in
 $\ell_k$.
 
+For convienience, we will refer to $G(P,E_k)$ as $G$. By Theorem
+{\ref{crucial_thm}}, there exists positive integer $h$ such that
+all elements that precede $G[h]$ are not indices of crucial primes
+and all elements that succede $G[h]$ are indices of crucial
+primes. Since $\ell_k$ contains at least one non-crucial prime (as
+it contains at least incomplete prime), we know that this $h$ can
+be chosen such that $G[h]$ is the index of some non-crucial prime.
 
-This, $G(P,E_k)$ is sorted in a way where all crucial prime
-indicies are on the right (Theorem {\ref{crucial_thm}}), 
-and all incomplete prime indicies are on the left. 
+Informally, we can see that $G$ is ordered in a way where all 
+crucial prime indices are on the right (Theorem {\ref{crucial_thm}}), 
+and all incomplete prime indices are on the left (as $k \geq 2$)
 
-$$ G = \{ \text{other indicies and incomplete indicies ... $|$ crucial
-indicies...} \} $$
+$$ G = \{ \text{... other indicies and incomplete prime indicies 
+$ | $ crucial prime indicies...} \} $$
 
-This allows us to conclude a few things. First of all,  there
-exists a non-crucial prime index in $G$ (as there exist at
-least one incomplete prime in $\ell_k$). Secondly, the loop in
-$orderDelPos$ will only terminate once every crucial prime index of
-$G$ has been through the loop and none of the incomplete prime
-indicies have been checked. When the loop terminates, the 
-algorithm will call $expIncAlg(P,E_v, A, g)$, as some indicies
-remain unchecked($g \geq 0$).\\
+We know that the while statement
+$orderDelPos$ will terminate once $g = h$, as this point is the
+first time where $g$ is the index of a non-crucial prime. When
+the loop terminates, the algorithm will call $expIncAlg(P,E_v, A,
+g)$, as $g \geq 0$. 
 
-In $expIncAlg(P,E_v,A, g)$, notice that $G_{b<2}$ will be formed
-from the remains of $G$, i.e. $G_{b<2} = \{G[0], G[1], ...,
-G[g]\}$. Notice that $G_{b<2}$ contains all incomplete primes
-of $\ell_k$. Thus, when the
-incomplete exponents of each incomplete prime is raised high
-enough,  the result will be $n$. Thus the limit function
-$mb(P,E_k, G_{b<2})$ is evaluated, the result is guaranteed to be
-greater than two. Thus we will descend into the while loop of
-$expIncAlg$. 
+In $expIncAlg(P,E_v,A, g)$, we have that $g \geq 2$. Thus we will
+descend into the while loop. Notice that $G_{b<2} = \{G[0], G[1], 
+..., G[g]\}$. Thus $G_{b<2}$ contains all incomplete prime indices
+of $\ell_k$. Thus, when the incomplete exponents of each incomplete 
+prime is raised high enough, the result will be $n$. 
+Thus $mb(P,E_k, G_{b<2}) > 2$.
 
-Let $i = G[g]$. Follow the while loop until $p_i$ is incomplete in
-$\ell_k$. When this is the case, we know that a divisor of order $k -
-1$ will appear in the form $p_i \ell_k = \ell_{k-1} = (P, E'_k)$ when
-$e_i$ is increased. Thus the inductive step has been proven.
+Consider the first time that $i = G[g]$ is the index of some
+incomplete prime of $\ell_k$ with respect to $n$. At this point, 
+all incomplete prime indices still exist in $G_{b<2}$. 
+Thus $mb(P, E_k, G_{b<2} > 2$. 
+Now $p_i \ell_k$ will be passed in the algorithm, and $p_i \ell_k$
+is a divisor of order $k-1$. Thus the inductive step has been proven.
 
 \textbf{Case 2 ($k = 1$):} We are starting from $OrderDelPos$,
 where Case 1 started. In this case, we note that there is
 only one incomplete prime and it must be a crucial prime.
-As all crucial prime indicies will pass the if statement in the 
+As all crucial prime indicies will pass the first if statement in the 
 loop, we have that our incomplete prime's exponent will be 
-increased and the result will be $n$. Thus the inductive step has 
-been proven.
+increased and the result will be $n$. $n$ is primitive, and
+therefore $n$ will be collected in $A$. Thus the inductive step has 
+been proven. In fact, we also have shown that $n$ has been
+collected in $A$ by the algorithm, proving the theorem.
 \\
-
-In both cases, the inductive step was proven, and therefore by
-reverse finite induction, the algorithm has retrieved $n$.
 
 \end{proof}
-
-\subsection{Properties of the Exponent Algorithm}
-
-\begin{theorem}[Property 1]
-
-\end{theorem}
-
-\begin{conj}[Continuity of Primative Abundant Numbers]:
-Let $q \leq r$ be primes. Suppose that $p_0, p_1, p_2, ..., 
-p_{l-2}, q$ are the first l divisors of some primitive abundant
-odd with $d$ prime divisors. Suppose $p_0, p_1, ..., p_{l-2},r$ 
-are also the first $l$ divisors of some primitive abundant odd
-with $d$ prime divisors. Then, given any prime $s$ such that $q \leq s 
-\leq r$, we have that $p_0, p_1,..., p_{l-2}, s$ are the first $l$
-divisors of some primitive abundant odd with $d$ divisors.
-\end{conj}
-
-THIS PROPERTY IS FALSE.
-\\
-
-The below paragraphs are in construction. Be warned!!
-\\
 
 %NOTE THAT $3 * 5^6 * 7^3 * 67 * 73$ IS PRIMITIVE ABUNDANT,
 %AND $3^2 * 5 * 7 * 107 * 109$ IS PRIMITIVE ABUNDANT,
@@ -491,93 +443,17 @@ The below paragraphs are in construction. Be warned!!
 
 %Why this idea?? 
 
-Consider the example above, where $\{3,5,7,73\}$ fails.
-Note that $\{3,5,7,73\} \in opm(4)$. In fact, \textit{the first
-prime after q' = 103 is 107}, and note that this prime will form a
-primitive abundant number in opm(5) with $3,5,7$. Thats the
-conjecture.
+%Consider the example above, where $\{3,5,7,73\}$ fails.
+%Note that $\{3,5,7,73\} \in opm(4)$. In fact, \textit{the first
+%prime after q' = 103 is 107}, and note that this prime will form a
+%primitive abundant number in opm(5) with $3,5,7$. Thats the
+%conjecture.
 
-
-The idea is that if the primest does not appear in opm(i), then it
-is not going to create an abundant number without another prime in
-d > i. We also may be able to prove that the last few primes q' in
-opm(i) are going to create nonprimitive abundants.
-\\
+%The idea is that if the primest does not appear in opm(i), then it
+%is not going to create an abundant number without another prime in
+%d > i. We also may be able to prove that the last few primes q' in
+%opm(i) are going to create nonprimitive abundants.
 
 %CITE VALDAS for opm - odd primitive abundants.
-
-Here is an important theorem
-
-\textit{Suppose that $p_0, p_1, p_2, ..., 
-p_{d-2}, q$ are the divisors of some primitive abundant
-odd with $d$ prime divisors. Suppose $p_0, p_1, ..., p_{d-2},r$ 
-are also the divisors of some primitive abundant odd
-with $d$ prime divisors. Then, given any prime $s$ such that $q \leq s 
-\leq r$, we have that $p_0, p_1,..., p_{d-2}, s$ are the 
-divisors of some primitive abundant odd with $d$ divisors.}
-
-Note that since each sequence
-of primes will produce a primitive abundant number, we have that
-the exponent algorithm will produce all possible combinations of
-exponents that create abundant numbers for the prime sequences $Q = 
-\{p_0, p_1, ..., p_{d-2}, q\}$ and $R = \{p_0, p_1, ..., p_{d-2},
-r\}$. Also, notice that both Q and R will have the same initial
-$G_{\Delta_+}$ values when used with the initial exponent sequence
-in the exponent algorithm. And as the primes are in increasing
-order, the $G_{\Delta_+}$ values are going to be exactly the same
-for Q and R, and in fact (giving q and r indicies of d-1) we have
-that $G_{\Delta_+}(Q, \{1,1,1,...\}) = G_{\Delta_+}(R,
-\{1,1,1,...\}) = \{(d-1), (d-2), ..., 1, 0\}$. Because of this,
-the exponent algorithm will follow the same path for a while for
-both $Q$ and $R$.
-
-Suppose first that $Q$ and $R$ both hit an abundant number without
-diverging. Then using the same exponent set, $S$ will be
-primitive.
-
-\textbf{CASE 2:}
-
-Now suppose that $Q$ hits an abundant and $R$ has not, yet the
-algorithm has not diverged. 
-
-\textbf{CASE 2.1}
-
-Suppose first that $S$ is abundant
-with exponents generated by $Q$'s algorithm path. Then $S$ will be
-primitive with the exponents generated, for if not, we have that
-a divisor of $S,E$ is going to be primitive abundant. We do not
-care if this divsor shares the same prime factors, we only care if
-the primitive abundant divisors are missing a prime factor: In
-this case, we will have that $b(d = p_0^{m_0} ... p_{i-1}^{m_{i-1}}
-p_{i + 1}^{m_{i+1}}... p_{d-2}^{m_{d-2}} s^{m_{d-1}}) > 2$,
-however, it is easy to show that this divisor $d$ is such that
-$b(d) < b(p_0^{m_0} p_1^{m_1} ... p_{d-2}^{m_{d-2}}) < 2$, as the
-entry on the right of the equality is a divisor of our primitive
-abundant odd generated by $Q,E$. Thus $S,E$ (or one of its
-divisors) is primitive abundant number(with primes composing $P$).
-
-\textbf{CASE 2.2}
-
-%THIS CASE ALSO COVERS WHEN $Q$ AND $R$ DIVERGE EARLY, SO THE BASE
-%CASE SHOULD BE DONE!
-
-What would happen if $S,E$ is not abundant when $Q,E$ is?
-
-Set $E$ to be the exponent set of the primitive abundant number
-whose prime divisors compose $R$.
-
-Suppose that $S,E$ is an abundant number but is not primitive and
-none of its divisors who lose no prime factors are primitive. Then
-$S,E$ has abundant divisor $d = p_0^{m_0} ... p_{i-1}^{m_{i-1}}
-p_{i+1}^{m_{i+1}} ... s^{m_{d-1}}$. Note that this divisor has the
-following property:
-
-$$b(d) < b(p_0^{m_0} p_1^{m_1} ... p_{d-1}^{m_{d-1}}) < 2$$
-
-And this is the case as the divisor in the middle is a proper
-divisor of primitive abundant $R,E$.
-
-
-%% CONJECTURE: FIRST FIND IN THE ALGORITHM WILL NOT BE TURNED DOWN 
 
 \end{document}

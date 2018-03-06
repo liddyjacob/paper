@@ -4,7 +4,7 @@
 
 \section{Preliminaries}
 
-We define the function /$b: \mathbb{N} \mapsto \mathbb{Q}$ by
+We define the function $b: \mathbb{N} \mapsto \mathbb{Q}$ by
 %
 $$b(n) = \frac{\sigma(n)}{n} $$
 %
@@ -66,10 +66,8 @@ Thus $b(n) < b(n') \leq b(mn)$. Hence, $b(n)$ is a
 multiplicativly increasing function.
 \\
 
-We want to see what happens to $b(n)$ when exponents in the prime
-factorization of $n$ become larger and larger. Taking the limit of
-$b(p^m)$ as $m$ goes to infinity, we have that:
-$$\lim_{m \rightarrow \infty}b(p^m) = \frac{p}{p-1}$$
+Taking the limit of $b(p^m)$ as $m$ goes to infinity, we have that
+$\lim_{m \rightarrow \infty}b(p^m) = \frac{p}{p-1}$.
 Applying this to the sequence of primes $P = \{p_1, p_2, ..., p_d\}$,
 we define $b_{\infty}(P)$ by
 
@@ -101,13 +99,13 @@ $$L
 %
 = \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} 
 %
-( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}})$$
+( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}})$$.
 
 Hence , we can allow
 $$\prod_{1 \leq i \leq k} \frac{p_i^{m_{i} + 1} -1}
 {(p_i -1)p_{i}^{m_{i}}}$$ 
 to be arbitrarily close to $L$ for large 
-enough exponents $m$. Since $L$ is greater than two, there exists a
+enough exponents $m_i$. Since $L$ is greater than two, there exists a
 collection of positive integers $m_1, m_2, ... , m_k$ such that 
 % 
 $$L > \prod_{1 \leq i \leq k} \frac{p_i^{m_{i} + 1} -1}
@@ -125,31 +123,36 @@ $$2 < b(n) < b(np_1) < b(np_1^2) < ...$$
 Thus there are infinitely many abundant integers $n$ whose prime
 factors are in the set $P$.
 
-Now we assume that there exists infinitly many abundant integers 
+Now we assume that there exists infinitely many abundant integers 
 $n$ whose prime factors compose $P$. Let $p_i \in P$. Given any
 positive integer $r$, we have that that $np_i^r$ is abundant. 
 Hence,
 %
-$$\prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty} 
-( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) > 2$$
+$$ b_\infty(P) = \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow 
+\infty} ( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) > 2$$
 
 \end{proof}
 
-\begin{theorem}
+\begin{theorem} \label{b_inf_n!}
 If $b_{\infty}(P) \leq 2$, then there does not exist an abundant
 number whose prime factors compose $P$.
 \end{theorem}
 
 \begin{proof}
 Let $P = \{p_1, p_2, ..., p_d\}$.
-Since $b_{\infty}(P) \leq 2$ and $b(p_1^{m_1} p_2^{m_2} ... p_d^{m_d})$
-is increasing as the exponents $m_1, m_2, ..., m_d$ increase, we have that
-$b(p_1^{m_1} p_2^{m_2} ... p_d^{m_d}) < b_{\infty}(P) \leq 2$ for any 
-given exponents. Thus $b(n) < 2$ for any $n$ whose prime factors
-compose $P$. Thus there does not exist any abundant number whose 
-prime factors compose $P$.
-
+Since $b(p_1^{m_1} p_2^{m_2} ... p_d^{m_d})$ is strictly increasing as the
+exponents $m_1, m_2, ..., m_d$ increase while $b_{\infty}(P) \leq
+2$, we have that $b(p_1^{m_1} p_2^{m_2} ... p_d^{m_d}) < 
+b_{\infty}(P) \leq 2$ for any given exponents $m_1, ..., m_d$. 
+Thus given any positive integer $n$ whose prime factors compose
+$P$, we will have that $b(n) < 2$.
 \end{proof}
+
+\begin{theorem} \label{prime_ineq}
+Let $p$ and $q$ be primes such that $p < q$. Then $b_\infty(\{p\}
+\leq b(q^1)$. If $p \geq 3$, then $b_{\infty}(\{p\}$ is strictly
+less than $b(q^1)$.
+\end{theorem}
 
 Another important function we will need describes what happens 
 when some exponents are fixed and some exponents are allowed to
@@ -173,8 +176,10 @@ follows:
 %r_k\}$ be subsets of P, then $$mb(P,E,I) '=' b(q_1^\infty
 %q_2^\infty ... q_h^\infty r_1^)$$ and 
 
-For convenience, we define the positive integer $\nu(P,E)$ by
-$\nu(P,E) = p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$. 
+Let $P$ be a sequence of primes $P = \{p_1, p_2, ..., p_d\}$,
+and let $E = \{m_1, ..., m_d\}$ be a sequence of positive integers
+with the same cardinality as $E$. We define the positive integer 
+$\nu(P,E)$ by $\nu(P,E) = p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$. 
 
 We now prove the following theorem, making use of the above
 definitions:
@@ -183,22 +188,22 @@ definitions:
 Let $P = \{p_1, p_2, ... p_d\}$ be a sequence of primes, and let
 $E = \{m_1, m_2, ..., m_d\}$ be a sequence of exponents. Let $n =
 \nu(P,E)$. Let I be a nonempty subset of $\{1, ..., d\}$. The 
-condition $mb(P,E,I)$ holds if and only if there exists an 
+condition $mb(P,E,I) \leq 2$ holds if and only if there exists an 
 abundant number $k$ such that $n$ divides $k$ and every prime 
-divisor of $k/n$ is a member of ${p_i \mid i \in I}$.
+divisor of $k/n$ is a member of $\{p_i \mid i \in I\}$.
 \end{theorem}
 
 We (currently) leave the proof to the reader. It is 
 similar to the proof of Theorem {\ref{b_inf_1}}.
 
 For any given prime $p$ and positive integer $m$, we define the
-rational numbers $\Delta_+(p,m)$ by
+rational number $\Delta_+(p,m)$ by
 $$\Delta_+(p,m) = \frac{p^{m+2} - 1}{ p (p^{m + 1} -
 1)}$$
 
 \begin{theorem}[Property]\label{dp_def}
 Suppose $n = p_1^{m_1} p_2^{m_2} ... p_i^{m_i} ... p_d^{m_d}$.
-Then,
+For each $i \in \{1,...,d\}$, we have
 
 $$ b(n) \Delta_+(p_i, m_i) = b(p_i n)$$
 

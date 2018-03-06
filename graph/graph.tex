@@ -12,13 +12,12 @@
 We want to construct a useful structure that relates the primative
 abundant odd prime factors. 
 
-Let $\mathbf{P}$ be a set of 'nodes' such that each $n \in 
-\mathbf{P}$ is defined as a pair including a prime greater 
-than or equal to 3 and a set of primes before it. $n$ takes the 
-form $(p4, \{p1, p2, p3\})$. Examle: $(11, \{3, 5\})$.
-$n$ can also be in the form $(1, \{\})$
-
-Let $V$ be a set of pairs of nodes, called edges.
+Let $\mathbf{P}$ be a set of nodes such that each $n \in 
+\mathbf{P}$ is defined as a pair including a positive integer 
+and a sequence of primes. $n$ can take form 
+$(p_3, \{p_0, p_1, p_2\})$ for primes $p_0,..., p_3$. 
+$n$ can also be in the form $(1, \{\})$. Let $V$ be a set of 
+edges between the nodes.
 
 Finally, we define an acyclic connected graph $G_d(\mathbf{P},V)$ 
 for some positive integer $d \geq 3$ where $G_d$ satisfies the 
@@ -26,7 +25,7 @@ following rules:
 
 \begin{enumerate}
 
-\item $(1, \{\}) \in \mathbf{P}$. Call this node $n_0$ for the next 
+\item $(1, \{\}) \in \mathbf{P}$. Denote this node $n_0$ for the next 
       statement.
 
 \item If $p_1^{m_1}p_2^{m_2}...p_d^{m_d}$ is an primative abundant 
@@ -35,7 +34,7 @@ following rules:
 
       i. $ (p_1, \{\}), (p_2, \{p_1\}), (p_3, \{p_2, p_1\}), ..., 
         (p_d, \{p_1, p_2, p_3, ..., p_{d-1}\}) \in \mathbf{P} $
-			Call these nodes $n_1, n_2, ..., n_d$ for simplicity in the 
+			Denote these nodes $n_1, n_2, ..., n_d$ for simplicity in the 
 			next statement.
 
       ii. $ (n_0, n_1), (n_1, n_2), (n_2, n_3), ..., (n_{d-1}, n_{d}) 
@@ -47,8 +46,8 @@ Note that this graph contains a finite number of nodes since
 there are a finite number of primative odd abundant numbers with
 d divisors. 
 
-When a diagram is drawn, the nodes are represented by the prime
-value they hold, and the set of primes before it can be deduced
+When a diagram is drawn, the nodes are represented by the integer 
+value they hold, and the sequence of primes before it can be deduced
 from the edges in the graph. See the diagram of $G_3$ and $G_4$
 below.
 
@@ -57,13 +56,15 @@ below.
 We need to associate two statements with each node for the 
 algorithm.
 
-We define the statement $E_{(d,P)}$ for some set of primes P such 
-that $E_{(d,P)} = $ "There exists a node $n \in G_d$ such that the set 
+We define the statement $E_{(d,P)}$ for some sequrnce of primes P such 
+that $E_{(d,P)} = $ "There exists a node $n \in G_d$ such that the
+sequence 
 of primes $P$ is associated with $n$". In other words this state that 
 there exists some primative abundant with $d$ divisors whose prime
 factors are $P$.
 
-We also define the 'exhausted' statement $X_{(d,P)}$ for some set of 
+We also define the 'exhausted' statement $X_{(d,P)}$ for some
+sequence of 
 primes $P = \{p_1, p_2, ..., p_i\}$   by $X_{(d,P)} = $ "all primes 
 $q_{i+1}, q_{i+2}, ..., q_d$ have been found such that $p_1,p_2, 
 ..., p_i, q_{i+1}, q_{i+2}, ...q_d$ are all the prime factors to some
@@ -75,23 +76,16 @@ as a third paramater that will be false by default.
 \subsection{The Algorithm}
 \textbf{Algorithm} 
 
-Consider $G_d$. We want to determine what nodes are in $G_d$, 
+We want to determine $G_d$ with an algorithm, and use this
+algorithm to find all odd primitive abundant numbers with $d$
+divisors.  
 which will eventually allow us to determine the primative abundant 
 odds with $d$ divisors.
-
-We will allow the nodes in $\mathbf{P}$ to have a boolean 
-attribute to them. This boolean will represent the statement in 
-the previous section known as $X_{(d,P)}$. Thus a node of 
-$\mathbf{P}$ will be in the form 
-$(p_i, \{p_1, p_2, ..., p_{i-1}\}, true/false)$.
-
-\noindent
-We define a few simple functions here:
 
 Let $n \in \mathbf{P}$.
 %
 We define $n.P()$ will retrieve the prime associated with n, as
-well as the set of primes associated with n, returning them as a 
+well as the sequence of primes associated with n, returning them as a 
 sequence, from least to greatest prime.
 
 \noindent
@@ -103,28 +97,13 @@ Let $G = (\mathbf{P}, V)$, and
 let $n \in \mathbf{P}$ such that n has no child nodes. 
 %Todo: Define a child node
 %
-We define $delete(n, G)$ in the following way.  
-
-
-
-
-let 
+We define $delete(n, G)$ in the following way: TODO. 
 
 \begin {algorithmic}
-\STATE TODO: 
+\STATE TODO: Rewrite this algorithm from code, make a new flow
+chart.
 
 \end {algorithmic}
-% Use this to declair new algorithms.
-{\setlength{\parindent}{0cm}
-
-\textbf{Algorithm: ExtractPrimativeAbundantOdds}
-
-\textbf{INPUT:} d, desired divisors.
-
-\textbf{OUTPUT:} All Primative Abundant Odds with d divisors.
-
-}
-
 
 {\setlength{\parindent}{0cm}
 
@@ -137,7 +116,7 @@ let
 }
 
 \begin{algorithmic}
-
+\STATE TODO: Change this to Sequences if possible.
 \STATE $\mathbf{P} := \{(1, \{\}, FALSE)\}$
 \STATE $V := \{\}$
 \STATE $G_d := (\mathbf{P},V)$
@@ -175,6 +154,8 @@ let
 		\IF {$expFind(P)$}
 			\STATE $success(newnode)$
 		\ELSE
+      \STATE Due to some new modifications, this section needs a
+fix. We need to check certain primes. More details to come. 
 			\STATE $fail(newnode)$
 		\ENDIF
 	\ENDIF
@@ -192,19 +173,41 @@ let
 \textbf{END}
 
 
-ALGORITHM:
 
-
-
-\textit{Proof of correctness of the algorithm:}
 %Todo : Start writing up algorithm in notebook.
 \begin{proof}
-The algorithm will branch off until it has hit a
-prime that will not produce an abundant number. By
-conjecture 1, that will produce all possible prime factors. 
-For if that does not produce all prime factors, then there will
-exists a gap in the prime factorizations, which contradicts the
-continuity of primative abundant numbers
+Will use Continuity of Primitive Abundant Numbers and Prine
+Divisibility of Abundant Numbers.
+
+We will also do a proof by induction, on the sequences of primes.
+We will lexicographically order the sequences of primes to do
+this.
+
+Suppose that $P$ and $Q$ are sequences of $d$ primes such that $P$
+and $Q$ compose the prime factorization of two odd primitive
+abundant numbers. Suppose that $Q$ is the greatest predecessor of
+$P$ with the primitive abundant property. We want to show that if
+the algorithm collects $P$, then it must collect $Q$. 
+
+For the base case: We need to use Theorem {\ref{Primechops}} to
+construct the smallest sequence and show that the algorithm
+collects it. Would be nice to show that the smallest sequence
+starts with a $3$
+
+To prove this we have two cases: $P$ and $Q$ share all but the
+last prime factor or $P$ and $Q$ have less elements in common
+prime factor.
+
+In the case where $P$ and $Q$ share all but the prime factor, we
+will argue the fact that $P$ is the immedient predecessor of $Q$,
+i.e. the last element of $Q$ is the next prime after the last
+element of $P$. This is beacause of Theorem {\ref{Continuity}}. In
+this case, $Q$ will definately be the next prime sequence checked
+and therefore the algorithm will discover $Q$.
+
+In the case where $P$ and $Q$ have at least two elements not in
+common, we want to use Theorem {\ref{Divisibility}} and show that
+the divisors of $P$ are fixed at a certain size.
 
 \end{proof}
 

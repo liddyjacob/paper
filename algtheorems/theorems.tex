@@ -2,252 +2,159 @@
 
 \begin{document}
 
-\section{Preliminary Theorems}
+\section{Prime Sequences: Theorems and Definitions}
 
-\section*{Lemmas And Theorems}\par\hspace{4ex}
-\textbf{FALSE Lemma:} Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
-and $b_{\infty}(P) > 2$, then $P$ is the set of prime divisors of 
-some primative abundant odd with $d$ divisors.\\ COUNTEREXAMPLE:
-3 5 7 1003 not P. AB. ever.
-
-\begin{proof}
-
-Let $M$ be a set of $d$ positive integers that will represent
-the exponents of a primative abundant number whose prime factors
-compose $P$. We 'initialize' M to be
-%
-$M = \{m_1=1, m_2=1, ..., m_d=1 \}$. 
-%
-First we check if raising any exponent $m_i$ by $1$ will make 
-$p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$ abundant. We will break off
-by cases depending on if this is possible.
-\textbf{case 1}
-	Suppose raising some exponent by 1 will make $n = p_1^{m_1} 
-p_2^{m_2} ... p_d^{m_d}$ abundant. Find all exponents that can be
-raised to make the product abundant, and select the exponent $m_i$
-such that $\Delta_{+}(p_i, m_i)$ is smallest. Raise this exponent,
-and call the resultant product $n'$
-%Or pick largest Delta_-??
-
-When this exponent is raised, we will have an abundant number. It
-remains to prove that this number will also be primative. Since
-we have that $b(n') = \Delta_{+}(p_i, m_i) b(n) \geq 2$. Since 
-this is the minimum $\Delta_{+}$, we have that any other ...
-
-\textbf{case 2}
-If there is one 
-%
-
-
-\end{proof}
-
-
-\textbf{Theorem:} Let $P$ be a set of $d$ odd primes. If $b_{1}(P) \leq 2$
-and $b_{\infty}(P) > 2$, then the following algorithm will extract all primative
-abundant odd numbers whose prime divisors compose $P$.
-
-% The algorithm:
-%
-% * Set initial exponents to 1 
-%
-% * Check if abundant. If so check if primative
-%   * If not primative, no abundant odds 
-%		* If primative, this is 
-%
-% * If b(p1^e1 p2^e2 ... pd^ed) >= 2
-%		* If primative this is an option : return true
-%		* If not return false
-%
-%	* Check to see if any exponent increases will cause abundance
-%    If any do cause abundance, check if primative.
-%    Always start with the exponents of highest 'influence'
-%		 then move on to lower 'influence' exponents. influence
-%    is measured by which exponents increase b(n) the most
-%    Del_pos is exactly the measure of this.
-%
-%	* Once the first exponent which does not cause abundance is found
-%    we want to check which exponents can be raised to 'infinity'
-%    to eventually produce an abundant number. We raise the exponents
-%    NEED TO TALK ABOUT ORDER OF INFLUENCE HERE. IN THE ALGORITHM
-%    WE ASSUME INFINITE INFLUENCE IS DIRECTLY RELATED TO FINITE
-%    SINGLE EXPONENT INFLUENCE? IS THIS TRUE? I DONT KNOW.
-%				*Infinite influence: Take a prime-exp pair p^e -> p^infinity
-%				*Finite influence  : Take a prime-exp pair p^e -> p^(e+1)
-%       Are they related?
-% ^ * Mixed b: Raise exponents of low influence pairs to see if they
-%     mixed with others will eventually go on to infinity
-% ^ * If so raise 
-
-% THIS is going to be UGLY.
-% NEW THEorem added - may be important
-
-
-
-\textbf{Theorem:} Suppose that $b_{\infty}(p_1 p_2 ... p_i) > 2$,
-where $p_1 < p_2 < p_3 < ... < p_i$. Then there exists some 
-$\ell \leq i$ such that $p_1, p_2, p_3, ..., p_\ell$ are the prime
-factors to some primative abundant odd.
+\begin{theorem} \label{Primechops}
+Suppose that $b_{\infty}(\{p_1,p_2, ..., p_i\}) > 2$,
+where $p_1 < p_2 < p_3 < ... < p_i$. Then there exists some
+positive integer $\ell$ less than $i$ such that $\{p_1, p_2, p_3, 
+..., p_\ell\}$ compose the prime factors of some primitive 
+abundant odd.
+\end{theorem}
 
 \begin{proof}
-	Consider the first $\ell$ such that $b_{\infty}(
-p_1 p_2 ... p_\ell) > 2$. Then we have that $b_{\infty}(p_1 p_2 
+	Consider the least positive ineteger $\ell$ such that $b_{\infty}(\{
+p_1 p_2 ... p_\ell\}) > 2$. Then we have that $b_{\infty}(p_1 p_2 
 ... p_{\ell - 1}) \leq 2$. Since 
-$b_{\infty}(p_\ell - 1) < b_{\infty}(p_{\ell - k})$, we have that
-removing any prime from the set $P = \{p_1, p_2, ..., p_{\ell} \}$ will
-cause $b_{\infty}$ to be less than two. Thus there does not exist
-a abundant odd whose prime divisors are all in the set 
-$P$ but do not cover all elements of $P$. Hence if an odd abundant
-has prime divisors who compose $P$, then it is either a primative 
-abundant odd or a multiple of a primative abundant odd whose prime
-divisors compose $P$. Thus there exists a primative abundant odd
-whose prime divisors compose $P$.
+$b_{\infty}(p_{\ell - 1}) \leq b_{\infty}(p_{k})$ for any
+positive integer $k$ such that  $k \leq \ell - 1$, we have that
+removing any prime from the sequence $P = \{p_1, p_2, ..., p_{\ell} \}$ will
+cause $b_{\infty}(P)$ to be less than two. By Theorem
+{\ref{b_inf_n!}} there does not exist
+an abundant odd whose prime divisors are a proper subsequence of
+$P$.
 \end{proof}
 
+\begin{theorem} Suppose there exists an odd weird number. Then:
 
-\textbf{Lemma:} Suppose that $P = \{ p_1 \geq 3, p_2, ..., p_i\}$ are 
-the first $i$ divisors of some primative abundant odd which has
-$d$ prime divisors. Then there exists consecutive prime divisors
-$Q = q_1, q_2, ..., q_{d - 1}$ with $p_i < q_1$ such that 
-$P \cup Q$ compose the prime divisors of some primative abundant 
-odd.
+\begin{enumerate}
+  \item The smallest odd weird number will be a primitive abundant
+number $w$
+  \item All weird numbers greater than $w$ will have at least as
+many prime divisors as $w$.
+\end{enumerate} 
+\end{theorem}
 
-\begin{proof}
-	Since $P$ consists of the first $i$ prime divisors of some 
-primative abundant n, there exists at least one
-$R = {r_1 > p_1, r_2, ..., r_{d-i}}$ such that $P \cup R$ are the 
-prime divisors of some primative abundant odd. Choose an R with the
-largest $r_1$ possible. Since there is a finite number of 
-primative abundant odds with $d$ divisors we can choose such an
-$r_1$. We wish to argue that this $r_1$ is in fact a possibility
-for $q_1$.
-
-	Suppose that the $R$ chosen was a set of sequential primes. 
-Then we are done and the Theorem is true.
-
-	Suppose that $R$ is non-sequential. We want to show that the 
-sequence of primes following $r_1$ is the desired sequence of 
-primes to satisfy the theorem. Call this sequence $R'$. Note that
-$b_{\infty}(P \cup R) = b_{\infty}(P) b_{\infty}(R) > 2$. Given 
-any $j \in \{1, 2, ..., d-i\}$ we have that $r'_j \geq r_j$, since
-$R'$ is sequential. Thus $b_{\infty}(R') \geq b_{\infty}(R)$. Hence
-we have that $b_{\infty}(P \cup R') > 2$. Thus for high enough 
-exponents, 
-%
-$$p_1^{m_1}  p_2^{m_2} ... p_i^{m_i} (r'_1)^{m_{i+1}} ... (r'_{d-i})^{m_d}$$
-%
-is an abundant odd.
-
-	It remains to prove that we can find a primative abundant odd 
-of the above form.
-
-	Note that there exists exponents such that 
-%
-$p_1^{e_1}  p_2^{e_2} ... p_i^{e_i} r_1^{e_{i+1}} ... r_{d-i}^{e_d}$
-%
-is primative abundant odd (Here it is not r' but r). 
-Suppose, to the contrary, that there 
-does not exists exponents to make $P \cup R'$ the prime divisors 
-of some primative abundant odd. Thus any abundant odd whose prime
-factors are in $P \cup R'$ are the product of some primative 
-abundant odd whose prime factors are all in $P \cup R'$ but lacks
-a single divisor in $P \cup R'$. If this is the case, is $r_1$ truely
-the largest prime such that $P \cup R$?
-
-Choose exponents $e_1, e_2, e_3, ..., e_d$. Now consider the following
-$$p_1^{e_1} p_2^{e_2} ... p_i^{e_i} (r'_1)^{e_{i+1}} ... (r'_{d-i})^{e_d}$$
-We want to prove that this is a multiple of a primative abundant 
-number who shares exactly the same distinct prime factors. We know 
-that $p_1^{e_1} p_2^{e_2} ... p_i^{e_i} (r'_1)^{e_{i+1}}$ is 
-deficient since it is a divisor of a primative abundant odd.
-(Recall that $r'_1 = r_1$). Find the first $r_k$ with $k <= d - i$
-where 
-$$p_1^{e_1} p_2^{e_2} ... p_i^{e_i} (r'_1)^{e_{i+1}} (r'_2)^e_{i+2} ... 
-(r'_k)^e_{i+k})$$
-is abundant. Note that these primes are primative abundant. 
-
-\textbf{TODO: Finish ME!!!!!!!!!!!!!!!!!!!?}
-%TODO:
-
-\end{proof}
-
-
- 
-
-%TODO: Mention that p_1, p_2, ..., p_d are always listed in increasing 
-% order unless said not to be.
-
-
-% 
-% ---------- RELEVANCE OF THE BELOW CONJECTIURE ----------
-%		This conjecture allows us to conclude that if some set
-% of primes p_1, p_2, ..., p_{i-1}, q, is NOT going to be
-% the first i primes of some prim. ab. odd with d divisors
-% then NO prime after q will. For if not, this conjecture 
-% woudl be false. There would be a 'hole' in the primes
-% and in the graph. 
-% --------------------------------------------------------
-% NOTE: Need to prove that for some primes p_1 p_2 .. p_i
-% if these are the start of some prim ab odd with d divisrs
-% then exists consecutive primes q_i+1, q_i+2, ..., q_d s.t.
-% there exists prim ab odd with prime divisors p-1 p_2 ...
-% p_i q_i+1 q_i+2 ... q_d.
-
-% This will allow us to 'construct' consecutive primes for 
-% r.
-
-% Repeat of NOTE  below, reworded.
-
-% So yet another theorem will be needed: Given that there 
-% exists a seq of primes P that represent the first i primes
-% for some prim ab odd, then there exists a prim ab odd
-% whose first primes are P and all after are consecutive 
-% starting at q_1. 
-
-% So we can consider the consecutive set of primes following
-% r. This conscutive set will be either the primes following
-% r itself or will be the smallest consecutive set following
-% q_1. This should avoid r not being non-primative
-
-% This will allow us to find the primes after r.
-
-% Possibly important: For the max q such that p_1, p_2, ...
-% p_i-1, q,  such that these are the first i divisors of 
-% some prim ab odd with d > i divisors, then that prim
-% ab odd will have consecutive primes after q.
-
-\textbf{Conjecture?:} Suppose that there exists a primative abundant
-odd whose first i prime divisors are $p_1, p_2, p_3, ..., p_{i-1}, 
-\ell_i$ and a primative abundant odd whose prime divisors are $p_1, p_2, 
-..., p_{d-1}, u_i$ with $\ell_i \geq u_i$. Then for each prime $r+i$ 
-between $q_1$ and $q_2$ there exists a primative abundant odd whose 
-first $i$ prime divisors are $p_1, p_2, p_3, ..., p_{i-1}, r$.
-
-\textit{Proof:} 
-%
-Since there exists some primative abundant whose first d divisors
-are $p_1, p_2, ..., p_{d-1}, u_i$ we have that there exists a primative
-abundant odd whose first 
-.
-.
-.
-
-
-\textbf{Corollary:} 
-Let $n \leq d$. Let $P = \{p_1, p_2, ..., p_n\}$ be a set of primes
-such that $p_1 p_2 p_3 ... p_n$ is not an abundant number.
-If there does not exist a primative abundand odd with $d$ divisors
-whose first $n$ prime divisors compose P, then if $q$ is a prime 
-greater than $p_d$, there does not exist a primative abundant odd
-with $d$ divisors whose first $n$ divisors are $p_1, p_2, ...,
-p_{n-1}, q$.
-
-\textbf{Theorem:} If there exists a weird number that is odd, 
-then the smallest odd weird number will be primative abundant.
-In fact, all weird numbers will have at least as many prime
-divisors as the smallest weird odd number.
-
-\textbf{Corollary:} If no primative weird abundant odd exists
+\begin{coro} If no primitive weird abundant odd exists
 with d or less divisors, then no odd weird exists with d or less
 divisors.
+\end{coro}
+
+
+\begin{theorem}[Continuity of Primitive Abundant
+Numbers]\label{Continuity}
+Let $P = \{p_0, p_1, ..., p_{d-2}, r\}$ be an increasing sequence 
+of primes. Suppose that $n = \nu(P, M)$ is a primitive abundant 
+number for some sequence of positive integers $M$. Let $s$ be a 
+prime such that $p_{d-2} < s < r$, and let $P' = \{p_0, p_1,...,
+p_{d-2}, s\}$. Then there exists some sequence of positive integers
+$E$ such that $\nu(P', E)$ is a primitive abundant number.
+\end{theorem}
+
+\begin{proof}
+Suppose that $n = \nu(P,M)$ is a primitive abundant number for
+some sequence of positive integers $M$. We write $M = \{ m_0,
+m_1, ..., m_{d-1}\}$. Then $n = p_0^{m_0} p_1^{m_1} ... 
+p_{d-2}^{m_{d-2}} r^{m_{d-1}}$. We want to consider the integer 
+$\ell = \nu(P', M)$. It is easy to show that $\ell$ is abundant. 
+If $\ell$ is primitive, then we are done. Suppose that $\ell$ is not
+primitive. We know that $\ell$ is a multiple of some primtive
+abundant number $\ell'$. We will argue that all prime factors in
+$P'$ must divide $\ell'$. We will use proof by contradiction. 
+
+Let $h = p_0^{m_0} p_1^{m_1} ... p_{d-2}^{m_{d-2}}$. Note that $h$
+is a proper divisor of $n$, and therefore $h$ is deficient.
+
+Suppose, to the contrary, that $p_i$ does not divide $\ell'$ for 
+$0 \leq i \leq d-2$. Then $\ell'$ is a multiple of $k = p_0^{m_0}
+p_1^{m_1} ... p_{i-1}^{m_{i-1}} p_{i+1}^{m_{i+1}} ... 
+s^{m_{d-1}}$. Notice that $b(k) < b(h) < 2$. However, k is a 
+multiple of the abundant number $\ell'$, a contradiction. We have
+shown that all primes in the set $\{p_0, p_1, ..., p_{d-2}\}$
+must divide $\ell'$.  
+
+Now we suppose that $s$ does not divide $\ell'$. This implies
+that $h$ is a multiple of $\ell'$. However, $\ell'$ is abundant 
+and therefore $h$ is abundant. This is a contradiction.
+
+Thus $\ell'$ is a primitive abundant number whose prime divisors
+compose $P'$.
+\end{proof}
+
+
+Let $P$ be an
+ordered sequence of $i$ primes. Suppose there exists at least one
+odd primitive abundant number $n$ with $k$ divisors, such that $i
+< k$ and $P$ composes the smallest $i$ prime divisors of $n$.
+Such an $n$ is referred to as a "$P$-initiated OPN"
+
+\begin{theorem}[Prime Divisibility of Abundant Numbers]
+\label{Divisibility}
+Let $P = \{p_0, p_1, ..., p_{i-2}, s\}$ be a strictly increasing 
+sequence of primes. Let $r$ be a prime greater than $s$, and 
+denote $P' = \{p_0, p_1, ..., p_{i-2}, r\}$.
+
+Let $d$ be an integer greater than $i$. 
+Suppose that there exists a $P'$-initiated OPN with $d$ divisors.
+
+If there does not exists a $P$-initiated OPN with $d$ prime
+divisors, then there does exist a $P$-initiated OPN with less
+than $d$ divisors.
+
+\end{theorem}
+
+\begin{proof}
+We know that there exists a $P'$-initiated OPN with $d$ divisors.
+Suppose $n$ is such an $OPN$. We know that $n = \nu(P', M_p) 
+\nu(Q, M_q)$ for sequences of positive integers $M_p, M_q$, and 
+some sequence of primes $Q$ such that each element of $Q$ is 
+greater than $r$.
+
+  We want to consider $m = \nu(P, M_p) \nu(Q, M_q)$. This integer is
+abundant as $s < r$. However, it is not primitive by our
+assumption.
+
+  Write $n = p_0^{m_0} ... p_{i-2}^{m_{i-2}} r^{m_{i-1}}
+q_{i}^{m_i} ... q_{d-1}^{m_{d-1}}$. Note that $\ell = n / r^{m_{i-1}}$ is
+a proper divisor of $n$ and thus is deficient. Notice that $\ell$
+is also a divisor of $m$, and thus a primitive abundant divisor of
+$m$ must not be a divisor of $\ell$. Thus a primitive abundant
+divisor of $m$ must be divisible by $s$.
+
+  It is easy to show that a primitive abundant divisor of $m$ must
+also be divisible by $p_0$, $p_1$, ..., $p_{i-2}$ using Theorem
+{\ref{prime_ineq}}. After showing this, we can see that the 
+there exists $P$-initiated OPN.
+\end{proof}
+
+
+We now define a certain class of primes.
+Suppose $P$ is an ordered sequence of $i$ primes. Suppose $d$ is
+an integer greater than $i$. Let $p$ be the maximum prime such 
+that there exists a $P + {p}$-initiated OPA with less than $d$ 
+prime divisors\footnotemark. We know this maximum exists since 
+there is a finite number of primitive abundant numbers with less
+than $d$ prime divisors(Dickson). We denote such a $P$ as 
+$Cap_d(P)$. 
+
+\footnotetext{the notion $P + \{p\}$ intends that $p$ is appended to the end
+of the sequence $P$}
+
+\begin{theorem}
+Let $P$ be an ordered sequence of primes, and let $p$ be a prime
+number greater than the last in $P$. Also, let $q$ be a prime
+greater than $p$. If there does not exist a $P + \{p\}$-initiated
+OPN with $d$ divisors, then there does not exist a $P +
+\{q\}$-initiated OPN with $d$ divisors.
+\end{theorem}
+
+\begin{proof}
+Assume, to the contrary, that there does exist a $P + 
+\{q\}$-initiated OPN with $d$ divisors. By Theorem {\ref{Divisibility}},
+there exists a $P + \{p\}$-initated OPN with less than $d$
+divisors. However, $p > Cap_d(P)$, and by definition of
+$Cap_d(P)$, there cannot exist a $P + \{p\}$-initiated OPN with
+less than $d$ divisors. This is a contradiction.
+\end{proof}
 
 \end{document}
