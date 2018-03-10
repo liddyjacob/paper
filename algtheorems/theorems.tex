@@ -13,9 +13,11 @@ abundant odd.
 \end{theorem}
 
 \begin{proof}
-	Consider the least positive ineteger $\ell$ such that $b_{\infty}(\{
-p_1 p_2 ... p_\ell\}) > 2$. Then we have that $b_{\infty}(p_1 p_2 
-... p_{\ell - 1}) \leq 2$. Since 
+Let $\ell$ be the smallest positive integer integer such that 
+$b_{\infty}(\{p_1, p_2, ..., p_\ell\}) > 2$. Clearly $l > 2$ as 
+$2 > b_{\infty}(\{2\}) \geq b_{\infty}(\{p\})$ for any prime $p$.
+Then we have that 
+$b_{\infty}(p_1 p_2 ... p_{\ell - 1}) \leq 2$. Since 
 $b_{\infty}(p_{\ell - 1}) \leq b_{\infty}(p_{k})$ for any
 positive integer $k$ such that  $k \leq \ell - 1$, we have that
 removing any prime from the sequence $P = \{p_1, p_2, ..., p_{\ell} \}$ will
@@ -25,19 +27,14 @@ an abundant odd whose prime divisors are a proper subsequence of
 $P$.
 \end{proof}
 
-\begin{theorem} Suppose there exists an odd weird number. Then:
-
-\begin{enumerate}
-  \item The smallest odd weird number will be a primitive abundant
-number $w$
-  \item All weird numbers greater than $w$ will have at least as
-many prime divisors as $w$.
-\end{enumerate} 
+\begin{theorem} Suppose there exists an odd weird number. Let $w$
+denote some odd weird number with the smallest possible number of
+distinct prime divisors. Then $w$ is primitive abundant.
 \end{theorem}
 
 \begin{coro} If no primitive weird abundant odd exists
-with d or less divisors, then no odd weird exists with d or less
-divisors.
+having fewer than $d$ distinct prime divisors, then no odd weird
+exists having fewer than $d$ distinct prime divisors divisors.
 \end{coro}
 
 
@@ -65,8 +62,9 @@ $P'$ must divide $\ell'$. We will use proof by contradiction.
 Let $h = p_0^{m_0} p_1^{m_1} ... p_{d-2}^{m_{d-2}}$. Note that $h$
 is a proper divisor of $n$, and therefore $h$ is deficient.
 
-Suppose, to the contrary, that $p_i$ does not divide $\ell'$ for 
-$0 \leq i \leq d-2$. Then $\ell'$ is a multiple of $k = p_0^{m_0}
+Suppose, to the contrary, that $p_i$ does not divide $\ell'$ for
+some $i$ such that $0 \leq i \leq d - 2$
+Then $\ell'$ is a multiple of $k = p_0^{m_0}
 p_1^{m_1} ... p_{i-1}^{m_{i-1}} p_{i+1}^{m_{i+1}} ... 
 s^{m_{d-1}}$. Notice that $b(k) < b(h) < 2$. However, k is a 
 multiple of the abundant number $\ell'$, a contradiction. We have
@@ -84,9 +82,9 @@ compose $P'$.
 
 Let $P$ be an
 ordered sequence of $i$ primes. Suppose there exists at least one
-odd primitive abundant number $n$ with $k$ divisors, such that $i
+odd primitive abundant number $n$ having $k$ divisors, such that $i
 < k$ and $P$ composes the smallest $i$ prime divisors of $n$.
-Such an $n$ is referred to as a "$P$-initiated OPN"
+Such a number $n$ is referred to as a "$P$-initiated OPN"
 
 \begin{theorem}[Prime Divisibility of Abundant Numbers]
 \label{Divisibility}
@@ -98,13 +96,13 @@ Let $d$ be an integer greater than $i$.
 Suppose that there exists a $P'$-initiated OPN with $d$ divisors.
 
 If there does not exists a $P$-initiated OPN with $d$ prime
-divisors, then there does exist a $P$-initiated OPN with less
-than $d$ divisors.
+divisors, then there must exist at least one  
+$P$-initiated OPN having less than $d$ divisors.
 
 \end{theorem}
 
 \begin{proof}
-We know that there exists a $P'$-initiated OPN with $d$ divisors.
+By hypothesis, there exists a $P'$-initiated OPN with $d$ divisors.
 Suppose $n$ is such an $OPN$. We know that $n = \nu(P', M_p) 
 \nu(Q, M_q)$ for sequences of positive integers $M_p, M_q$, and 
 some sequence of primes $Q$ such that each element of $Q$ is 
@@ -122,7 +120,7 @@ $m$ must not be a divisor of $\ell$. Thus a primitive abundant
 divisor of $m$ must be divisible by $s$.
 
   It is easy to show that a primitive abundant divisor of $m$ must
-also be divisible by $p_0$, $p_1$, ..., $p_{i-2}$ using Theorem
+also be divisible by each of $p_0$, $p_1$, ..., $p_{i-2}$ using Theorem
 {\ref{prime_ineq}}. After showing this, we can see that the 
 there exists $P$-initiated OPN.
 \end{proof}
@@ -130,31 +128,33 @@ there exists $P$-initiated OPN.
 
 We now define a certain class of primes.
 Suppose $P$ is an ordered sequence of $i$ primes. Suppose $d$ is
-an integer greater than $i$. Let $p$ be the maximum prime such 
-that there exists a $P + {p}$-initiated OPA with less than $d$ 
-prime divisors\footnotemark. We know this maximum exists since 
-there is a finite number of primitive abundant numbers with less
-than $d$ prime divisors(Dickson). We denote such a $P$ as 
-$Cap_d(P)$. 
-
-\footnotetext{the notion $P + \{p\}$ intends that $p$ is appended to the end
+an integer greater than $i$. Let $p$ be the largest prime such 
+that there exists a $(P + p)$-initiated OPA having less than $d$ 
+prime divisors\footnotemark. 
+% -------
+\footnotetext{the notion $P + p$ intends that $p$ is appended to the end
 of the sequence $P$}
+% -------
+We know this prime $p$ exists since 
+there exist only finitly many primitive abundant numbers having
+fewer than $d$ prime divisors(Dickson). We denote such a prime $p$
+as $Cap_d(P)$. 
 
 \begin{theorem}
 Let $P$ be an ordered sequence of primes, and let $p$ be a prime
-number greater than the last in $P$. Also, let $q$ be a prime
-greater than $p$. If there does not exist a $P + \{p\}$-initiated
-OPN with $d$ divisors, then there does not exist a $P +
-\{q\}$-initiated OPN with $d$ divisors.
+number greater than the last in $Cap_d(P)$. Also, let $q$ be a prime
+greater than $p$. If there does not exist a $(P + p)$-initiated
+OPN with $d$ divisors, then there does not exist a $(P +
+q)$-initiated OPN with $d$ divisors.
 \end{theorem}
 
 \begin{proof}
-Assume, to the contrary, that there does exist a $P + 
-\{q\}$-initiated OPN with $d$ divisors. By Theorem {\ref{Divisibility}},
-there exists a $P + \{p\}$-initated OPN with less than $d$
+Assume, to the contrary, that there does exist a $(P + 
+q)$-initiated OPN with $d$ divisors. By Theorem {\ref{Divisibility}},
+there exists a $(P + p)$-initated OPN having fewer than $d$
 divisors. However, $p > Cap_d(P)$, and by definition of
-$Cap_d(P)$, there cannot exist a $P + \{p\}$-initiated OPN with
-less than $d$ divisors. This is a contradiction.
+$Cap_d(P)$, there cannot exist a $(P + p)$-initiated OPN having
+fewer than $d$ divisors. This is a contradiction.
 \end{proof}
 
 \end{document}

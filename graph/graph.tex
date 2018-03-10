@@ -7,9 +7,9 @@
 % order unless said not to be.
 \section{The Main Algorithm}
 
-\subsection{The Primative Abundant Tree Structure}
+\subsection{The Primitive Abundant Tree Structure}
 
-We want to construct a useful structure that relates the primative
+We want to construct a useful structure that relates the primitive
 abundant odd prime factors. 
 
 Let $\mathbf{P}$ be a set of nodes such that each $n \in 
@@ -28,7 +28,7 @@ following rules:
 \item $(1, \{\}) \in \mathbf{P}$. Denote this node $n_0$ for the next 
       statement.
 
-\item If $p_1^{m_1}p_2^{m_2}...p_d^{m_d}$ is an primative abundant 
+\item If $p_1^{m_1}p_2^{m_2}...p_d^{m_d}$ is an primitive abundant 
       odd for positive integers $\{m_1, m_2, ..., m_d\}$, then
 			the following are true: 
 
@@ -43,7 +43,7 @@ following rules:
 \end{enumerate}
 
 Note that this graph contains a finite number of nodes since 
-there are a finite number of primative odd abundant numbers with
+there are a finite number of primitive odd abundant numbers with
 d divisors. 
 
 When a diagram is drawn, the nodes are represented by the integer 
@@ -60,7 +60,7 @@ We define the statement $E_{(d,P)}$ for some sequrnce of primes P such
 that $E_{(d,P)} = $ "There exists a node $n \in G_d$ such that the
 sequence 
 of primes $P$ is associated with $n$". In other words this state that 
-there exists some primative abundant with $d$ divisors whose prime
+there exists some primitive abundant with $d$ divisors whose prime
 factors are $P$.
 
 We also define the 'exhausted' statement $X_{(d,P)}$ for some
@@ -68,7 +68,7 @@ sequence of
 primes $P = \{p_1, p_2, ..., p_i\}$   by $X_{(d,P)} = $ "all primes 
 $q_{i+1}, q_{i+2}, ..., q_d$ have been found such that $p_1,p_2, 
 ..., p_i, q_{i+1}, q_{i+2}, ...q_d$ are all the prime factors to some
-primative abundant odd". This statement is specific to the algorithm 
+primitive abundant odd". This statement is specific to the algorithm 
 and when a new node is created in the algorithm this will be included
 as a third paramater that will be false by default. 
 
@@ -79,7 +79,7 @@ as a third paramater that will be false by default.
 We want to determine $G_d$ with an algorithm, and use this
 algorithm to find all odd primitive abundant numbers with $d$
 divisors.  
-which will eventually allow us to determine the primative abundant 
+which will eventually allow us to determine the primitive abundant 
 odds with $d$ divisors.
 
 Let $n \in \mathbf{P}$.
@@ -107,11 +107,11 @@ chart.
 
 {\setlength{\parindent}{0cm}
 
-\textbf{Algorithm: ExtractPrimativeAbundantOdds}
+\textbf{Algorithm: ExtractPrimitiveAbundantOdds}
 
 \textbf{INPUT:} d, desired divisors.
 
-\textbf{OUTPUT:} All Primative Abundant Odds with d divisors.
+\textbf{OUTPUT:} All Primitive Abundant Odds with d divisors.
 
 }
 

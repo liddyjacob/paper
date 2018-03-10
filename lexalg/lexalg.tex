@@ -1,0 +1,148 @@
+\documentclass[../paper.tex]{subfiles}
+
+\begin{document}
+\section{The Main Algorithm}
+
+\begin{enumerate}[label*=\arabic*.]
+  
+  \item Start with $P = \{1\}$
+
+  \item If $|P| < d$, append the next odd prime to the end of
+    $P$. \label{loop}
+
+  \begin{enumerate}[label*=\arabic*.]
+
+    \item If $b_{1}(P) \geq 2$, then truncate the last prime
+      from $P$. Let $p$ be the minimum prime such that $b_{1}(P +
+      p) < 2$. Append $p$ to the end of $P$. 
+
+    \item Go to step {\ref{loop}}
+
+  \end{enumerate}
+
+  \item If $b_{\infty} \leq 2$, then follow the 'Failure
+        Procedure' with $P$. Afterwards, if $P = \emptyset$,
+        terminate the algorithm. Otherwise, go to step
+        {\ref{loop}}.
+
+\end{enumerate}
+
+(At this point, we know the following facts: $|P| = d$ and
+$b_{\infty}(P) > 2$. We are now in a position to use the exponent
+algorithm to find any OPN's whose prime divisors compose $P$.)
+
+\begin{enumerate}[resume]  
+
+  \item Find all OPN's whose divisors compose $P$, using the
+        Exponent Algorithm. Record these integers.
+
+  \item If at least one OPN was found in the previous step,
+        replace the last prime of $P$ with its prime successor.
+        Go to step {\ref{loop}}. 
+
+  \item Otherwise, follow the 'Reverse Procedure*' on $P$. Denote
+        the prime that was last truncated from $P$ as $q$. 
+        
+  \item If $|P| \geq d - 1$, then follow the 'Failure Procedure'
+        on $P$ and go to step {\ref{loop}}.
+
+  \item If $q \leq Cap_d(P)$, then append the next prime after $q$
+        to $P$. Otherwise, follow the 'Failure Procedure' for $P$.
+
+  \item if $P = \emptyset$, then terminate. Otherwise, go to step
+        {\ref{loop}}
+\end{enumerate}
+
+THE FAILURE PROCEDURE:
+
+\begin{enumerate}[label*=\arabic*.]
+
+  \item Let $P' := P$. This is so we do not modify the original
+        $P$ during the procedure, as we will reference $P$.  
+
+  \item Remove the last prime from $P'$.
+
+  \item \label{fail_loop}
+        Consider all $Q$-composed OPN's with $d$ prime divisors such
+        that $Q$ is a lexicographical predecessor of $P$. Denote
+        this set of OPN'S as $A$.(Since the algorithm works in
+        lexicographical order, the algorithm has determined $A$
+        for us) 
+
+  \item if there does not exists an $a \in A$ such that $a$ is
+    $P'$-initiated, go to step 2.
+
+  \item Set $T(P') := True$. This value is false by default.
+
+  \item Truncate elements from $P'$ until $T(P')$ is false.
+        Clearly at least one element must be truncated.
+        Afterwards, set $P := P'$. Terminate the algorithm.
+\end{enumerate}
+
+THE BACKUP PROCEDURE: Similar to the failure procedure but with
+less steps and deletions.
+
+\begin{enumerate}[label*=\arabic*.]
+
+  \item Let $P' := P$. This is so we do not modify the original
+        $P$ during the procedure, as we will reference $P$.  
+
+  \item Remove the last prime from $P'$.
+
+  \item \label{fail_loop}
+        Consider all $Q$-composed OPN's with $d$ prime divisors such
+        that $Q$ is a lexicographical predecessor of $P$. Denote
+        this set of OPN'S as $A$.(Since the algorithm works in
+        lexicographical order, the algorithm has determined $A$
+        for us)
+
+  \begin{enumerate}[label*=\arabic*.]
+
+    \item if there exists an $a \in A$ such that $a$ is
+    $P'$-initiated, then set $P := P'$. Now, terminate.
+
+    \item If there does not exist such an $a$, Go to step 2 %{\ref{fail_loop}}
+
+  \end{enumerate}
+
+\end{enumerate}
+
+
+%Todo : Start writing up algorithm in notebook.
+\begin{proof}
+Will use Continuity of Primitive Abundant Numbers and Prine
+Divisibility of Abundant Numbers.
+
+We will also do a proof by induction, on the sequences of primes.
+We will lexicographically order the sequences of primes to do
+this.
+
+Suppose that $P$ and $Q$ are sequences of $d$ primes such that $P$
+and $Q$ compose the prime factorization of two odd primitive
+abundant numbers. Suppose that $Q$ is the greatest predecessor of
+$P$ with the primitive abundant property. We want to show that if
+the algorithm collects $P$, then it must collect $Q$. 
+
+For the base case: We need to use Theorem {\ref{Primechops}} to
+construct the smallest sequence and show that the algorithm
+collects it. Would be nice to show that the smallest sequence
+starts with a $3$
+
+To prove this we have two cases: $P$ and $Q$ share all but the
+last prime factor or $P$ and $Q$ have less elements in common
+prime factor.
+
+In the case where $P$ and $Q$ share all but the prime factor, we
+will argue the fact that $P$ is the immedient predecessor of $Q$,
+i.e. the last element of $Q$ is the next prime after the last
+element of $P$. This is beacause of Theorem {\ref{Continuity}}. In
+this case, $Q$ will definately be the next prime sequence checked
+and therefore the algorithm will discover $Q$.
+
+In the case where $P$ and $Q$ have at least two elements not in
+common, we want to use Theorem {\ref{Divisibility}} and show that
+the divisors of $P$ are fixed at a certain size.
+
+\end{proof}
+
+\end{document}

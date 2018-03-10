@@ -1,6 +1,7 @@
 %Paper.tex:
 %The general paper, combining split files.
 
+
 \documentclass[12pt]{article}
 
 \usepackage{amsmath}
@@ -10,13 +11,27 @@
 \usepackage{enumitem}
 \usepackage{algorithmic}
 
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows}
+
 \usepackage[scale=0.77,a4paper,margin=.75in]{geometry}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{conj}{Conjecture}
+\newtheorem{coro}{Corollary}
 \numberwithin{theorem}{section}
+\numberwithin{coro}{section}
 
 
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text centered, node distance=3cm]
+\tikzstyle{process} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium
+right angle=110, minimum width=3cm, minimum height=1cm, text centered, 
+text width=3cm, draw=black, fill=orange!30]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
 %\usepackage[thmmarks,  thref, amsmath]{ntheorem}
 
 %\theoremstyle{plain}
@@ -38,7 +53,8 @@
 \usepackage{subfiles}
 
 %opening
-\title{An algorithm to determine all primative odd abundant numbers with $d$ divisors}
+\title{An algorithm to determine all odd primitive abundant
+numbers with $d$ divisors}
 \author{Jacob P. Liddy, Jeffrey M. Riedl}
 
 \begin{document}
@@ -51,9 +67,8 @@
 
 \subfile{exponentAlgs/expalg}
 
-
 \subfile{algtheorems/theorems}
 
-\subfile{graph/graph}
+\subfile{lexalg/lexalg}
 
 \end{document}
