@@ -1,6 +1,13 @@
 %\documentclass[../paper.txt]{article}
 \documentclass[../paper.tex]{subfiles}
 
+    \newenvironment{hungitem}[1]%
+{\noindent\mbox{#1}\\\begin{list}{}{\setlength{\leftmargin}{0.1\textwidth}}}
+    {\end{list}}
+
+
+
+
 \begin{document}
 
 \section{Exponent Theorems and The Exponent Algorithm}
@@ -73,7 +80,7 @@ crucial primes and all elements that succeed $G[g]$ are indices of
 crucial primes.
 \end{theorem}
 
-The above theorm states that $G_{\Delta_+}(P,E)$ 'looks like'
+Informally, the above theorem states that $G_{\Delta_+}(P,E)$ 'looks like'
 
 $$ G_{\Delta_+}(P, E) = (\text{... non-crucial prime indices} 
                         | \text{crucial prime indices...}) $$
@@ -106,12 +113,7 @@ is abundant and all proper divisors of $n$ are deficient. By
 definition, $n$ is primitive. 
 \end{proof}
 
-
-Suppose $P$ is a sequence of $d$ primes and $E$ is a sequence of
-$d$ nonnegative integers.
-We define $primitive(P,E)$ as a statement that yields true
-if $n = \nu (P, E)$ is a primitive abundant number, and false 
-otherwise.
+We now have enough tools to prove the theorem below.
 
 \begin{theorem} 
 Let $P$ be a sequence of $d$ odd primes. The 
@@ -121,7 +123,9 @@ abundant odd numbers whose prime divisors compose $P$.
 
 \textit{In the below algorithm, the sequence of primes P is indexed 
 starting at 0, not 1. In other words, $P = \{p_0, p_1, ...,
-p_{d-1}\}$}
+p_{d-1}\}$. Also, when a function is called, the arguments are
+passed by reference. This means that a function may modify one of
+its inputs.}
 
 %\subfile{flowcharts/expflow.tex}
 
@@ -129,7 +133,7 @@ p_{d-1}\}$}
 \noindent\fbox{\begin{minipage}{\linewidth}
 {\setlength{\parindent}{0cm}
 
-\textbf{The main algorithm}
+\textbf{The Exponent Algorithm}
 
 \textbf{INPUT:} The sequence of primes 
 $P = \{p_0, p_1, ..., p_{d-1}\}$.
@@ -173,7 +177,7 @@ primes $E$, and the primitive abundants found so far, $A$.
 \noindent\rule{\textwidth}{1pt}
 \begin{algorithmic}
 \IF {$b(P, E) \geq 2$}
-	\IF {$primitive(P, E)$}
+	\IF {$\nu(P, E)$ is primitive}
 		\STATE $A := A \& \nu (P,E)$
 		\RETURN
 	\ENDIF
@@ -220,13 +224,13 @@ found any primitive abundant numbers.
 
 	%\STATE $\Delta_{+} := \Delta_{+}(P_{i+p})$
 
-	\IF {$p_i$ is crucial}
+	\IF {$p_i$ is crucial in $\nu(P, E)$}
 		\STATE \COMMENT{$E_{new}$ is the new exponents raising the exponent that
 		allows the number to be abundant}
 		\STATE $E_{new} := E$
 		\STATE $E_{new}[ i_p ] := E_{new}[ i_p ] + 1 $
 		
-		\IF {$primitive(P, E_{new})$}
+		\IF {$\nu(P, E_{new})$ is primitive}
 			\STATE $A := A\& \nu (P,E)$
 			\STATE $e_{found} := $ TRUE
 		\ENDIF

@@ -7,12 +7,11 @@
 An abundant number is said to be primitive if none of its proper 
 divisors are abundant.  Dickson proved that for an arbitrary
 positive integer $d$ there exists only finitely many odd primative
-abundant numbers having exactly $d$ prime divisors.
-In this paper we describe algorithms
+abundant numbers having exactly $d$ prime divisors\cite{dickson}.
+In this paper we describe a fast algorithms
 that find all primitive odd numbers with d divisors, and use that
 algorithm to prove that odd weird and odd perfect numbers must
 have at least six prime divisors.
-
 %TODO: can we get above five divisors
 \end{abstract}
 
@@ -36,12 +35,43 @@ $\sigma(n) < 2n$. We say that $n$ is \textit{pseudoperfect} if
 $n$ is a non-perfect abundant and there exists a subset $ S 
 \subset \textit{A}_{n}$ such that
 %
+\footnotetext{This is the definition Erd\H{o}s gave for abundant
+numbers.\cite{erdos}}
+%
+%
 $$ n = \sum_{d \in S} d$$
 %
 We say that $n$ is \textit{weird} if $n$ is abundant but not 
 pseudoperfect or perfect. The smallest weird number is 70, and 
 all known weird numbers are even.
-\footnotetext{This is the definition Erd\H{o}s gave for abundant
-numbers.}
 
+If $n$ is abundant and none of its proper divisors are abundant,
+we say that $n$ is a primitive abundant number. This paper focuses
+on odd primitive abundant numbers, which we refer to as OPNs
+(Following the notation of \cite{valdas} and \cite{amato})
+
+It is not known whether any odd perfect or odd weird numbers
+exists. However, it is easy to show that any odd perfect number is
+an OPN, if such a number exists. Likewise if an odd weird number
+$w$ exists, it can be shown that $w$ is an OPN or $w$ is the
+multiple of a weird OPN.
+
+Suppose we are able to find all OPNs with $d$ or less prime divisors, 
+and each of those OPNs are semiperfect. Then we know that an odd 
+weird number an odd perfect number must have at least $d + 1$ prime 
+divisors, if such numbers exist.
+
+Therefore a reasonable approach would be to find an algorithm to
+determine all odd primitive abundant numbers with a given number 
+of unique prime divisors, and then determine if any of those OPNs
+are weird or perfect. Such an algorithm will find one of the
+desired numbers, or impose a condition on the existance of odd
+weird and odd perfect numbers. In this paper, we follow the
+approach and find such an algorithm. We also prove that the
+algorithm does indeed find all OPNs with $d$ divisors, for any $d
+\geq 3$.
+
+If we can get this algorithm to run quickly enough, we will be
+able to determine the number of odd primitive abundant numbers
+with $6$ divisors, a currently unsolved problem\cite{amato}.
 \end{document}

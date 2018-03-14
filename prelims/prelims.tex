@@ -1,7 +1,5 @@
 \documentclass[../paper.tex]{article}
-
 \begin{document}
-
 \section{Preliminaries}
 
 We define the function $b: \mathbb{N} \mapsto \mathbb{Q}$ by
@@ -24,14 +22,14 @@ Thus, $b(n)$ can be expressed as:
   =\prod_{1 \leq i \leq k} b(p_i^{m_i})
 \end{equation}
 
-Also, If $n$ and $m$ are positive integers greater than 1, then
+Also, if $n$ and $m$ are positive integers greater than 1, then
 
 \begin{equation}\label{inc_ineq}
   b(n) < b(nm) % \leq b(n)b(m)
 \end{equation}
 
 To show this, we first suppose that $m$ and $n$ share no prime factors.
-Thus if the prime factorization of $n$ is $p_1^{s_1} p_2^{s_2} ... p_i^{s:_i}$ 
+Thus if the prime factorization of $n$ is $p_1^{s_1} p_2^{s_2} ... p_i^{s_i}$ 
 and the prime factorization of $m$ is $r_1^{l_1} r_2^{l_2} ... r_j^{l_j}$.
 Then the unique prime factorization of $mn$ is 
 
@@ -73,7 +71,7 @@ we define $b_{\infty}(P)$ by
 
 \begin{equation}\label{b_inf_def}
   b_{\infty}(P) 
-  = \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow \infty}b(p^m)
+  = \prod_{1 \leq i \leq k} \lim_{m \rightarrow \infty}b(p_i^m)
                 = \prod_{1 \leq i \leq k}(\frac{p_i}{p_i - 1})
 \end{equation}
 
@@ -149,8 +147,8 @@ $P$, we will have that $b(n) < 2$.
 \end{proof}
 
 \begin{theorem} \label{prime_ineq}
-Let $p$ and $q$ be primes such that $p < q$. Then $b_\infty(\{p\}
-\leq b(q^1)$. If $p \geq 3$, then $b_{\infty}(\{p\}$ is strictly
+Let $p$ and $q$ be primes such that $p < q$. Then $b_\infty(\{p\})
+\leq b(q^1)$. If $p \geq 3$, then $b_{\infty}(\{p\})$ is strictly
 less than $b(q^1)$.
 \end{theorem}
 

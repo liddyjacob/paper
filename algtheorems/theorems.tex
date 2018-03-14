@@ -88,43 +88,41 @@ Such a number $n$ is referred to as a "$P$-initiated OPN"
 
 \begin{theorem}[Prime Divisibility of Abundant Numbers]
 \label{Divisibility}
-Let $P = \{p_0, p_1, ..., p_{i-2}, s\}$ be a strictly increasing 
-sequence of primes. Let $r$ be a prime greater than $s$, and 
-denote $P' = \{p_0, p_1, ..., p_{i-2}, r\}$.
-
-Let $d$ be an integer greater than $i$. 
-Suppose that there exists a $P'$-initiated OPN with $d$ divisors.
-
-If there does not exists a $P$-initiated OPN with $d$ prime
-divisors, then there must exist at least one  
-$P$-initiated OPN having less than $d$ divisors.
-
+Let $P$ be an increasing sequence of primes. Let $r$ and $s$ be
+primes such that $max(P) < r < s$. Suppose there exists a $(P +
+s)$-initiated OPN with $d$ divisors. Then there exists a $(P +
+r)$-initiated OPN with at most $d$ divisors. 
 \end{theorem}
 
+We will prove the equivalent statement \textit{"If
+there does not exist a $(P + r)$-initiated OPN with $d$ divisors,
+then there must exists a $(P + r)$-initiated OPN with less than
+$d$ divisors.}
+
 \begin{proof}
-By hypothesis, there exists a $P'$-initiated OPN with $d$ divisors.
-Suppose $n$ is such an $OPN$. We know that $n = \nu(P', M_p) 
+By hypothesis, there exists a $P + s$-initiated OPN with $d$ divisors.
+Suppose $n$ is such an $OPN$. We know that $n = \nu(P + s, M_p) 
 \nu(Q, M_q)$ for sequences of positive integers $M_p, M_q$, and 
-some sequence of primes $Q$ such that each element of $Q$ is 
-greater than $r$.
+some increasing sequence of primes $Q$ such that each element of $Q$ is 
+greater than $r$. 
 
-  We want to consider $m = \nu(P, M_p) \nu(Q, M_q)$. This integer is
-abundant as $s < r$. However, it is not primitive by our
-assumption.
+  We want to consider $m = \nu(P + r, M_p) \nu(Q, M_q)$. This 
+integer is abundant as $s < r$. However, it is not primitive by 
+our assumption.
 
-  Write $n = p_0^{m_0} ... p_{i-2}^{m_{i-2}} r^{m_{i-1}}
-q_{i}^{m_i} ... q_{d-1}^{m_{d-1}}$. Note that $\ell = n / r^{m_{i-1}}$ is
-a proper divisor of $n$ and thus is deficient. Notice that $\ell$
-is also a divisor of $m$, and thus a primitive abundant divisor of
-$m$ must not be a divisor of $\ell$. Thus a primitive abundant
-divisor of $m$ must be divisible by $s$.
+
+Consider the maximum integer $k$ such that $r^k$ divides $n$.
+Note that $\ell = n / r^{k}$ is a proper divisor of $n$ and
+thus is deficient. Notice that $\ell$ is also a divisor of $m$, 
+and thus a primitive abundant divisor of $m$ must not be a 
+divisor of $\ell$. Thus a primitive abundant divisor of $m$ must 
+be divisible by $s$.
 
   It is easy to show that a primitive abundant divisor of $m$ must
-also be divisible by each of $p_0$, $p_1$, ..., $p_{i-2}$ using Theorem
+also be divisible by each of $p \in P$  using Theorem
 {\ref{prime_ineq}}. After showing this, we can see that the 
-there exists $P$-initiated OPN.
+there exists $P + s$-initiated OPN with less than $d$ divisors.
 \end{proof}
-
 
 We now define a certain class of primes.
 Suppose $P$ is an ordered sequence of $i$ primes. Suppose $d$ is
@@ -141,19 +139,20 @@ fewer than $d$ prime divisors(Dickson). We denote such a prime $p$
 as $Cap_d(P)$. 
 
 \begin{theorem}
-Let $P$ be an ordered sequence of primes, and let $p$ be a prime
-number greater than the last in $Cap_d(P)$. Also, let $q$ be a prime
-greater than $p$. If there does not exist a $(P + p)$-initiated
-OPN with $d$ divisors, then there does not exist a $(P +
-q)$-initiated OPN with $d$ divisors.
+Let $P$ be an ordered sequence of primes, and  let $p$ and $q$ be 
+primes such that $max(P) < r < s$. Suppose $d$ is an integer such
+that $d > |P|$. Finally, suppose that $r > Cap_d(P)$. If there
+does not exist any $(P + r)$-initiated OPN's with $d$ divisors,
+then there does not exist any $(P + s)$-initiated OPN's with $d$ 
+divisors.
 \end{theorem}
 
 \begin{proof}
 Assume, to the contrary, that there does exist a $(P + 
-q)$-initiated OPN with $d$ divisors. By Theorem {\ref{Divisibility}},
-there exists a $(P + p)$-initated OPN having fewer than $d$
-divisors. However, $p > Cap_d(P)$, and by definition of
-$Cap_d(P)$, there cannot exist a $(P + p)$-initiated OPN having
+s)$-initiated OPN with $d$ divisors. By Theorem {\ref{Divisibility}},
+there exists a $(P + r)$-initated OPN having fewer than $d$
+divisors. However, $r > Cap_d(P)$, and by definition of
+$Cap_d(P)$, there cannot exist a $(P + r)$-initiated OPN having
 fewer than $d$ divisors. This is a contradiction.
 \end{proof}
 

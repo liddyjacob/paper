@@ -1,0 +1,60 @@
+\documentclass[../paper.tex]{subfiles}
+
+\begin{document}
+\section{Increasing Computational Efficiency}
+
+The exponent algorithm is a very computationally expensive
+algorithm, and we want to be able to reduce the amount in which it
+is used. 
+
+Let $P$ be an increasing sequence of primes. We define the set
+$\mathcal{E}_P$ as 
+
+$$\mathcal{E}_P = \{E | \nu(P, E) \text{ is an OPN}\}$$.
+
+We make the follwoing claim:
+
+\begin{theorem}[First Efficiency Theorem] 
+Let $P$ be an increasing sequence of odd primes. Suppose
+that $p$ is a prime greater than the last prime of $P$ and $q$ a
+prime greater than $p$. If $\mathcal{E}_{(P + p)} \neq 
+\emptyset$ and $\mathcal{E}_{(P + p)}$ is a subset of 
+$\mathcal{E}_{(P + q)}$, then $\mathcal{E}_{(P + p)} = 
+\mathcal{E}_{(P + q)}$.
+\end{theorem}
+
+The above theorem seems to apply to a massive amount of cases,
+especially as the last prime grows larger and larger. Because of
+this, this Theorem allows us to avoid the exponent algorithm,
+which is a very computationally expensive algorithm. This theorem
+allows all primitive abundant numbers with 5 divisors to be
+computed in just a couple of minutes, where previously it took
+about an hour. Using multithreading abilities on certain
+processors, the time can be cut even further.
+
+\begin{proof}
+  Suppose, to the contrary, that the theorem is not true. Then
+there exists some $E' \notin \mathcal{E}_{P + p}$ such that $\nu
+(P + q, E')$ is an OPN. As $E'$ is not in $\mathcal{E}_{P + p}$,
+we have that $\nu (P + p, E')$ is not an OPN. However, $\nu (P +
+p, E')$ is abundant as $p < q$. Thus $\nu (P + p, E')$ has a
+divisor $a$ such that $a$ is an OPN. 
+
+  We will now show that the prime divisors of $a$ compose $P + p$.
+We know that $p$ must divide $a$, for if $p$ does not divide $a$,
+then $a$ divides $\nu (P + q, E')$. Let $k$ be the maximum
+integer such that $p^k$ divides $a$. We know that $a / p^k$ is
+deficient as it is a divisor of $\nu (P + q, E')$. It is not hard
+to show that all primes of the set $P$ must divide $a$. Thus the
+prime factors of $a$ compose $p$. 
+
+  Let $a = \nu(P + p, E'')$. We can find some sequence of positive
+integers $E''$ such that $a = (P + p, E'')$ as the prime divisors
+of $a$ compose $P + p$. Thus $E'' \in \mathcal{E}_{P + p}$. By
+hypotheses, we have that $\nu(P + q, E'')$ is an OPN. This,
+however, is a contradiction with the fact that $\nu(P + q, E'')$
+is a proper divisor of $\nu(P + q, E')$.
+\end{proof}
+
+
+\end{document}
