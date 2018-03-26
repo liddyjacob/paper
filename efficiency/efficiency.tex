@@ -32,6 +32,7 @@ computed in just a couple of minutes, where previously it took
 about an hour. Using multithreading abilities on certain
 processors, the time can be cut even further.
 
+
 \begin{proof}
   Suppose, to the contrary, that the theorem is not true. Then
 there exists some $E' \notin \mathcal{E}_{P + p}$ such that $\nu
@@ -46,15 +47,71 @@ then $a$ divides $\nu (P + q, E')$. Let $k$ be the maximum
 integer such that $p^k$ divides $a$. We know that $a / p^k$ is
 deficient as it is a divisor of $\nu (P + q, E')$. It is not hard
 to show that all primes of the set $P$ must divide $a$. Thus the
-prime factors of $a$ compose $p$. 
+prime factors of $a$ compose $P + p$. 
 
   Let $a = \nu(P + p, E'')$. We can find some sequence of positive
-integers $E''$ such that $a = (P + p, E'')$ as the prime divisors
+integers $E''$ such that $a = \nu (P + p, E'')$ as the prime divisors
 of $a$ compose $P + p$. Thus $E'' \in \mathcal{E}_{P + p}$. By
 hypotheses, we have that $\nu(P + q, E'')$ is an OPN. This,
 however, is a contradiction with the fact that $\nu(P + q, E'')$
 is a proper divisor of $\nu(P + q, E')$.
 \end{proof}
+
+
+\begin{theorem}[Second Efficiency Theorem] 
+Let $P$ be an increasing sequence of odd primes. Suppose
+that $p$ is a prime greater than the last prime of $P$ and $q$ a
+prime greater than $p$. If $\mathcal{E}_{(P + p)} \neq 
+\emptyset$ and $\mathcal{E}_{(P + p)}$ is a subset of 
+$\mathcal{E}_{(P + q)}$, then $\mathcal{E}_{(P + p)} = 
+\mathcal{E}_{(P + q)}$. In fact, for any prime $r$ such that $p <
+r < q$, we have that $\mathcal{E}_{(P + p)} = \mathcal{E}_{(P +
+r)} = \mathcal{E}_{(P + q)}$.
+\end{theorem}
+
+There are be times where we can
+calculate a few thousand primes(or more) ahead and skip many prime
+numbers at a time. It would be easy to create a smart algorithm to
+skip the appropriate amount of primes, an algorithm that will
+increase the number of skips on each success, and decrease on the
+correct number on each failure. 
+
+Note: This theorem takes what runs in possibly a year and allows
+the algorithm to run in just a few hours.
+
+\begin{proof}
+
+Suppose that $\mathcal{E}_{(P + p)} = \mathcal{E}_{(P + q)}$.
+Suppose, to the contrary, that $\mathcal{E}_{(P+r)} \neq
+\mathcal{E}_{(P + p)}$. Then there exists some $E \in
+\mathcal{E}_{(P + r)} | E \notin \mathcal{E}_{(P + p)}$, or there
+exists some $E \notin \mathcal{E}_{(P + r)} | E \in \mathcal{E}_{(P +
+p)}$. 
+
+Suppose the former case is true. If $m = \nu(P + q, E)$ is abundant,
+then $m$ must not be primitive. Note that any divisor of $\nu(P +
+r, E)$ is deficient and can be written in the form $\nu(P + r, E')
+| e_i \in E, e'_i \in E' => e_i \geq e'_i$. We want to consider
+an $E'$ with nonzero elements only(separate case when this does
+not happen). Such an $E$ 
+
+See algorithms notebook: The outline of the proof lies there.
+
+Thus a divisor of $m$ is
+primitive. => ... => m is primitive abundant for...
+Clearly, $\nu(P + p, E)$ is
+abundant but $\nu(P + p, E)$ must not be deficient. 
+
+\end{proof}
+
+Through implimenting this algorithm, we were able to find the
+number of OPN's with 6 divisors. That number is: (TO BE COMPUTED)
+
+
+The largest odd primitive abundant number with 6 divisors is:
+$3^38 5^28 17^16 257^8 65537^4 4294967291^2$. It has 116 decimal
+digits.
+
 
 
 \end{document}

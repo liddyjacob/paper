@@ -4,27 +4,40 @@
 
 \section{Prime Sequences: Theorems and Definitions}
 
+We start this section with some useful definitions to simplify
+notation for the theroems that follow.
+
+Suppose that $P = \{p_0, p_1, ..., p_d\}$ is an increasing 
+sequence of prime numbers. Suppose $q$ is a prime number greater
+than $max(P)$. We define the sequence of increasing primes $P + q$
+by $P + p = \{p_0, p_1, ..., p_d, q\}$.
+
+Let $P$ be an
+ordered sequence of $i$ primes. Suppose there exists at least one
+odd primitive abundant number $n$ having exactly $k$ prime divisors, 
+such that $i < k$ and $P$ composes the smallest $i$ prime divisors of $n$.
+Such a number $n$ is referred to as a "$P$-initiated OPN".
+
 \begin{theorem} \label{Primechops}
 Suppose that $b_{\infty}(\{p_1,p_2, ..., p_i\}) > 2$,
 where $p_1 < p_2 < p_3 < ... < p_i$. Then there exists some
-positive integer $\ell$ less than $i$ such that $\{p_1, p_2, p_3, 
-..., p_\ell\}$ compose the prime factors of some primitive 
-abundant odd.
+positive integer $\ell$ less than or equal to $i$ such that 
+$\{p_1, p_2, p_3, ..., p_\ell\}$ compose the prime factors of
+some primitive abundant odd.
 \end{theorem}
 
 \begin{proof}
-Let $\ell$ be the smallest positive integer integer such that 
-$b_{\infty}(\{p_1, p_2, ..., p_\ell\}) > 2$. Clearly $l > 2$ as 
-$2 > b_{\infty}(\{2\}) \geq b_{\infty}(\{p\})$ for any prime $p$.
-Then we have that 
-$b_{\infty}(p_1 p_2 ... p_{\ell - 1}) \leq 2$. Since 
-$b_{\infty}(p_{\ell - 1}) \leq b_{\infty}(p_{k})$ for any
-positive integer $k$ such that  $k \leq \ell - 1$, we have that
-removing any prime from the sequence $P = \{p_1, p_2, ..., p_{\ell} \}$ will
-cause $b_{\infty}(P)$ to be less than two. By Theorem
-{\ref{b_inf_n!}} there does not exist
-an abundant odd whose prime divisors are a proper subsequence of
-$P$.
+Let $\ell$ be the smallest positive integer such that 
+$b_{\infty}(\{p_1, p_2, ..., p_\ell\}) > 2$. Note that
+$2 \geq b_{\infty}(\{2\}) \geq b_{\infty}(\{p\})$ for any prime $p$.
+Hence by Theorem {\ref{b_inf_n!}}, we have that there does not exists a
+primtive abundant odd with one prime divisor. Thus $\ell \geq 2$.
+
+For any positive integer $k$ such that $k < \ell - 1$, we have
+that $b_{\infty}(p_k) > b_{\infty}(p_l)$. Thus for any proper 
+subsequence $S$ of $\{p_0, p_1, ..., p_{\ell}\}$, we have that 
+$b_{\infty}(S) \leq 2$. Thus there exists a primitive abundant
+number whose divisors compose $\{p_0, p_1, ..., p_{\ell}$.
 \end{proof}
 
 \begin{theorem} Suppose there exists an odd weird number. Let $w$
@@ -34,11 +47,48 @@ distinct prime divisors. Then $w$ is primitive abundant.
 
 \begin{coro} If no primitive weird abundant odd exists
 having fewer than $d$ distinct prime divisors, then no odd weird
-exists having fewer than $d$ distinct prime divisors divisors.
+exists having fewer than $d$ distinct prime divisors.
 \end{coro}
 
 
-\begin{theorem}[Continuity of Primitive Abundant
+\begin{theorem}[Prime Divisibility of Abundant Numbers]
+\label{Divisibility}
+Let $P$ be an increasing sequence of odd primes. Let $r$ and $s$ be
+primes such that $max(P) < r < s$. Suppose there exists a $(P +
+s)$-initiated OPN with $d$ divisors. Then there exists a $(P +
+r)$-initiated OPN with at most $d$ divisors. 
+\end{theorem}
+
+\begin{proof}
+By hypothesis, there exists a $(P + s)$-initiated OPN with $d$ divisors.
+Suppose $n$ is such an $OPN$. Note that $n$ is in the form $n =
+\nu(P + s, M_{(P + s)}) \nu(Q, M_Q)$ for sequences of positive 
+integers $M_p, M_q$, and some increasing sequence of primes $Q$.
+Also, $s < min(Q)$.
+
+  We want to consider $m = \nu(P + r, M_{(P + s)}) \nu(Q, M_Q)$. 
+This integer is abundant as $s < r$. If this integer is primitive,
+we are done. If not, then we will show that any primitive abundant
+divisor of $m$ must be $(P + r)$-initiated(Proving the theorem).
+
+  Suppose that $m$ is not primitive. Consider the maximum integer
+$k$ such that $r^k | m$. Notice that $d = m / r^k$ is a divisor of $n$
+as $m / r^k = n / s^k$. Thus $d$ is deficient and any divisor of
+$d$ is therefore deficient. Thus an abundant divisor of $m$ must
+be divisible by $r$.
+
+Let $p \in P$.  We also can show that $2 > b(m / r^k) > b(m / p^t)$, 
+where $t$ is the maximum integer such that $p_t | m$: Note that
+$b(m / r^k) = b(m) / b(r^k)$, and likewise $b(m / p^t) = b(m) /
+b(p^t)$. Also, $b(r^k) < b(p)$ by Theorem {\ref{prime_ineq}}. Thus
+$2 > b(m / r^k) > b(m / p^t)$. Thus any abundant divisor of $m$
+must be divisible by each prime in $P + r$. Therefore any
+primitive divisor of $m$ must be divisible by $P + r$. As
+there must exists a primitive abundant divisor of $m$, there must
+exist a $(P + r)$-initiated OPN with at most $d$ divisors.
+\end{proof}
+
+\begin{coro}[Continuity of Primitive Abundant
 Numbers]\label{Continuity}
 Let $P = \{p_0, p_1, ..., p_{d-2}, r\}$ be an increasing sequence 
 of primes. Suppose that $n = \nu(P, M)$ is a primitive abundant 
@@ -49,91 +99,14 @@ $E$ such that $\nu(P', E)$ is a primitive abundant number.
 \end{theorem}
 
 \begin{proof}
-Suppose that $n = \nu(P,M)$ is a primitive abundant number for
-some sequence of positive integers $M$. We write $M = \{ m_0,
-m_1, ..., m_{d-1}\}$. Then $n = p_0^{m_0} p_1^{m_1} ... 
-p_{d-2}^{m_{d-2}} r^{m_{d-1}}$. We want to consider the integer 
-$\ell = \nu(P', M)$. It is easy to show that $\ell$ is abundant. 
-If $\ell$ is primitive, then we are done. Suppose that $\ell$ is not
-primitive. We know that $\ell$ is a multiple of some primtive
-abundant number $\ell'$. We will argue that all prime factors in
-$P'$ must divide $\ell'$. We will use proof by contradiction. 
-
-Let $h = p_0^{m_0} p_1^{m_1} ... p_{d-2}^{m_{d-2}}$. Note that $h$
-is a proper divisor of $n$, and therefore $h$ is deficient.
-
-Suppose, to the contrary, that $p_i$ does not divide $\ell'$ for
-some $i$ such that $0 \leq i \leq d - 2$
-Then $\ell'$ is a multiple of $k = p_0^{m_0}
-p_1^{m_1} ... p_{i-1}^{m_{i-1}} p_{i+1}^{m_{i+1}} ... 
-s^{m_{d-1}}$. Notice that $b(k) < b(h) < 2$. However, k is a 
-multiple of the abundant number $\ell'$, a contradiction. We have
-shown that all primes in the set $\{p_0, p_1, ..., p_{d-2}\}$
-must divide $\ell'$.  
-
-Now we suppose that $s$ does not divide $\ell'$. This implies
-that $h$ is a multiple of $\ell'$. However, $\ell'$ is abundant 
-and therefore $h$ is abundant. This is a contradiction.
-
-Thus $\ell'$ is a primitive abundant number whose prime divisors
-compose $P'$.
-\end{proof}
-
-
-Let $P$ be an
-ordered sequence of $i$ primes. Suppose there exists at least one
-odd primitive abundant number $n$ having $k$ divisors, such that $i
-< k$ and $P$ composes the smallest $i$ prime divisors of $n$.
-Such a number $n$ is referred to as a "$P$-initiated OPN"
-
-\begin{theorem}[Prime Divisibility of Abundant Numbers]
-\label{Divisibility}
-Let $P$ be an increasing sequence of primes. Let $r$ and $s$ be
-primes such that $max(P) < r < s$. Suppose there exists a $(P +
-s)$-initiated OPN with $d$ divisors. Then there exists a $(P +
-r)$-initiated OPN with at most $d$ divisors. 
-\end{theorem}
-
-We will prove the equivalent statement \textit{"If
-there does not exist a $(P + r)$-initiated OPN with $d$ divisors,
-then there must exists a $(P + r)$-initiated OPN with less than
-$d$ divisors.}
-
-\begin{proof}
-By hypothesis, there exists a $P + s$-initiated OPN with $d$ divisors.
-Suppose $n$ is such an $OPN$. We know that $n = \nu(P + s, M_p) 
-\nu(Q, M_q)$ for sequences of positive integers $M_p, M_q$, and 
-some increasing sequence of primes $Q$ such that each element of $Q$ is 
-greater than $r$. 
-
-  We want to consider $m = \nu(P + r, M_p) \nu(Q, M_q)$. This 
-integer is abundant as $s < r$. However, it is not primitive by 
-our assumption.
-
-
-Consider the maximum integer $k$ such that $r^k$ divides $n$.
-Note that $\ell = n / r^{k}$ is a proper divisor of $n$ and
-thus is deficient. Notice that $\ell$ is also a divisor of $m$, 
-and thus a primitive abundant divisor of $m$ must not be a 
-divisor of $\ell$. Thus a primitive abundant divisor of $m$ must 
-be divisible by $s$.
-
-  It is easy to show that a primitive abundant divisor of $m$ must
-also be divisible by each of $p \in P$  using Theorem
-{\ref{prime_ineq}}. After showing this, we can see that the 
-there exists $P + s$-initiated OPN with less than $d$ divisors.
+This is a special case of the previous theorem, where $d = |P + 1|$.
 \end{proof}
 
 We now define a certain class of primes.
 Suppose $P$ is an ordered sequence of $i$ primes. Suppose $d$ is
 an integer greater than $i$. Let $p$ be the largest prime such 
 that there exists a $(P + p)$-initiated OPA having less than $d$ 
-prime divisors\footnotemark. 
-% -------
-\footnotetext{the notion $P + p$ intends that $p$ is appended to the end
-of the sequence $P$}
-% -------
-We know this prime $p$ exists since 
+prime divisors. We know this prime $p$ exists since 
 there exist only finitly many primitive abundant numbers having
 fewer than $d$ prime divisors(Dickson). We denote such a prime $p$
 as $Cap_d(P)$. 
