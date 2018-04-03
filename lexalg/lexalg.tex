@@ -3,6 +3,14 @@
 \begin{document}
 \section{The Main Algorithm}
 
+The following set of instructions is the algorithm that determines
+all primitive abundant odd numbers with $d$ divisors. Thus the
+input is $d$, and the algorithm will record all OPN's with $d$
+divisors.
+
+\begin{theorem} The following algorithm determines all primitive
+abundant odd numbers with $d$ divisors.
+\end{theorem}
 Start with $P = \{\}$. Also, set $state = running$.
 \begin{enumerate}[label*=\arabic*.]
   
@@ -59,11 +67,11 @@ THE FAILURE PROCEDURE:
         Consider all $Q$-composed OPN's with $d$ prime divisors
 such
         that $Q$ is a lexicographical predecessor of $P$. Denote
-        this set of OPN'S as $A$.(Since the algorithm works in
+        this set of OPN's as $A$.(Since the algorithm works in
         lexicographical order, the algorithm has determined $A$
         for us) 
 
-  \item if there does not exists an $a \in A$ such that $a$ is
+  \item If there does not exists an $a \in A$ such that $a$ is
     $P'$-initiated, go to step 2.
 
   \item Set $T(P') := True$. This value is false by default.
@@ -87,13 +95,13 @@ less steps and deletions.
         Consider all $Q$-composed OPN's with $d$ prime divisors
 such
         that $Q$ is a lexicographical predecessor of $P$. Denote
-        this set of OPN'S as $A$.(Since the algorithm works in
+        this set of OPN's as $A$.(Since the algorithm works in
         lexicographical order, the algorithm has determined $A$
         for us)
 
   \begin{enumerate}[label*=\arabic*.]
 
-    \item if there exists an $a \in A$ such that $a$ is
+    \item If there exists an $a \in A$ such that $a$ is
     $P'$-initiated, then set $P := P'$. Now, terminate.
 
     \item If there does not exist such an $a$, Go to step 2

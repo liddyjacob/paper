@@ -9,14 +9,15 @@ notation for the theroems that follow.
 
 Suppose that $P = \{p_0, p_1, ..., p_d\}$ is an increasing 
 sequence of prime numbers. Suppose $q$ is a prime number greater
-than $max(P)$. We define the sequence of increasing primes $P + q$
-by $P + p = \{p_0, p_1, ..., p_d, q\}$.
+than $p_d$. We define the sequence of increasing primes $P + q$
+by $P + q = \{p_0, p_1, ..., p_d, q\}$.
 
 Let $P$ be an
-ordered sequence of $i$ primes. Suppose there exists at least one
-odd primitive abundant number $n$ having exactly $k$ prime divisors, 
-such that $i < k$ and $P$ composes the smallest $i$ prime divisors of $n$.
-Such a number $n$ is referred to as a "$P$-initiated OPN".
+ordered sequence of $i$ primes. Suppose $n$ is an integer having 
+exactly $k$ prime divisors such that $i < k$ and $P$ composes the
+smallest $i$ prime divisors of $n$. Such a number $n$ is referred 
+to as "$P$-initiated". Example: $3^2 7^{11} 17^1 29^3$ is $\{3,
+7\}$-initiated.
 
 \begin{theorem} \label{Primechops}
 Suppose that $b_{\infty}(\{p_1,p_2, ..., p_i\}) > 2$,
@@ -29,15 +30,15 @@ some primitive abundant odd.
 \begin{proof}
 Let $\ell$ be the smallest positive integer such that 
 $b_{\infty}(\{p_1, p_2, ..., p_\ell\}) > 2$. Note that
-$2 \geq b_{\infty}(\{2\}) \geq b_{\infty}(\{p\})$ for any prime $p$.
+$2 = b_{\infty}(\{2\}) \geq b_{\infty}(\{p\})$ for any prime $p$.
 Hence by Theorem {\ref{b_inf_n!}}, we have that there does not exists a
 primtive abundant odd with one prime divisor. Thus $\ell \geq 2$.
 
-For any positive integer $k$ such that $k < \ell - 1$, we have
+For any positive integer $k$ such that $k \leq \ell - 1$, we have
 that $b_{\infty}(p_k) > b_{\infty}(p_l)$. Thus for any proper 
 subsequence $S$ of $\{p_0, p_1, ..., p_{\ell}\}$, we have that 
 $b_{\infty}(S) \leq 2$. Thus there exists a primitive abundant
-number whose divisors compose $\{p_0, p_1, ..., p_{\ell}$.
+number whose divisors compose $\{p_0, p_1, ..., p_{\ell}\}$.
 \end{proof}
 
 \begin{theorem} Suppose there exists an odd weird number. Let $w$
@@ -96,10 +97,10 @@ number for some sequence of positive integers $M$. Let $s$ be a
 prime such that $p_{d-2} < s < r$, and let $P' = \{p_0, p_1,...,
 p_{d-2}, s\}$. Then there exists some sequence of positive integers
 $E$ such that $\nu(P', E)$ is a primitive abundant number.
-\end{theorem}
+\end{coro}
 
 \begin{proof}
-This is a special case of the previous theorem, where $d = |P + 1|$.
+This is a special case of the previous theorem, where $d = |(P + r)|$.
 \end{proof}
 
 We now define a certain class of primes.

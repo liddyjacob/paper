@@ -4,17 +4,18 @@
 \section{Increasing Computational Efficiency}
 
 The exponent algorithm is a very computationally expensive
-algorithm, and we want to be able to reduce the amount in which it
-is used. 
+algorithm. If we can avoid executing the exponent algorithm, then
+the amount of time it takes to find all OPN's with d divisors will
+be drastically reduced. 
 
 Let $P$ be an increasing sequence of primes. We define the set
 $\mathcal{E}_P$ as 
 
-$$\mathcal{E}_P = \{E | \nu(P, E) \text{ is an OPN}\}$$.
+$$\mathcal{E}_P = \{E\, |\, \nu(P, E) \text{ is an OPN}\}$$.
 
-We make the follwoing claim:
+We make the following claim:
 
-\begin{theorem}[First Efficiency Theorem] 
+\begin{theorem}[First Efficiency Theorem]\label{first}
 Let $P$ be an increasing sequence of odd primes. Suppose
 that $p$ is a prime greater than the last prime of $P$ and $q$ a
 prime greater than $p$. If $\mathcal{E}_{(P + p)} \neq 
@@ -23,9 +24,9 @@ $\mathcal{E}_{(P + q)}$, then $\mathcal{E}_{(P + p)} =
 \mathcal{E}_{(P + q)}$.
 \end{theorem}
 
-The above theorem seems to apply to a massive amount of cases,
+Theorem {\ref{first}} seems to apply to a massive amount of cases,
 especially as the last prime grows larger and larger. Because of
-this, this Theorem allows us to avoid the exponent algorithm,
+this, Theorem {\ref{first}} allows us to avoid the exponent algorithm,
 which is a very computationally expensive algorithm. This theorem
 allows all primitive abundant numbers with 5 divisors to be
 computed in just a couple of minutes, where previously it took
@@ -84,7 +85,7 @@ the algorithm to run in just a few hours.
 Suppose that $\mathcal{E}_{(P + p)} = \mathcal{E}_{(P + q)}$.
 Suppose, to the contrary, that $\mathcal{E}_{(P+r)} \neq
 \mathcal{E}_{(P + p)}$. Then there exists some $E \in
-\mathcal{E}_{(P + r)} | E \notin \mathcal{E}_{(P + p)}$, or there
+\mathcal{E}_{(P + r)}$ such that $E \notin \mathcal{E}_{(P + p)}$, or there
 exists some $E \notin \mathcal{E}_{(P + r)} | E \in \mathcal{E}_{(P +
 p)}$. 
 
@@ -109,7 +110,7 @@ number of OPN's with 6 divisors. That number is: (TO BE COMPUTED)
 
 
 The largest odd primitive abundant number with 6 divisors is:
-$3^38 5^28 17^16 257^8 65537^4 4294967291^2$. It has 116 decimal
+$3^{38} 5^{28} 17^{16} 257^8 65537^4 4294967291^2$. It has 116 decimal
 digits.
 
 
