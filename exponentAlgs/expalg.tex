@@ -316,9 +316,9 @@ TODO: DISCUSSION ON HOW THIS ALGORITHM WORKS?
 sequence of primes $P$ and a sequence of positive integers $E$,
 where $E$ and $P$ have the same cardinality. We want to show that
 $n$ is collected in $A$, as this would prove our theorem.
-We say that $m = \sum_{e \in E}(e)$
+Suppose that $m = \sum_{e \in E}(e)$
 
-  Let $\ell = (P, E')$ be a divisor of $n$. We say that $\ell$ is
+  Let $\ell = \nu (P, E')$ be a divisor of $n$. We say that $\ell$ is
 \textit{passed} in the algorithm if the exponent sequence $E'$ is
 stored in either $E$ or $E'$ at some point when the algorithm is
 being executed. The \textit{first appearance} of $\ell$ is the
@@ -342,8 +342,8 @@ of order $k - 1$ that is passed in this algorithm.}
 
 Assume the inductive hypothesis is true for some divisor of $n$ of
 order $k$. Denote this divisor $\ell_k = (P, E_k)$. Note that
-$\ell_k$ can only make its first appeance whenever $E$ is modified
-or an $E'$ is created. Thus $\ell_k$ can only make its first
+$\ell_k$ must make its first appeance whenever $E$ is modified
+or an $E'$ is initialized. Thus $\ell_k$ must make its first
 appearance in one of two places: It can appear in $expAbundant$ or
 $expIncAlg$. Note that this divisor cannot appear in $orderDelPos$
 , for if $\ell_k$ first appeared here, the conditions for $\ell_k$ 
@@ -359,26 +359,27 @@ moves on to $orderDelPos(P, E_k, A)$.
 \\
 
 Suppose that $\ell_k$ first appears in $expIncAlg$. Notice that
-the algorithm will immediently check $orderDelPos(P, E_k, A)$.
+the algorithm will immediently call $orderDelPos(P, E_k, A)$.
 \\
 
 As desired, $orderDelPos(P, E_k, A)$ will be called.
 \\
  
-At this point it is important to split off into cases: The case
-where $k = 1$ and the case where $2 \leq k \leq m - d$.
+At this point we split off into cases, the case
+where $k = 1$ and the case where $2 \leq k \leq m - d$. This is
+important for our finite induction.
 
-\textbf{Case 1($2 \leq k \leq m - d$):} In $orderDelPos$, notice 
-that $G_{\Delta_+}(P,E_k)$ is formed. Since $k \geq 2$, we claim that
-all incomplete primes in $\ell_k$ are \textit{non}-crucial primes.
-Let $p$ be an incomplete prime in $\ell_k$. Then $\ell_k p | n$,
+\textbf{Case 1($2 \leq k \leq m - d$):} In $orderDelPos(P, E_k, A)$, notice 
+that $G_{\Delta_+}(P,E_k)$ is calculated. Since $k \geq 2$, we claim that
+all incomplete primes in $\ell_k$ are not crucial primes.
+Let $p$ be an incomplete prime in $\ell_k$. Then $\ell_k p \, |\, n$,
 and in fact $\ell_k p$ has order $k - 1$. Since $k \geq 2$, we
 have that $k - 1 \geq 1$. Thus $\ell_k p$ is a proper divisor of
 $n$ and is therefore deficient. Thus $p$ is not a crucial prime in
 $\ell_k$.
 
-For convienience, we will refer to $G(P,E_k)$ as $G$. By Theorem
-{\ref{crucial_thm}}, there exists positive integer $h$ such that
+For convenience, we will refer to $G_{\Delta_+}(P,E_k)$ by $G$. By 
+Theorem {\ref{crucial_thm}}, there exists positive integer $h$ such that
 all elements that precede $G[h]$ are not indices of crucial primes
 and all elements that succede $G[h]$ are indices of crucial
 primes. Since $\ell_k$ contains at least one non-crucial prime (as
@@ -388,41 +389,37 @@ be chosen such that $G[h]$ is the index of some non-crucial prime.
 Informally, we can see that $G$ is ordered in a way where all 
 crucial prime indices are on the right (Theorem {\ref{crucial_thm}}), 
 and all incomplete prime indices are on the left (as $k \geq 2$)
-
+%
 $$ G = \{ \text{... other indicies and incomplete prime indicies 
 $ | $ crucial prime indicies...} \} $$
 
 We know that the while statement
-$orderDelPos$ will terminate once $g = h$, as this point is the
+$orderDelPos(P, E_k, A)$ will terminate once $g = h$, as this point is the
 first time where $g$ is the index of a non-crucial prime. When
 the loop terminates, the algorithm will call $expIncAlg(P,E_v, A,
 g)$, as $g \geq 0$. 
 
-In $expIncAlg(P,E_v,A, g)$, we have that $g \geq 2$. Thus we will
+In $expIncAlg(P,E_v,A, g)$, we have that $g \geq 0$. Thus we will
 descend into the while loop. Notice that $G_{b<2} = \{G[0], G[1], 
 ..., G[g]\}$. Thus $G_{b<2}$ contains all incomplete prime indices
-of $\ell_k$. Thus, when the incomplete exponents of each incomplete 
-prime is raised high enough, the result will be $n$. 
-Thus $mb(P,E_k, G_{b<2}) > 2$.
+of $\ell_k$. This allows us to state that $mb(P,E_k, G_{b<2}) > 2$.
 
 Consider the first time that $i = G[g]$ is the index of some
-incomplete prime of $\ell_k$ with respect to $n$. At this point, 
+incomplete prime $p_i$ of $\ell_k$. At this point, 
 all incomplete prime indices still exist in $G_{b<2}$. 
 Thus $mb(P, E_k, G_{b<2}) > 2$. 
 Now $p_i \ell_k$ will be passed in the algorithm, and $p_i \ell_k$
 is a divisor of order $k-1$. Thus the inductive step has been proven.
 
-\textbf{Case 2 ($k = 1$):} We are starting from $OrderDelPos$,
-where Case 1 started. In this case, we note that there is
-only one incomplete prime and it must be a crucial prime.
+\textbf{Case 2 ($k = 1$):} Recall that we are starting from $OrderDelPos(P,
+E_k, A)$. In this case, we note that there is only one incomplete prime 
+$p$ and it must be a crucial prime(as $l_k p = n$ is abundant)
 As all crucial prime indicies will pass the first if statement in the 
 loop, we have that our incomplete prime's exponent will be 
 increased and the result will be $n$. $n$ is primitive, and
 therefore $n$ will be collected in $A$. Thus the inductive step has 
-been proven. In fact, we also have shown that $n$ has been
+been proven. We have also have shown that $n$ has been
 collected in $A$ by the algorithm, proving the theorem.
-\\
-
 \end{proof}
 
 %NOTE THAT $3 * 5^6 * 7^3 * 67 * 73$ IS PRIMITIVE ABUNDANT,

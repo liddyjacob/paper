@@ -11,48 +11,97 @@ divisors.
 \begin{theorem} The following algorithm determines all primitive
 abundant odd numbers with $d$ divisors.
 \end{theorem}
+
+
 Start with $P = \{\}$. Also, set $state = running$.
-\begin{enumerate}[label*=\arabic*.]
-  
-  \item If $state = terminate$, then stop this procedure.
-Otherwise, continue to the next step.
 
-  \item If $|P| = d$, then continue to step 3. Otherwise, do the
-following subprocedure:
+%-----------------------------------------------------------
+\noindent\fbox{\begin{minipage}{\linewidth}
+{\setlength{\parindent}{0cm}
 
-  \begin{enumerate}[label*=\alph*.]
+\textbf{The Main Algorithm}
+%\textit{Prerequisite: This algorithm requires all previous cases }
 
-    \item If $b_{1}(P) \geq 2$, then: Write $P = P'
- + p$, where $p = max(P)$. Find the minimum prime $q$ such that
-$b_1(P + q) < 2$. Set $P := P' + q$. 
-    \item Consider the next prime $r$ after $max(P)$. Set $P := P
-+ r$.
-    \item Go to step 2.
- 
-  \end{enumerate}
+\textbf{INPUT:} A positive integer, $d$.
+\textbf{OUTPUT:} All OPN's with $d$ prime factors.
+}
+\noindent\rule{\textwidth}{1pt}
+\begin{algorithmic}
+%E represents exponents
+\STATE $P := \{\}$
+\STATE $running := TRUE$
+\WHILE {$running$}
+  \IF {$|P| \neq d$}
+    \IF {$b_1(P) \geq 2$}
+      \STATE Remove the last element of P.
+      \IF {$b_1(P) \geq 2$}
+        \STATE Return "Error" (This step should never happen  --
+Proven in proof)
+      \ENDIF
+      \STATE Let $q$ be the minimum prime s.t. $b_1(P + q) < 2$
+      \STATE $P := P + q$
+      \STATE \textbf{continue}
+    \ENDIF
+  \ENDIF
+  \IF {$b_{\infty}(P) \leq 2$}
+    \STATE $fail(P, running)$
+    \STATE \textbf{continue}
+  \ENDIF
+  \IF {$\mathcal{E}_P$ is not empty}
+    \STATE $r = nextprime(max(P))$
+    \STATE Replace the last prime in $P$ with r
+    \STATE \textbf{continue}
+  \ENDIF
+  \STATE $s = backup(P)$
+  \IF {$|P| = d - 1$}
+    \STATE $fail(P, running)$
+    \STATE \textbf{continue}
+  \ENDIF
+  \IF {$s \leq Cap_d(P)$}
+    \STATE P := P + nextprime(s)
+    \STATE \textbf{contiue}
+  \ENDIF
+  \STATE fail(P, running)
+\ENDWHILE
+\end{algorithmic}
+\end{minipage}}
+%----------------------------------------------------------------
 
-  \item If $b_{\infty} \leq 2$, then follow the 'Failure
-        Procedure', then go to step 1. Otherwise, go to the next
-        step.
+%-----------------------------------------------------------
+\noindent\fbox{\begin{minipage}{\linewidth}
+{\setlength{\parindent}{0cm}
 
-  \item Find all OPN's whose divisors compose $P$, using the
-        Exponent Algorithm. Record these integers.
+\textbf{fail}
+%\textit{Prerequisite: This algorithm requires all previous cases }
 
-  \item If at least one OPN was found in the previous step,
-        replace the last prime of $P$ with its prime successor,
-        then go to step 3. Otherwise, go to the next step.
+\textbf{INPUT:} A positive integer, $d$.
+\textbf{OUTPUT:} All OPN's with $d$ prime factors.
+}
+\noindent\rule{\textwidth}{1pt}
+\begin{algorithmic}
 
-  \item Follow the 'Reverse Procedure*' on $P$. Denote
-        the prime that was last removed from $P$ as $q$. 
-        
-  \item If $|P| \geq d - 1$, then follow the 'Failure Procedure'
-        on $P$ and go to step 1. Otherwise, go to the next step
+\STATE PASS
+\end{algorithmic}
+\end{minipage}}
+%-----------------------------------------------------------
 
-  \item If $q \leq Cap_d(P)$, then set $P := P + nextprime(q)$,
-        and go to step 2. Otherwise, follow the 'Failure
-        Procedure' for $P$, and go to step 1.
+%-----------------------------------------------------------
+\noindent\fbox{\begin{minipage}{\linewidth}
+{\setlength{\parindent}{0cm}
 
-\end{enumerate}
+\textbf{backup}
+%\textit{Prerequisite: This algorithm requires all previous cases }
+
+\textbf{INPUT:} A positive integer, $d$.
+\textbf{OUTPUT:} All OPN's with $d$ prime factors.
+}
+\noindent\rule{\textwidth}{1pt}
+\begin{algorithmic}
+
+\STATE PASS
+
+\end{algorithmic}
+\end{minipage}}
 
 THE FAILURE PROCEDURE:
 
@@ -152,7 +201,7 @@ sequences $P$, $Q$ respectivly}).
 
 If $P$ and $Q$ share all but the last prime divisor, it is easy to
 show that $max(Q)$ is the sequential prime after $max(P)$ using
-Theorem {\ref{continuity}}. The algorithm will thus immediently
+Theorem {\ref{Continuity}}. The algorithm will thus immediently
 find all $Q$-initiated OPN's with $d$ divisors.
 
 Now suppose that $P$ and $Q$ share only $c < d - 1$ sequential 

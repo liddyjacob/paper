@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.28)  2 APR 2018 10:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.28)  8 APR 2018 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -561,26 +561,23 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks41
 \verbatim@line=\toks42
 \verbatim@in@stream=\read2
-)) (./paper.aux
-
-LaTeX Warning: Label `fail_loop' multiply defined.
-
-)
+)) (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 60.
-LaTeX Font Info:    ... okay on input line 60.
- ABD: EveryShipout initializing macros
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+
+ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count130
@@ -672,16 +669,31 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 62.
+LaTeX Font Info:    Try loading font information for U+msa on input line 64.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 62.
+LaTeX Font Info:    Try loading font information for U+msb on input line 64.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./intro/intro.tex)
-[1
+) (./intro/intro.tex
+
+LaTeX Warning: Citation `dickson' on page 1 undefined on input line 10.
+
+
+LaTeX Warning: Citation `erdos' on page 1 undefined on input line 39.
+
+
+LaTeX Warning: Citation `valdas' on page 1 undefined on input line 51.
+
+
+LaTeX Warning: Citation `amato' on page 1 undefined on input line 51.
+
+
+LaTeX Warning: Citation `amato' on page 1 undefined on input line 76.
+
+) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./prelims/prelims.tex
 Underfull \hbox (badness 10000) in paragraph at lines 45--66
@@ -773,17 +785,66 @@ Underfull \hbox (badness 10000) in paragraph at lines 365--367
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 415--425
+[7]) (./algtheorems/theorems.tex [8]
+
+LaTeX Warning: Citation `dickson' on page 9 undefined on input line 115.
+
+) (./lexalg/lexalg.tex [9]
+Underfull \hbox (badness 4556) in paragraph at lines 67--67
+[]\OT1/cmr/bx/n/12 INPUT: \OT1/cmr/m/n/12 A pos-i-tive in-te-ger, $\OML/cmm/m/i
+t/12 d$\OT1/cmr/m/n/12 . \OT1/cmr/bx/n/12 OUT-PUT: \OT1/cmr/m/n/12 All OPN's wi
+th $\OML/cmm/m/it/12 d$ \OT1/cmr/m/n/12 prime fac-tors.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--67
 
  []
 
-) (./algtheorems/theorems.tex [8]) (./lexalg/lexalg.tex [9] [10]
 
-LaTeX Warning: Reference `continuity' on page 11 undefined on input line 155.
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 19--69
+[] 
+ []
 
 
-Overfull \hbox (42.00642pt too wide) in paragraph at lines 158--165
+Underfull \hbox (badness 4556) in paragraph at lines 85--85
+[]\OT1/cmr/bx/n/12 INPUT: \OT1/cmr/m/n/12 A pos-i-tive in-te-ger, $\OML/cmm/m/i
+t/12 d$\OT1/cmr/m/n/12 . \OT1/cmr/bx/n/12 OUT-PUT: \OT1/cmr/m/n/12 All OPN's wi
+th $\OML/cmm/m/it/12 d$ \OT1/cmr/m/n/12 prime fac-tors.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--85
+
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 71--87
+[] 
+ []
+
+[10]
+Underfull \hbox (badness 4556) in paragraph at lines 104--104
+[]\OT1/cmr/bx/n/12 INPUT: \OT1/cmr/m/n/12 A pos-i-tive in-te-ger, $\OML/cmm/m/i
+t/12 d$\OT1/cmr/m/n/12 . \OT1/cmr/bx/n/12 OUT-PUT: \OT1/cmr/m/n/12 All OPN's wi
+th $\OML/cmm/m/it/12 d$ \OT1/cmr/m/n/12 prime fac-tors.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
+
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 89--105
+[] 
+ []
+
+
+LaTeX Warning: Citation `dickson' on page 11 undefined on input line 173.
+
+[11]
+Overfull \hbox (42.00642pt too wide) in paragraph at lines 207--214
 []\OT1/cmr/m/n/12 Now sup-pose that $\OML/cmm/m/it/12 P$ \OT1/cmr/m/n/12 and $\
 OML/cmm/m/it/12 Q$ \OT1/cmr/m/n/12 share only $\OML/cmm/m/it/12 c < d \OMS/cmsy
 /m/n/12 ^^@ \OT1/cmr/m/n/12 1$ se-quen-tial primes, i.e., $\OML/cmm/m/it/12 P \
@@ -791,34 +852,35 @@ OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 p[]; p[]; :::; p[]; p[]; ::
 :; p[]\OMS/cmsy/m/n/12 g$
  []
 
+) (./efficiency/efficiency.tex
 
-LaTeX Warning: Reference `cap' on page 11 undefined on input line 176.
+LaTeX Warning: Reference `first' on page 12 undefined on input line 27.
 
 
-LaTeX Warning: Reference `cap' on page 11 undefined on input line 190.
+LaTeX Warning: Reference `first' on page 12 undefined on input line 29.
 
-[11]) (./efficiency/efficiency.tex [12]
-Overfull \hbox (16.52896pt too wide) in paragraph at lines 112--115
+[12]
+Overfull \hbox (16.52896pt too wide) in paragraph at lines 103--106
 []\OT1/cmr/m/n/12 The largest odd prim-i-tive abun-dant num-ber with 6 di-vi-so
 rs is: $3[]5[]17[]257[]65537[]4294967291[]$.
  []
 
-) (./paper.bbl) [13] (./paper.aux)
+) (./paper.bbl [13]) [14] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 15749 strings out of 493029
- 327050 string characters out of 6136234
- 403416 words of memory out of 5000000
- 18941 multiletter control sequences out of 15000+600000
- 16892 words of font info for 65 fonts, out of 8000000 for 9000
+ 15752 strings out of 493029
+ 327068 string characters out of 6136234
+ 403378 words of memory out of 5000000
+ 18944 multiletter control sequences out of 15000+600000
+ 17200 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,8n,67p,417b,581s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,8n,67p,417b,639s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -836,10 +898,10 @@ xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on paper.pdf (13 pages, 249037 bytes).
+Output written on paper.pdf (14 pages, 249495 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
+ 125 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
