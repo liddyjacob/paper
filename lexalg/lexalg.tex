@@ -3,17 +3,77 @@
 \begin{document}
 \section{The Main Algorithm}
 
-The following set of instructions is the algorithm that determines
-all primitive abundant odd numbers with $d$ divisors. Thus the
-input is $d$, and the algorithm will record all OPN's with $d$
-divisors.
+In order to describe the algorithm in this section, we need to
+develop more definitions and theorems. Let $d$ be an integer
+greater than 2. We define $\mathcal{P}_d$ as follows: Suppose that
+$P$ is an increasing sequence of odd primes with $d$ elements.
+Then $P \in \mathcal{P}_d$ if there exists some OPAN $n$ in the 
+form $n = \nu (P, E)$ for some sequence of positive integers $E$.
+Note that $\mathcal{P}_d$ is finite as there exists only finitly
+many OPANs with $d$ divisors{\cite{dickson}}.
 
-\begin{theorem} The following algorithm determines all primitive
-abundant odd numbers with $d$ divisors.
+Let $P$ be an element of $\mathcal{P}_d$ for some integer $d \geq 
+3$. We define the set of positive integer sequences 
+$\mathcal{E}_P$ as 
+%
+$$\mathcal{E}_P = \{E\, |\, \nu(P, E) \text{ is an OPAN}\}$$.
+%
+
+Now we want to develop an ordering on $\mathcal{P}_d$. We will use
+a lexicographical ordering, compairing each element sequentially.
+Let $P, Q \in \mathcal{P}_d$. Write $P = \{p_0, p_1, ..., p_{d-1}\}$
+and $Q = \{q_0, q_1, ..., q_{d-1}\}$. We say that $P \leq Q$ if $P = Q$ 
+there exists some index $i < d$ such that if $k$ is a nonnegative integer
+less than $i$, $p_k = q_k$, amd $p_i < q_i$. Naturally, we say that 
+$P < Q$ if $P \leq Q$ and $P \neq Q$. 
+
+Recall that we defined an integer $n$ to be $P$-initiated if the
+smallest $|P|$ prime factors of $n$ compose $P$. We now generalize
+this notation to include both integers and sequence. Suppose $Q$
+is a sequence of $d$ elements and $P$ is a sequence of $i < d$
+elements. We say that $Q$ is $P$-initiated if the first $i$
+elements of $Q$ is the sequence $P$.
+
+As $\mathcal{P}_d$ is a finite set with a total ordering,
+$\mathcal{P}_d$ has a minimum and a maximum element. We now want
+to find the minimum of $\mathcal{P}_d$ for $d = 3, 4, 5, 6$ as
+this will help us in the base case of Theorem {\ref{opan_alg}}.
+Dickson showed that $min(\mathcal{P}_3) = \{3, 5, 7\}$ and
+$min(\mathcal{P}_4) = \{3, 5, 7, 11\}$. This leaves us to show
+$min(\mathcal{P}_5) = \{3, 5, 7, 11, 13\}$ and $min(\mathcal{P}_6
+= \{3, 5, 7, 11, 389, 397\}$.
+
+To show that $min(\mathcal{P}_5) = \{3, 5, 7, 11, 13\}$, we use
+the fact that $3^1 5^1 7^1 11^1 13^1$ is an OPAN. There cannot
+exist a set of 5 odd primes $P < \{3, 5, 7, 11, 13\}$, and
+therefore we are done.
+
+To show that $min(\mathcal{P}_6 = \{3, 5, 7, 11, 389, 397\}$, we
+note that $3^1 5^1 7^1 11^1 p^1$ is an OPAN when $p$ is a prime
+such that $13 \leq p \leq 383$. Therefore, any lexicographical
+predecessor of $\{3, 5, 7, 11, 389, 397\}$ cannot exist in
+$\mathcal{P}_6$ as it would not meet the requirement of being
+associated with an OPAN with 6 divisors. Since $3^1 5^1 7^1 11^1 
+389^1 397^1$ is an OPAN, we have that $\{3, 5, 7, 11, 389, 397\}$
+is the minimum element in $\mathcal{P}_6$.
+
+To generalize Theorem {\ref{opan_alg}}, it would be useful if we
+could find the minimum of $\mathcal{P}_d$ for any $d$. This,
+however, goes beyond our scope of research.
+
+Suppose $P \in \mathcal{P}_d$. We define $lex(P)$ to be the set
+of all $Q \in \mathcal{P}_d$ such that $Q < P$. For example,  
+$lex(\{3,5,13\}) = \{\{3, 5, 7\}, \{3, 5, 11\}\}$.
+
+\begin{theorem} \label{opan_alg}
+The following algorithm determines all primitive
+abundant odd numbers with $d = \{3,4,5,6\}$ divisors.
 \end{theorem}
 
-
-Start with $P = \{\}$. Also, set $state = running$.
+\begin{conj}
+The following algorithm determines all primitive
+abundant odd numbers with $d$ divisors, for any integer $d \geq 3$.
+\end{conj}
 
 %-----------------------------------------------------------
 \noindent\fbox{\begin{minipage}{\linewidth}
@@ -23,33 +83,34 @@ Start with $P = \{\}$. Also, set $state = running$.
 %\textit{Prerequisite: This algorithm requires all previous cases }
 
 \textbf{INPUT:} A positive integer, $d$.
-\textbf{OUTPUT:} All OPN's with $d$ prime factors.
+\textbf{OUTPUT:} All OPAN's with $d$ prime factors.
 }
+
 \noindent\rule{\textwidth}{1pt}
-\begin{algorithmic}
+\begin{algorithmic}[1]
 %E represents exponents
 \STATE $P := \{\}$
 \STATE $running := TRUE$
 \WHILE {$running$}
   \IF {$|P| \neq d$}
     \IF {$b_1(P) \geq 2$}
-      \STATE Remove the last element of P.
-      \IF {$b_1(P) \geq 2$}
-        \STATE Return "Error" (This step should never happen  --
-Proven in proof)
-      \ENDIF
+      \STATE Remove the last element of P
       \STATE Let $q$ be the minimum prime s.t. $b_1(P + q) < 2$
       \STATE $P := P + q$
-      \STATE \textbf{continue}
-    \ENDIF
+    \ENDIF  
+    \STATE Let $s$ be the minimum prime such that $s > max(P)$ and
+$P + s$ has never been stored in $P$ before.
+    \STATE $P:= P + s$
+    \STATE \textbf{continue}
   \ENDIF
   \IF {$b_{\infty}(P) \leq 2$}
     \STATE $fail(P, running)$
     \STATE \textbf{continue}
   \ENDIF
   \IF {$\mathcal{E}_P$ is not empty}
+    \STATE Store $(P, \mathcal{E}_P)$
     \STATE $r = nextprime(max(P))$
-    \STATE Replace the last prime in $P$ with r
+    \STATE Replace the last prime in $P$ with r \label{line:inc_last}
     \STATE \textbf{continue}
   \ENDIF
   \STATE $s = backup(P)$
@@ -61,7 +122,7 @@ Proven in proof)
     \STATE P := P + nextprime(s)
     \STATE \textbf{contiue}
   \ENDIF
-  \STATE fail(P, running)
+  \STATE $fail(P, running)$
 \ENDWHILE
 \end{algorithmic}
 \end{minipage}}
@@ -74,13 +135,32 @@ Proven in proof)
 \textbf{fail}
 %\textit{Prerequisite: This algorithm requires all previous cases }
 
-\textbf{INPUT:} A positive integer, $d$.
-\textbf{OUTPUT:} All OPN's with $d$ prime factors.
-}
-\noindent\rule{\textwidth}{1pt}
-\begin{algorithmic}
+\textbf{INPUT:} An increasing sequence of primes $P$ and a boolean
+variable $running$.
 
-\STATE PASS
+\textbf{OUTPUT:} No output. Modifies inputs.
+}
+
+\noindent\rule{\textwidth}{1pt}
+\begin{algorithmic}[1]
+
+\STATE $P' := P$
+\WHILE {$P' \neq \{\}$}
+  \STATE Remove the last prime from $P'$
+  \IF {there exists A P'-initiated OPAN in $lex(P)$}
+    \STATE \textbf{break}
+  \ENDIF
+\STATE $T(P') := TRUE$
+\ENDWHILE
+\IF {$P' = \{\}$}
+  \STATE $running := FALSE$
+  \RETURN
+\ENDIF 
+\WHILE {$T(P')$}
+  \STATE Remove the last prime from $P'$.
+\ENDWHILE
+\STATE $P := P'$
+\RETURN
 \end{algorithmic}
 \end{minipage}}
 %-----------------------------------------------------------
@@ -92,156 +172,130 @@ Proven in proof)
 \textbf{backup}
 %\textit{Prerequisite: This algorithm requires all previous cases }
 
-\textbf{INPUT:} A positive integer, $d$.
-\textbf{OUTPUT:} All OPN's with $d$ prime factors.
+\textbf{INPUT:} An increasing sequence of primes $P$.
+
+\textbf{OUTPUT:} The last prime removed from $P$.
 }
+
 \noindent\rule{\textwidth}{1pt}
-\begin{algorithmic}
+\begin{algorithmic}[1]
 
-\STATE PASS
-
+\STATE P' := P
+\WHILE {$P' \neq \{\}$}
+  \STATE $q := Max(P)$
+  \STATE Remove the last prime from $P'$
+%\FOR also works
+  \IF {there exists A P'-initiated OPAN in $lex(P)$}
+    \STATE \textbf{break}
+  \ENDIF
+\STATE $T(P') := TRUE$
+\ENDWHILE
+\RETURN $q$
 \end{algorithmic}
 \end{minipage}}
 
-THE FAILURE PROCEDURE:
+\begin{proof}
+It is noteworthy that this algorithm works in the lexicographical
+order defined on $\mathcal{P}_d$. We will leverage this so that we
+can induct on $\mathcal{P}_d$, showing that each member $Q \in 
+\mathcal{P}_d$ will be recorded with its associated exponent 
+sequences $\mathcal{E}_Q$.
 
-\begin{enumerate}[label*=\arabic*.]
+Our base case for the proof is to show that $min(\mathcal{P}_d)$
+is stored with its associated exponent sequences. For the cases $d
+= 3, 4, 5, 6$, this can be done by a hand calculation of the
+algorithm.
 
-  \item Let $P' := P$. This is so we do not modify the original
-        $P$ during the procedure, as we will reference $P$.  
-
-  \item Remove the last prime from $P'$.
-
-  \item \label{fail_loop}
-        Consider all $Q$-composed OPN's with $d$ prime divisors
-such
-        that $Q$ is a lexicographical predecessor of $P$. Denote
-        this set of OPN's as $A$.(Since the algorithm works in
-        lexicographical order, the algorithm has determined $A$
-        for us) 
-
-  \item If there does not exists an $a \in A$ such that $a$ is
-    $P'$-initiated, go to step 2.
-
-  \item Set $T(P') := True$. This value is false by default.
-
-  \item Truncate elements from $P'$ until $T(P')$ is false.
-        Clearly at least one element must be truncated.
-        Afterwards, set $P := P'$. Terminate the algorithm.
-\end{enumerate}
-
-THE BACKUP PROCEDURE: Similar to the failure procedure but with
-less steps and deletions.
-
-\begin{enumerate}[label*=\arabic*.]
-
-  \item Let $P' := P$. This is so we do not modify the original
-        $P$ during the procedure, as we will reference $P$.  
-
-  \item Remove the last prime from $P'$.
-
-  \item \label{fail_loop}
-        Consider all $Q$-composed OPN's with $d$ prime divisors
-such
-        that $Q$ is a lexicographical predecessor of $P$. Denote
-        this set of OPN's as $A$.(Since the algorithm works in
-        lexicographical order, the algorithm has determined $A$
-        for us)
-
-  \begin{enumerate}[label*=\arabic*.]
-
-    \item If there exists an $a \in A$ such that $a$ is
-    $P'$-initiated, then set $P := P'$. Now, terminate.
-
-    \item If there does not exist such an $a$, Go to step 2
-%{\ref{fail_loop}}
-
-  \end{enumerate}
-
-\end{enumerate}
+Our inductive step is as follows. Suppose $Q, R$ are elements in 
+$\mathcal{P}_d$ such that $Q$ is the unique predecessor to $R$. If
+$(Q, \mathcal{E_Q})$ is collected in the algorithm, then $(R,
+\mathcal{E}_R)$ is collected in the algorithm... More to be
+written down, I just need some sleep first.
+\end{proof}
 
 
 %Todo : Start writing up algorithm in notebook.
-\begin{proof}
-We will use induction to prove this theorem, but we must first
-find some sequence to induct on.
+%\begin{proof}
+%Line {\ref{line:inc_last}}
+%We will use induction to prove this theorem, but we must first
+%find some sequence to induct on.
 
-We define the set of sequences of increasing odd prime $\mathcal{P}_d$.
-Let $P$ be an increasing sequence of $d$ primes. Then $P \in
-\mathcal{P}_d$ if there exists a $P$-initiated OPN with $d$
-divisors. Note that $\mathcal{P}_d$ is finite as the number of OPN's
-with $d$ divisors is finite\cite{dickson}. Now consider the
-lexicographical order of $\mathcal{P}_d$. As this set is finite,
-the lexicographical order is a total order, and thus each element
-of $\mathcal{P}$ has a unique predecessor and a unique successor,
-unless it is the maximum or minimum element of $\mathcal{P}$.
+%We define the set of sequences of increasing odd prime $\mathcal{P}_d$.
+%Let $P$ be an increasing sequence of $d$ primes. Then $P \in
+%\mathcal{P}_d$ if there exists a $P$-initiated OPAN with $d$
+%divisors. Note that $\mathcal{P}_d$ is finite as the number of OPAN's
+%with $d$ divisors is finite\cite{dickson}. Now consider the
+%lexicographical order of $\mathcal{P}_d$. As this set is finite,
+%the lexicographical order is a total order, and thus each element
+%of $\mathcal{P}$ has a unique predecessor and a unique successor,
+%unless it is the maximum or minimum element of $\mathcal{P}$.
 
-It is noteworthy that the algorithm works in lexicographical
-order, i.e., whenever $P$ is modified in the algorithm, the result
-is a sequence of primes that is lexicograpically greater than $P$.
+%It is noteworthy that the algorithm works in lexicographical
+%order, i.e., whenever $P$ is modified in the algorithm, the result
+%is a sequence of primes that is lexicograpically greater than $P$.
 
-Let $M$ be the least element of $\mathcal{P}_d$. Our base case
-for induction is: \textit{The algorithm collects all OPN's with
-prime divisors $M$}. However, all we need to show is that our algorithm
-reaches step 4, where the exponent algorithm is used.
+%Let $M$ be the least element of $\mathcal{P}_d$. Our base case
+%for induction is: \textit{The algorithm collects all OPAN's with
+%prime divisors $M$}. However, all we need to show is that our algorithm
+%reaches step 4, where the exponent algorithm is used.
 
-TODO : base case
+%TODO : base case
 
-Now suppose that $P, Q \in \mathcal{P}$ such that $P$ is the
-lexicographical predecessor of $Q$ in $\mathcal{P}$. Our inductive
-step is: \textit{If the algorithm collects all OPN's with prime
-divisors composing $P$, then the algorithm collects all OPN's with
-prime divisors composing $Q$}.
+%Now suppose that $P, Q \in \mathcal{P}$ such that $P$ is the
+%lexicographical predecessor of $Q$ in $\mathcal{P}$. Our inductive
+%step is: \textit{If the algorithm collects all OPAN's with prime
+%divisors composing $P$, then the algorithm collects all OPAN's with
+%prime divisors composing $Q$}.
 
-We want to consider two cases. One case is where $P$ and $Q$ share
-all primes except the last primes. The other case is when there
-exists the nonnegative integer $i < d - 1$ such that $p_i <
-q_i$ (\textit{where $p_i, q_i$ are the ith elements in the
-sequences $P$, $Q$ respectivly}).
+%We want to consider two cases. One case is where $P$ and $Q$ share
+%all primes except the last primes. The other case is when there
+%exists the nonnegative integer $i < d - 1$ such that $p_i <
+%q_i$ (\textit{where $p_i, q_i$ are the ith elements in the
+%sequences $P$, $Q$ respectivly}).
 
-If $P$ and $Q$ share all but the last prime divisor, it is easy to
-show that $max(Q)$ is the sequential prime after $max(P)$ using
-Theorem {\ref{Continuity}}. The algorithm will thus immediently
-find all $Q$-initiated OPN's with $d$ divisors.
+%If $P$ and $Q$ share all but the last prime divisor, it is easy to
+%show that $max(Q)$ is the sequential prime after $max(P)$ using
+%Theorem {\ref{Continuity}}. The algorithm will thus immediently
+%find all $Q$-initiated OPAN's with $d$ divisors.
 
-Now suppose that $P$ and $Q$ share only $c < d - 1$ sequential 
-primes, i.e., $P = \{ p_0, p_1, ..., p_{c - 1}, p_c, ..., p_{d-1}\}$
-and $Q = \{p_0, p_1, ..., p_{c - 1}, q_c, ..., q_{d - 1}\}$. We
-require that $p_c < q_c$, but there are requirements of $p_k$
-and $q_k$ for $c + 1 \leq k \leq d - 1$. When the algorithm
-reaches the step where $P := P$, we want to show that the
-algorithm will transform $P$ to $Q$. 
+%Now suppose that $P$ and $Q$ share only $c < d - 1$ sequential 
+%primes, i.e., $P = \{ p_0, p_1, ..., p_{c - 1}, p_c, ..., p_{d-1}\}$
+%and $Q = \{p_0, p_1, ..., p_{c - 1}, q_c, ..., q_{d - 1}\}$. We
+%require that $p_c < q_c$, but there are requirements of $p_k$
+%and $q_k$ for $c + 1 \leq k \leq d - 1$. When the algorithm
+%reaches the step where $P := P$, we want to show that the
+%algorithm will transform $P$ to $Q$. 
 
-Note that, after step $5$, the algorithm replaces $p_{d-1}$ with
-its sucessor $p'_{d - 1}$. Here the algorithm fail at step 3 or
-the algorithm will fail at step 7. When the failure procedure acts
-on $P$, exactly one prime will be removed. In fact, this will
-happen until $P := \{p_0, p_1, ..., p_{c-1}\}$. 
+%Note that, after step $5$, the algorithm replaces $p_{d-1}$ with
+%its sucessor $p'_{d - 1}$. Here the algorithm fail at step 3 or
+%the algorithm will fail at step 7. When the failure procedure acts
+%on $P$, exactly one prime will be removed. In fact, this will
+%happen until $P := \{p_0, p_1, ..., p_{c-1}\}$. 
 
-If the next prime after $p_c$ is $q_c$, then the algorithm will
-append $q_c$, setting $P := P + q_c$. 
+%If the next prime after $p_c$ is $q_c$, then the algorithm will
+%append $q_c$, setting $P := P + q_c$. 
 
-If the next prime after $p_c$ is not $q_c$, then $p_c \leq
-Cap_d(P)$ by Theorem {\ref{cap}}. Also, $q \leq
-nextprime(Cap_d(P)) $ by Theorem $4.5$. As the algorithm does not
-stop checking primes until $p_c \geq nextprime(Cap_d(P))$, we have
-that the algorithm will find $q_c$. 
+%If the next prime after $p_c$ is not $q_c$, then $p_c \leq
+%Cap_d(P)$ by Theorem {\ref{cap}}. Also, $q \leq
+%nextprime(Cap_d(P)) $ by Theorem $4.5$. As the algorithm does not
+%stop checking primes until $p_c \geq nextprime(Cap_d(P))$, we have
+%that the algorithm will find $q_c$. 
 
-Thus we will have that $P = \{p_0, p_1, ..., p_{c-1}, q_c\}$.
+%Thus we will have that $P = \{p_0, p_1, ..., p_{c-1}, q_c\}$.
 
-Now we need to show that the algorithm collects all $Q$-initiated
-OPN's with $d$ divisors, starting with the $P$ we have achieved
-above.
+%Now we need to show that the algorithm collects all $Q$-initiated
+%OPAN's with $d$ divisors, starting with the $P$ we have achieved
+%above.
 
-For each $q_i$ such that $c < i < d - 1$, we have that $q_i \leq
-nextprime(Cap_d(Q_i))$, where $Q_i = \{p_0, p_1, ..., p_{c-1},
-q_c, ..., q_{i - 1}\}$. This is the combination of Theorem
-{\ref{cap}} and the fact that there is no sequence of $d$ primes 
-$R$ such that $P < R < Q$ and there exists some $R$-initiated
-OPN. As the algorithm will not stop checking primes until this
-point, we have that the algorithm will add $q_i$ to $Q_i$ for any
-$c < i < d - 1$. Thus the algorithm will find all $Q$-initiated
-OPN's with $d$ divisors, completing the inductive step.
-\end{proof}
+%For each $q_i$ such that $c < i < d - 1$, we have that $q_i \leq
+%nextprime(Cap_d(Q_i))$, where $Q_i = \{p_0, p_1, ..., p_{c-1},
+%q_c, ..., q_{i - 1}\}$. This is the combination of Theorem
+%{\ref{cap}} and the fact that there is no sequence of $d$ primes 
+%$R$ such that $P < R < Q$ and there exists some $R$-initiated
+%OPAN. As the algorithm will not stop checking primes until this
+%point, we have that the algorithm will add $q_i$ to $Q_i$ for any
+%$c < i < d - 1$. Thus the algorithm will find all $Q$-initiated
+%OAPN's with $d$ divisors, completing the inductive step.
+%\end{proof}
 
 \end{document}

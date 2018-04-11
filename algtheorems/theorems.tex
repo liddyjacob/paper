@@ -19,7 +19,7 @@ Suppose that $b_{\infty}(\{p_1,p_2, ..., p_i\}) > 2$,
 where $p_1 < p_2 < p_3 < ... < p_i$. Then there exists some
 positive integer $\ell$ less than or equal to $i$ such that 
 $\{p_1, p_2, p_3, ..., p_\ell\}$ composes the prime factors of
-some OPN.
+some OPAN.
 \end{theorem}
 
 \begin{proof}
@@ -38,9 +38,9 @@ that there does not exist an abundant number whose prime divisors
 compose $S$. Since $b_{\infty}(P') > 2$, there exists an abundant 
 number whose prime
 divisors compose $P'$. Suppose $m$ is such an integer. Then $m$ is
-an OPN or a divisor of $m$ is an OPN. Note that any divisor of $m$
-which is an OPN must have prime factors that compose $P'$. Thus
-there exists an OPN with divisors composing $P'$.
+an OPAN or a divisor of $m$ is an OPAN. Note that any divisor of $m$
+which is an OPAN must have prime factors that compose $P'$. Thus
+there exists an OPAN with divisors composing $P'$.
 \end{proof}
 
 %\begin{theorem} Suppose there exists an odd weird number. Let $w$
@@ -58,13 +58,13 @@ there exists an OPN with divisors composing $P'$.
 \label{Divisibility}
 Let $P$ be an increasing sequence of odd primes. Let $r$ and $s$ be
 primes such that $max(P) < r < s$. Suppose there exists a $(P +
-s)$-initiated OPN with $d$ divisors. Then there exists a $(P +
-r)$-initiated OPN with at most $d$ divisors. 
+s)$-initiated OPAN with $d$ divisors. Then there exists a $(P +
+r)$-initiated OPAN with at most $d$ divisors. 
 \end{theorem}
 
 \begin{proof}
-By hypothesis, there exists a $(P + s)$-initiated OPN with $d$ divisors.
-Suppose $n$ is such an $OPN$. Note that $n$ is in the form $n =
+By hypothesis, there exists a $(P + s)$-initiated OPAN with $d$ divisors.
+Suppose $n$ is such an $OPAN$. Note that $n$ is in the form $n =
 \nu(P + s, M_{(P + s)}) \nu(Q, M_Q)$ for sequences of positive 
 integers $M_{(P + s)}, M_Q$, and some increasing sequence of
 primes $Q$ such that $s < min(Q)$.
@@ -89,7 +89,7 @@ Hence, $2 > b(m / r^k) > b(m / p^t)$. Therefore any primitive
 abundant divisor of $m$ must be divisible by every prime in 
 $P + r$. Since there must exists at least one odd primitive 
 abundant divisor of $m$, there must exist a $(P + r)$-initiated 
-OPN with at most $d$ divisors.
+OPAN with at most $d$ divisors.
 \end{proof}
 
 \begin{coro}[Continuity of Primitive Abundant
@@ -109,7 +109,7 @@ This is a special case of Theorem {\ref{Divisibility}}, where $d = |(P + r)|$.
 We now define a certain class of primes.
 Suppose $P$ is an ordered sequence of $i$ primes. Suppose $d$ is
 an integer greater than $i$. Let $p$ be the largest prime such 
-that there exists a $(P + p)$-initiated OPN having fewer than $d$ 
+that there exists a $(P + p)$-initiated OPAN having fewer than $d$ 
 prime divisors. We know this prime $p$ exists since 
 there exist only finitly many primitive abundant numbers having
 fewer than $d$ prime divisors \cite{dickson}. We denote this prime $p$
@@ -119,17 +119,17 @@ as $Cap_d(P)$.
 Let $P$ be an ordered sequence of primes, and  let $r$ and $s$ be 
 primes such that $max(P) < r < s$. Suppose $d$ is an integer such
 that $d > |P|$. Finally, suppose that $r > Cap_d(P)$. If there
-does not exist any $(P + r)$-initiated OPN's with $d$ divisors,
-then there does not exist any $(P + s)$-initiated OPN's with $d$ 
+does not exist any $(P + r)$-initiated OPAN's with $d$ divisors,
+then there does not exist any $(P + s)$-initiated OPAN's with $d$ 
 divisors.
 \end{theorem}
 
 \begin{proof}
 Assume, to the contrary, that there does exist a $(P + 
-s)$-initiated OPN with $d$ divisors. By Theorem {\ref{Divisibility}},
-there exists a $(P + r)$-initated OPN having $d$ or fewer
+s)$-initiated OPAN with $d$ divisors. By Theorem {\ref{Divisibility}},
+there exists a $(P + r)$-initated OPAN having $d$ or fewer
 divisors. However, $r > Cap_d(P)$, and by definition of
-$Cap_d(P)$, there cannot exist a $(P + r)$-initiated OPN having
+$Cap_d(P)$, there cannot exist a $(P + r)$-initiated OPAN having
 fewer than $d$ divisors. This is a contradiction.
 \end{proof}
 

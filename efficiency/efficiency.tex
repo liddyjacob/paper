@@ -5,14 +5,8 @@
 
 The exponent algorithm is a very computationally expensive
 algorithm. If we can avoid executing the exponent algorithm, then
-the amount of time it takes to find all OPN's with d divisors will
+the amount of time it takes to find all OPAN's with d divisors will
 be drastically reduced. 
-
-Let $P$ be an increasing sequence of primes. We define the set
-$\mathcal{E}_P$ as 
-
-$$\mathcal{E}_P = \{E\, |\, \nu(P, E) \text{ is an OPN}\}$$.
-
 We make the following claim:
 
 \begin{lem}[Efficiency Lemma]\label{first}
@@ -37,10 +31,10 @@ processors, the time can be cut even further.
 \begin{proof}
   Suppose, to the contrary, that the theorem is not true. Then
 there exists some $E' \notin \mathcal{E}_{P + p}$ such that $\nu
-(P + q, E')$ is an OPN. As $E'$ is not in $\mathcal{E}_{P + p}$,
-we have that $\nu (P + p, E')$ is not an OPN. However, $\nu (P +
+(P + q, E')$ is an OPAN. As $E'$ is not in $\mathcal{E}_{P + p}$,
+we have that $\nu (P + p, E')$ is not an OPAN. However, $\nu (P +
 p, E')$ is abundant as $p < q$. Thus $\nu (P + p, E')$ has a
-divisor $a$ such that $a$ is an OPN. 
+divisor $a$ such that $a$ is an OPAN. 
 
   We will now show that the prime divisors of $a$ compose $P + p$.
 We know that $p$ must divide $a$, for if $p$ does not divide $a$,
@@ -53,7 +47,7 @@ prime factors of $a$ compose $P + p$.
   Let $a = \nu(P + p, E'')$. We can find some sequence of positive
 integers $E''$ such that $a = \nu (P + p, E'')$ as the prime divisors
 of $a$ compose $P + p$. Thus $E'' \in \mathcal{E}_{P + p}$. By
-hypotheses, we have that $\nu(P + q, E'')$ is an OPN. This,
+hypotheses, we have that $\nu(P + q, E'')$ is an OPAN. This,
 however, is a contradiction with the fact that $\nu(P + q, E'')$
 is a proper divisor of $\nu(P + q, E')$.
 \end{proof}
@@ -97,7 +91,7 @@ abundant but $\nu(P + p, E)$ must not be deficient.
 \end{proof}
 
 Through implimenting this algorithm, we were able to find the
-number of OPN's with 6 divisors. That number is: (TO BE COMPUTED)
+number of OPAN's with 6 divisors. That number is: (TO BE COMPUTED)
 
 
 The largest odd primitive abundant number with 6 divisors is:
