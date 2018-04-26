@@ -5,31 +5,32 @@
 
 In order to describe the algorithm in this section, we need to
 develop more definitions and theorems. Let $d$ be an integer
-greater than 2. We define $\mathcal{P}_d$ as follows: Suppose that
-$P$ is an increasing sequence of odd primes with $d$ elements.
-Then $P \in \mathcal{P}_d$ if there exists some OPAN $n$ in the 
+greater than 2. We define the set $\mathcal{P}_d$ as follows: 
+Suppose that $P$ is an increasing sequence of odd primes with 
+$d$ elements. Such a sequence $P$ is a member of 
+$\mathcal{P}_d$ if and only if there exists some OPAN $n$ in the 
 form $n = \nu (P, E)$ for some sequence of positive integers $E$.
-Note that $\mathcal{P}_d$ is finite as there exists only finitly
-many OPANs with $d$ divisors{\cite{dickson}}.
+Note that the set $\mathcal{P}_d$ is finite as there exists only 
+finitely many OPANs with $d$ divisors{\cite{dickson}}.
 
 Let $P$ be an element of $\mathcal{P}_d$ for some integer $d \geq 
 3$. We define the set of positive integer sequences 
 $\mathcal{E}_P$ as 
 %
-$$\mathcal{E}_P = \{E\, |\, \nu(P, E) \text{ is an OPAN}\}$$.
+$$\mathcal{E}_P = \{E\, |\, \nu(P, E) \text{ is an OPAN}\}.$$
 %
 
 Now we want to develop an ordering on $\mathcal{P}_d$. We will use
-a lexicographical ordering, compairing each element sequentially.
+a lexicographical ordering, comparing each element sequentially.
 Let $P, Q \in \mathcal{P}_d$. Write $P = \{p_0, p_1, ..., p_{d-1}\}$
-and $Q = \{q_0, q_1, ..., q_{d-1}\}$. We say that $P \leq Q$ if $P = Q$ 
-there exists some index $i < d$ such that if $k$ is a nonnegative integer
-less than $i$, $p_k = q_k$, amd $p_i < q_i$. Naturally, we say that 
-$P < Q$ if $P \leq Q$ and $P \neq Q$. 
+and $Q = \{q_0, q_1, ..., q_{d-1}\}$. We say that $P < Q$ if 
+there exists some index $i$ such that $p_i = q_i$ and for each
+index $k < i$ we have that$p_k = q_k$. Naturally, we say that 
+$P \leq Q$ if $P < Q$ or $P = Q$. 
 
 Recall that we defined an integer $n$ to be $P$-initiated if the
 smallest $|P|$ prime factors of $n$ compose $P$. We now generalize
-this notation to include both integers and sequence. Suppose $Q$
+this notation to include both integers and sequences. Suppose $Q$
 is a sequence of $d$ elements and $P$ is a sequence of $i < d$
 elements. We say that $Q$ is $P$-initiated if the first $i$
 elements of $Q$ is the sequence $P$.
@@ -48,7 +49,7 @@ the fact that $3^1 5^1 7^1 11^1 13^1$ is an OPAN. There cannot
 exist a set of 5 odd primes $P < \{3, 5, 7, 11, 13\}$, and
 therefore we are done.
 
-To show that $min(\mathcal{P}_6 = \{3, 5, 7, 11, 389, 397\}$, we
+To show that $min(\mathcal{P}_6) = \{3, 5, 7, 11, 389, 397\}$, we
 note that $3^1 5^1 7^1 11^1 p^1$ is an OPAN when $p$ is a prime
 such that $13 \leq p \leq 383$. Therefore, any lexicographical
 predecessor of $\{3, 5, 7, 11, 389, 397\}$ cannot exist in
@@ -67,7 +68,7 @@ $lex(\{3,5,13\}) = \{\{3, 5, 7\}, \{3, 5, 11\}\}$.
 
 \begin{theorem} \label{opan_alg}
 The following algorithm determines all primitive
-abundant odd numbers with $d = \{3,4,5,6\}$ divisors.
+abundant odd numbers with $d$ divisors for $d \in \{3,4,5,6\}$.
 \end{theorem}
 
 \begin{conj}
@@ -100,7 +101,7 @@ abundant odd numbers with $d$ divisors, for any integer $d \geq 3$.
     \ENDIF  
     \STATE Let $s$ be the minimum prime such that $s > max(P)$ and
 $P + s$ has never been stored in $P$ before.
-    \STATE $P:= P + s$
+    \STATE $P:= P + s$ \label{main::inc_prime}
     \STATE \textbf{continue}
   \ENDIF
   \IF {$b_{\infty}(P) \leq 2$}
@@ -108,9 +109,9 @@ $P + s$ has never been stored in $P$ before.
     \STATE \textbf{continue}
   \ENDIF
   \IF {$\mathcal{E}_P$ is not empty}
-    \STATE Store $(P, \mathcal{E}_P)$
+    \STATE Store $(P, \mathcal{E}_P)$ \label{main::store}
     \STATE $r = nextprime(max(P))$
-    \STATE Replace the last prime in $P$ with r \label{line:inc_last}
+    \STATE Replace the last prime in $P$ with r \label{main::inc_last}
     \STATE \textbf{continue}
   \ENDIF
   \STATE $s = backup(P)$
@@ -119,10 +120,10 @@ $P + s$ has never been stored in $P$ before.
     \STATE \textbf{continue}
   \ENDIF
   \IF {$s \leq Cap_d(P)$}
-    \STATE P := P + nextprime(s)
+    \STATE P := P + nextprime(s) \label{main::pit}
     \STATE \textbf{contiue}
   \ENDIF
-  \STATE $fail(P, running)$
+  \STATE $fail(P, running)$ \label{main::last_fail}
 \ENDWHILE
 \end{algorithmic}
 \end{minipage}}
@@ -184,7 +185,6 @@ variable $running$.
 \WHILE {$P' \neq \{\}$}
   \STATE $q := Max(P)$
   \STATE Remove the last prime from $P'$
-%\FOR also works
   \IF {there exists A P'-initiated OPAN in $lex(P)$}
     \STATE \textbf{break}
   \ENDIF
@@ -209,8 +209,38 @@ algorithm.
 Our inductive step is as follows. Suppose $Q, R$ are elements in 
 $\mathcal{P}_d$ such that $Q$ is the unique predecessor to $R$. If
 $(Q, \mathcal{E_Q})$ is collected in the algorithm, then $(R,
-\mathcal{E}_R)$ is collected in the algorithm... More to be
-written down, I just need some sleep first.
+\mathcal{E}_R)$ is collected in the algorithm. 
+
+Suppose that $Q$ and $R$ are the same sequence apart from 
+their respective last primes $q$ and $r$ respectively. By Corollary 
+\ref{Continuity}, we have $r$ is the prime successor to $q$. When 
+the algorithm collects $(Q, \mathcal{E}_Q)$ in line \ref{main::store}, 
+the algorithm will immediately move on to transform $P := Q$ into $P := R$.
+Following the algorithm step by step will show that $(R, \mathcal{E}_R)$ 
+is collected.
+
+Now suppose that $Q$ and $R$ are not the same sequence when ignoring the 
+last element of $Q$ and $R$. Thus $Q$ and $R$ are in the form 
+\begin{equation}
+\begin{split}
+Q = \{q_0, q_1, ..., q_{c-1}, & q_c, q_{c+1}, ..., q_d\} \\
+R = \{q_0, q_1, ..., q_{c-1}, & r_c, r_{c+1}, ..., r_d\}
+\end{split}
+\end{equation}
+where $q_c < r_c$. As there is no $S \in \mathcal{P}_d$ such that
+$Q < S < R$, we can see that the algorithm will keep failing on line
+\ref{main::last_fail}, until $P = \{q_0, q_1, ..., q_{c-1}\}$
+The algorithm will then try the next prime $s$ 
+after $q_c$ on line \ref{main::inc_prime}. Suppose  $r = r_c$. It can
+be shown that from here that the algorithm 
+will collect $(R, \mathcal{E}_R)$, by running the algorithm by hand.
+
+Henceforth assume that $nextprime(q_c) < r_c$. By Theorem \ref{cap}, 
+we have that $r_c \leq cap_d{P}$. Thus the algorithm will increment its last
+element as it will continue to execute the line \ref{main::pit}  
+until the last prime of $P$ is equal to $r_c$ It can
+be shown that from here that the algorithm 
+will collect $(R, \mathcal{E}_R)$.
 \end{proof}
 
 
@@ -255,7 +285,7 @@ written down, I just need some sleep first.
 
 %If $P$ and $Q$ share all but the last prime divisor, it is easy to
 %show that $max(Q)$ is the sequential prime after $max(P)$ using
-%Theorem {\ref{Continuity}}. The algorithm will thus immediently
+%Theorem {\ref{Continuity}}. The algorithm will thus immedientl
 %find all $Q$-initiated OPAN's with $d$ divisors.
 
 %Now suppose that $P$ and $Q$ share only $c < d - 1$ sequential 

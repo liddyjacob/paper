@@ -18,42 +18,44 @@ $\mathcal{E}_{(P + q)}$, then $\mathcal{E}_{(P + p)} =
 \mathcal{E}_{(P + q)}$.
 \end{lem}
 
-Lemma {\ref{first}} seems to apply to a massive amount of cases,
-especially as the last prime grows larger and larger. Because of
-this, Lemma {\ref{first}} allows us to avoid the exponent algorithm,
-which is a very computationally expensive algorithm. This theorem
-allows all primitive abundant numbers with 5 divisors to be
-computed in just a couple of minutes, where previously it took
-about an hour. Using multithreading abilities on certain
-processors, the time can be cut even further.
-
-
 \begin{proof}
   Suppose, to the contrary, that the theorem is not true. Then
-there exists some $E' \notin \mathcal{E}_{P + p}$ such that $\nu
-(P + q, E')$ is an OPAN. As $E'$ is not in $\mathcal{E}_{P + p}$,
-we have that $\nu (P + p, E')$ is not an OPAN. However, $\nu (P +
-p, E')$ is abundant as $p < q$. Thus $\nu (P + p, E')$ has a
+there exists some $E \notin \mathcal{E}_{P + p}$ such that $\nu
+(P + q, E)$ is an OPAN. As $E$ is not in $\mathcal{E}_{P + p}$,
+we have that $\nu (P + p, E)$ is not an OPAN. However, $\nu (P +
+p, E)$ is abundant as $p < q$. Thus $\nu (P + p, E)$ has a
 divisor $a$ such that $a$ is an OPAN. 
 
   We will now show that the prime divisors of $a$ compose $P + p$.
 We know that $p$ must divide $a$, for if $p$ does not divide $a$,
-then $a$ divides $\nu (P + q, E')$. Let $k$ be the maximum
+then $a$ is an abundant proper divisor of $\nu (P + q, E)$. 
+Let $k$ be the maximum
 integer such that $p^k$ divides $a$. We know that $a / p^k$ is
-deficient as it is a divisor of $\nu (P + q, E')$. It is not hard
+deficient as it is a divisor of $\nu (P + q, E)$. It is not hard
 to show that all primes of the set $P$ must divide $a$. Thus the
 prime factors of $a$ compose $P + p$. 
 
-  Let $a = \nu(P + p, E'')$. We can find some sequence of positive
-integers $E''$ such that $a = \nu (P + p, E'')$ as the prime divisors
-of $a$ compose $P + p$. Thus $E'' \in \mathcal{E}_{P + p}$. By
-hypotheses, we have that $\nu(P + q, E'')$ is an OPAN. This,
-however, is a contradiction with the fact that $\nu(P + q, E'')$
-is a proper divisor of $\nu(P + q, E')$.
+  We have shown that each prime number in $P + p$ divides $a$, and
+therefore $a$ can be written in the form $a = \nu(P + p, E')$ for
+some sequence of positive integers $E'$. As $a$ is an OPAN, we
+have that $E' \in \mathcal{E}_{(P +p)}$. By hypotheses,
+$\mathcal{E}_{(P + p)}$ is a subset of $\mathcal{E}_{(P + q)}$.
+This implies that $E' \in \mathcal{E}_{(P + q)}$. Therefore $a_q = 
+\nu(P + q, E')$ is abundant. However, $a_q$ is a divisor of
+$\nu (P + q, E)$, and therefore $a_q$ is deficient, a
+contradiction.
+
+
+  Let $a = \nu(P + p, E')$. We can find some sequence of positive
+integers $E'$ such that $a = \nu (P + p, E')$ as the prime divisors
+of $a$ compose $P + p$. Thus $E' \in \mathcal{E}_{P + p}$. By
+hypotheses, we have that $\nu(P + q, E')$ is an OPAN. This,
+however, is a contradiction with the fact that $\nu(P + q, E')$
+is a proper divisor of $\nu(P + q, E)$.
 \end{proof}
 
 
-\begin{theorem}[Efficiency Theorem] 
+\begin{theorem}[Efficiency Theorem] \label{eff}
 Let $P$ be an increasing sequence of odd primes. Suppose
 that $p$ is a prime greater than the last prime of $P$ and $q$ a
 prime greater than $p$. If $\mathcal{E}_{(P + p)} \neq 
@@ -63,41 +65,50 @@ r < q$, we have that $\mathcal{E}_{(P + p)} = \mathcal{E}_{(P +
 r)} = \mathcal{E}_{(P + q)}$.
 \end{theorem}
 
-Note: This theorem takes what runs in possibly a year and allows
-the algorithm to run in just a few days or less.
+Theorem {\ref{eff}} seems to apply to a massive amount of cases,
+especially as the last prime grows larger and larger. Because of
+this, Theorem {\ref{eff}} allows us to avoid the exponent algorithm,
+which is a very computationally expensive algorithm. This theorem
+allows all primitive abundant numbers with 5 divisors to be
+computed in just a couple of minutes, where previously it took
+about an hour. Using multithreading abilities on modern
+processors, the time can be cut even further.
 
 \begin{proof}
+If $\mathcal{E}_{(P + p)} = \{\{1,1,1, ..., 1\}\}$, then the
+theorem is trivial. Henceforth we shall assume that for each 
+element E in $\mathcal{E}_{(P + p)}$, E contains at least one term
+greater than or equal to 2.
+
 Suppose that $\mathcal{E}_{(P + p)} = \mathcal{E}_{(P + q)}$.
 Suppose, to the contrary, that $\mathcal{E}_{(P+r)} \neq
 \mathcal{E}_{(P + p)}$. Then there exists some $E \in
 \mathcal{E}_{(P + r)}$ such that $E \notin \mathcal{E}_{(P + p)}$, or there
-exists some $E \notin \mathcal{E}_{(P + r)} | E \in \mathcal{E}_{(P +
-p)}$. 
+exists some $E \notin \mathcal{E}_{(P + r)}$ such that 
+$E \in \mathcal{E}_{(P + p)}$. 
 
-Suppose the former case is true. If $m = \nu(P + q, E)$ is abundant,
-then $m$ must not be primitive. Note that any divisor of $\nu(P +
-r, E)$ is deficient and can be written in the form $\nu(P + r, E')
-| e_i \in E, e'_i \in E' => e_i \geq e'_i$. We want to consider
-an $E'$ with nonzero elements only(separate case when this does
-not happen). Such an $E$ 
+Suppose the former case is true. Let $E$ be an element of
+$\mathcal{E}_{(P + r)}$ such that $E \notin \mathcal{E}_{(P + p)} =
+\mathcal{E}_{(P + q)}$. It is easy to show that $\nu(P + q, E)$ is
+not abundant. If $\nu(P + q, E)$ were abundant, then $\nu(P + q,
+E)$ would be forced to be primitive abundant which would imply 
+$E \in \mathcal{E}_{(P + q)}$. It is also easy to show 
+$n_p = \nu(P + p, E)$ is abundant. Since $d = \nu (P + p,
+\{1,1,1,...,1\})$ is deficient and divides the abundant number $n_p$, 
+there exists a primitive abundant odd which is a multiple of $d$
+and a divisor of $n_p$. Such a divisor would be in the form $\nu(P
++ p, E')$ for some sequence of positive integers $E'$. This would
+imply $E' \in \mathcal{E}_{(P + p)}$. However, this would create a
+contradiction as $E' \notin \mathcal{E}_{(P + q)}$ and
+$\mathcal{E}_{(P + p)} = \mathcal{E}_{(P + q)}$. 
 
-See algorithms notebook: The outline of the proof lies there.
-
-Thus a divisor of $m$ is
-primitive. => ... => m is primitive abundant for...
-Clearly, $\nu(P + p, E)$ is
-abundant but $\nu(P + p, E)$ must not be deficient. 
-
+Now suppose there exists some $E \notin \mathcal{E}_{(P + r)}$ 
+such that $E \in \mathcal{E}_{(P + p)}$. From this we know that
+$E \in \mathcal{E}_{(P + q)}$ and therefore $n = \nu (P + r, E)$ is
+abundant. We also know that for each divisor $\nu (P + r, E')$ of
+$n$, we have that $2 > \nu (P + p, E') > \nu(P + r, E')$. Thus $n$
+is a primitive abundant number, as each of its divisors are
+deficient. This implies that $E \in \mathcal{E}_{(P + r)}$, a contradiction.
 \end{proof}
-
-Through implimenting this algorithm, we were able to find the
-number of OPAN's with 6 divisors. That number is: (TO BE COMPUTED)
-
-
-The largest odd primitive abundant number with 6 divisors is:
-$3^{38} 5^{28} 17^{16} 257^8 65537^4 4294967291^2$. It has 116 decimal
-digits.
-
-
 
 \end{document}
