@@ -94,16 +94,16 @@ OPAN with at most $d$ divisors.
 
 \begin{coro}[Continuity of Primitive Abundant
 Numbers]\label{Continuity}
-Let $P = \{p_0, p_1, ..., p_{d-2}, r\}$ be an increasing sequence 
+Let $P = \{p_0, p_1, ..., p_{d-2}, s\}$ be an increasing sequence 
 of primes. Suppose that $n = \nu(P, M)$ is a primitive abundant 
 number for some sequence of positive integers $M$. Let $s$ be a 
-prime such that $p_{d-2} < s < r$, and let $P' = \{p_0, p_1,...,
-p_{d-2}, s\}$. Then there exists some sequence of positive integers
+prime such that $p_{d-2} < r < s$, and let $P' = \{p_0, p_1,...,
+p_{d-2}, r\}$. Then there exists some sequence of positive integers
 $E$ such that $\nu(P', E)$ is a primitive abundant number.
 \end{coro}
 
 \begin{proof}
-This is a special case of Theorem {\ref{Divisibility}}, where $d = |(P + r)|$.
+This is a special case of Theorem {\ref{Divisibility}}, where $d = |(P + s)|$.
 \end{proof}
 
 We now define a certain class of primes.
@@ -133,4 +133,9 @@ $Cap_d(P)$, there cannot exist a $(P + r)$-initiated OPAN having
 fewer than $d$ divisors. This is a contradiction.
 \end{proof}
 
+To calculate $Cap_d(P)$, we simply rely on knowing all OPANs with $d - 1$ divisors.
+
+\begin{theorem} The primes in $min(\mathcal{P}_d)$ are bounded by $Cap_d(P)$.
+
+\end{theorem}
 \end{document}

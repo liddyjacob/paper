@@ -24,8 +24,8 @@ Now we want to develop an ordering on $\mathcal{P}_d$. We will use
 a lexicographical ordering, comparing each element sequentially.
 Let $P, Q \in \mathcal{P}_d$. Write $P = \{p_0, p_1, ..., p_{d-1}\}$
 and $Q = \{q_0, q_1, ..., q_{d-1}\}$. We say that $P < Q$ if 
-there exists some index $i$ such that $p_i = q_i$ and for each
-index $k < i$ we have that$p_k = q_k$. Naturally, we say that 
+there exists some index $i$ such that $p_i < q_i$ and for each
+index $k < i$ we have that $p_k = q_k$. Naturally, we say that 
 $P \leq Q$ if $P < Q$ or $P = Q$. 
 
 Recall that we defined an integer $n$ to be $P$-initiated if the
@@ -41,7 +41,7 @@ to find the minimum of $\mathcal{P}_d$ for $d = 3, 4, 5, 6$ as
 this will help us in the base case of Theorem {\ref{opan_alg}}.
 Dickson showed that $min(\mathcal{P}_3) = \{3, 5, 7\}$ and
 $min(\mathcal{P}_4) = \{3, 5, 7, 11\}$. This leaves us to show
-$min(\mathcal{P}_5) = \{3, 5, 7, 11, 13\}$ and $min(\mathcal{P}_6
+$min(\mathcal{P}_5) = \{3, 5, 7, 11, 13\}$ and $min(\mathcal{P}_6)
 = \{3, 5, 7, 11, 389, 397\}$.
 
 To show that $min(\mathcal{P}_5) = \{3, 5, 7, 11, 13\}$, we use
@@ -68,13 +68,8 @@ $lex(\{3,5,13\}) = \{\{3, 5, 7\}, \{3, 5, 11\}\}$.
 
 \begin{theorem} \label{opan_alg}
 The following algorithm determines all primitive
-abundant odd numbers with $d$ divisors for $d \in \{3,4,5,6\}$.
-\end{theorem}
-
-\begin{conj}
-The following algorithm determines all primitive
 abundant odd numbers with $d$ divisors, for any integer $d \geq 3$.
-\end{conj}
+\end{theorem}
 
 %-----------------------------------------------------------
 \noindent\fbox{\begin{minipage}{\linewidth}
@@ -90,6 +85,7 @@ abundant odd numbers with $d$ divisors, for any integer $d \geq 3$.
 \noindent\rule{\textwidth}{1pt}
 \begin{algorithmic}[1]
 %E represents exponents
+\STATE For all $Q$, set $T(Q) = false$
 \STATE $P := \{\}$
 \STATE $running := TRUE$
 \WHILE {$running$}
@@ -99,7 +95,7 @@ abundant odd numbers with $d$ divisors, for any integer $d \geq 3$.
       \STATE Let $q$ be the minimum prime s.t. $b_1(P + q) < 2$
       \STATE $P := P + q$
     \ENDIF  
-    \STATE Let $s$ be the minimum prime such that $s > max(P)$ and
+    \STATE Let $s$ be the minimum odd prime such that $s > max(P)$ and
 $P + s$ has never been stored in $P$ before.
     \STATE $P:= P + s$ \label{main::inc_prime}
     \STATE \textbf{continue}
@@ -181,14 +177,13 @@ variable $running$.
 \noindent\rule{\textwidth}{1pt}
 \begin{algorithmic}[1]
 
-\STATE P' := P
+\STATE $P' := P$
 \WHILE {$P' \neq \{\}$}
-  \STATE $q := Max(P)$
+  \STATE $q := Max(P')$
   \STATE Remove the last prime from $P'$
   \IF {there exists A P'-initiated OPAN in $lex(P)$}
     \STATE \textbf{break}
   \ENDIF
-\STATE $T(P') := TRUE$
 \ENDWHILE
 \RETURN $q$
 \end{algorithmic}
@@ -201,10 +196,15 @@ can induct on $\mathcal{P}_d$, showing that each member $Q \in
 \mathcal{P}_d$ will be recorded with its associated exponent 
 sequences $\mathcal{E}_Q$.
 
+
+We will show that $P_0 = min(\mathcal{P}_d)$ is stored with its associated 
+  exponent sequences. As $Cap_{d}$ is the an upper bound to the primes in $P_0$, the algorithm will search until it reaches $Cap_{d}$.
+
+
 Our base case for the proof is to show that $min(\mathcal{P}_d)$
 is stored with its associated exponent sequences. For the cases $d
-= 3, 4, 5, 6$, this can be done by a hand calculation of the
-algorithm.
+= 3, 4, 5, 6$, this can be done computationally. 
+
 
 Our inductive step is as follows. Suppose $Q, R$ are elements in 
 $\mathcal{P}_d$ such that $Q$ is the unique predecessor to $R$. If
@@ -233,7 +233,7 @@ $Q < S < R$, we can see that the algorithm will keep failing on line
 The algorithm will then try the next prime $s$ 
 after $q_c$ on line \ref{main::inc_prime}. Suppose  $r = r_c$. It can
 be shown that from here that the algorithm 
-will collect $(R, \mathcal{E}_R)$, by running the algorithm by hand.
+will collect $(R, \mathcal{E}_R)$.
 
 Henceforth assume that $nextprime(q_c) < r_c$. By Theorem \ref{cap}, 
 we have that $r_c \leq cap_d{P}$. Thus the algorithm will increment its last
@@ -241,6 +241,9 @@ element as it will continue to execute the line \ref{main::pit}
 until the last prime of $P$ is equal to $r_c$ It can
 be shown that from here that the algorithm 
 will collect $(R, \mathcal{E}_R)$.
+\\
+
+THIS PROOF NEEDS WORK.
 \end{proof}
 
 

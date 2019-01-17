@@ -7,13 +7,15 @@ Let $r$ and $n$ be positive integers such that $r$ divides $n$. We
 say $r$ is a divisor of $n$ of order $0$ if and only if $r = n$.
 For each $i \geq 1$, we say that $r$ is a divisor of $n$ of order
 $i$ in case there exists a prime $p$ such that $pr$ is a divisor
-of $n$ of order $i - 1$. We remark that each divisor $r$ of $n$ has
-order $k$ for some nonnegative integer $k$.
+of $n$ of order $i - 1$. We remark that each divisor $r$ of $n$ has a 
+unique well-defined order $k$ for some nonnegative integer $k$. For example, 
+$3^2 5^1 13^1$ is a divisor of $3^3 5^2 13^1$ of order $2$. 
 
 A related notion is \textit{incomplete primes}. Suppose $r$ divides 
 $n$, and $p$ is a prime. We say that $p$ is incomplete in $r$ with 
 respect to $n$ if $pr$ divides $n$. In this case, if $r$ is a divisor 
 of $n$ of order $k$, then $pr$ is a divisor of $n$ of order $k - 1$.
+$2$ is incomplete in $18$ with respect to $72$.
 
 Yet another notion is \textit{crucial primes}. Let $n = \nu (P,E)$ 
 be a positive integer. Suppose that $p \in P$. If $pn$ is
@@ -25,7 +27,7 @@ nonnegative exponents $E$, whose cardinalities are both $d$, we
 wish to define $G_{\Delta_+}(P,E)$ as a particular ordering of
 $\{0, 1, ..., d-1\}$. Given any distinct $i,j \in \{0, 1, ..., 
 d - 1\}$, we order $G_{\Delta_+}(P, E)$ such that $i$ precedes 
-$j$ in $G_{\Delta_+}(P, E)$ if $\Delta_+(p_i, e_i) < 
+$j$ in $G_{\Delta_+}(P, E)$ if $\Delta_+(p_i, e_i) \leq 
 \Delta_+(p_j, e_j)$. In the case where  $\Delta_+(p_i, e_i) =
 \Delta_+(p_j, e_j)$, it does not matter which element is the
 predecessor or successor in $G_{\Delta_+}(P,E)$.
@@ -33,8 +35,7 @@ predecessor or successor in $G_{\Delta_+}(P,E)$.
 \begin{theorem}\label{g_ordering}
 Suppose $n = \nu(P, E)$, where $P = \{p_0, p_1, ..., p_{d-1}\}$
 and $E = \{e_0, ..., e_{d-1}\}$. Let $G_{\Delta_+}(P,E) = \{g_0, 
-g_1, ..., g_{d-1}\}$. Then $b(n) < b(n p_{g_0}) \leq b(n p_{g_1})
-\leq ... \leq b(n p_{g_{d-1}})$
+g_1, ..., g_{d-1}\}$. Then $b(n p_{g_i}) \leq b(n p_{g_j})$ when $i \leq j$.
 \end{theorem}
 
 The proof of {\ref{g_ordering}} follows directly from inequality
@@ -54,7 +55,7 @@ Listing these values in order from least to greatest, we have
 $$\Delta_{+}(5,2) < \Delta_{+}(11,1) < \Delta_{+}(3,1).$$
 
 Note $p_0 = 3$, $p_1 = 5$, and $p_2 = 11$. Since $\Delta_+(5,2)$
-is the smallest while $p_1 = 5$, the ordering on $\{0, 1, 2\}$
+is the smallest while $p_1 = 5$, Our $G_{\Delta_{+}}(P, E)$ordering on $\{0, 1, 2\}$
 begins with $1$. Since $\Delta_+(11,1)$ is the next smallest while
 $p_2 = 11$, the corresponding index $2$ succedes $1$ in our
 ordering on $\{0,1,2\}$. Finally, since $\Delta_+(3,1)$ is the largest
@@ -80,7 +81,9 @@ $$ G_{\Delta_+}(P, E) = (\text{... non-crucial prime indices}
 Suppose that
 $p_i$ is crucial in $n$, so $2 \leq b(n p_i)$. Since $i$ precedes 
 $j$ in $G$, Theorem {\ref{g_ordering}} tells us that $b(n p_i) \leq b(n
-p_j)$. Thus $2 \leq b(n p_j)$, which tells us $p_j$ is crucial in $n$.
+p_j)$. Thus $2 \leq b(n p_j)$, which tells us $p_j$ is crucial in $n$. 
+If no $p_i$ is crucial in $n$, choose the highest possible index $g$ in $G$.
+
 
 \end{proof}
 
@@ -168,7 +171,7 @@ primes $E$, and the primitive abundants found so far, $A$.
 \noindent\rule{\textwidth}{1pt}
 \begin{algorithmic}[1]
 \IF {$b(P, E) \geq 2$}
-	\IF {$\nu(P, E)$ is primitive}
+	\IF {$\nu(P, E)$ is primitive abundant}
 		\STATE $A := A \& \nu (P,E)$
 		\RETURN
 	\ENDIF
@@ -284,7 +287,7 @@ index, $s$.
 		%?   ?    ??                      _ | _
 		% ? ? ? ??  ??                     \|/
     %  ?   ?      ??                    .
-		\IF {$crucialAlg(P, E_{new}, A$}%, g)$}
+    \IF {$crucialAlg(P, E_{new}, A)$}%, g)$}
 			\STATE $e_{found} :=$ TRUE
 		\ENDIF
 
@@ -303,7 +306,9 @@ index, $s$.
 \begin{proof}
   Let $n = \nu (Q, F)$ be an odd primitive abundant number for a
 sequence of primes $Q$ and a sequence of positive integers $F$,
-where $Q$ and $F$ have the same cardinality. We want to show that
+where $Q$ and $F$ have the same cardinality. We assume that 
+$F$ contains some element not equal to $1$, otherwise the proof
+is trivial. We want to show that
 $n$ is collected in $A$, as this would prove our theorem.
 Suppose that $m = \sum_{e \in F}(e)$
 
@@ -338,7 +343,7 @@ of order $k - 1$ that is passed in this algorithm.}
 Assume the inductive hypothesis is true for some divisor of $n$ of
 order $k$. Denote this divisor $\ell_k = (Q, F_k)$. Note that
 $\ell_k$ must make its first appeance whenever $E$ is modified
-or an $E'$ is initialized. Thus $\ell_k$ must make its first
+or an $E_{new}$ is initialized. Thus $\ell_k$ must make its first
 appearance in one of two places: It can appear in $main$ in
 line \ref{main::passed} or $mbAlg$ in line \ref{alg::passed}. 
 Note that this divisor cannot appear in $crucialAlg$ in line
@@ -352,8 +357,9 @@ parameters $P:= Q$, $E := F_K$, and $A := A$\footnote{The state of
 $A$ does not matter}:
 \\
 
-Suppose that $\ell_k$ first appears in $expAbundant$ in line
-\ref{main::passed}. Note that, 
+Suppose that $\ell_k$ first appears in $main$ in line
+\ref{main::passed}. The algorithm calls $expAbundant$ on 
+line 8. Note that, 
 as $k \neq 0$, we have that $b(\ell_k) < 2$. Thus the algorithm 
 moves on to $crucialAlg(Q, F_k, A)$.
 \\
@@ -371,7 +377,7 @@ At this point we split off into cases, the case
 where $k = 1$ and the case where $2 \leq k \leq m - d$. This is
 important for our inductive step.
 
-\textbf{Case 1} Suppose that $2 \leq k \leq m - d$. In $crucialAlg(Q, F_k, A)$, notice 
+\textbf{Case 1:} Suppose that $2 \leq k \leq m - d$. In $crucialAlg(Q, F_k, A)$, notice 
 that $G_{\Delta_+}(Q,F_k)$ is calculated on line \ref{pos::G}.
 Since $k \geq 2$, we claim that
 all incomplete primes in $\ell_k$ are not crucial primes.
@@ -421,8 +427,7 @@ from $crucialAlg(Q,
 F_k, A)$. In this case, we note that there is only one incomplete prime 
 $p$ and it must be a crucial prime(as $l_k p = n$ is abundant)
 As all crucial prime indices will pass the if statement on line
-\ref{pos::if} in the 
-loop, we have that our incomplete prime's exponent will be 
+\ref{pos::if} in $crucialAlg$, we have that our incomplete prime's exponent will be 
 increased and the result will be $n$. Therefore $n$ will be 
 collected in $A$. Thus the inductive step has 
 been proven. We have also shown that $n$ has been

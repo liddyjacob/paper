@@ -55,8 +55,7 @@ Suppose that $m$ and $n$ share at least one prime factor, as the
 other case was discussed in the previous paragraph.
 %
 Let $n' = n q_1^{s_1} q_2^{s_2} ... q_i^{s_i} =
-p_1^{s'_1} p_2^{s'_2} ... p_d^{s'_d}$, where each $s'_i \geq s_i$,as
-$n'$ has the same prime factors as $n$ but with some higher powers.
+p_1^{s'_1} p_2^{s'_2} ... p_d^{s'_d}$, where each $s'_i \geq s_i$.
 Hence $b(n) < b(n')$. Since $n'$ and $r_1^{l_1} r_2^{l_2} ... r_j^{l_j}$
 share no prime factors, we have that 
 $b(n') \leq b(n' r_1^{l_1} ... r_j^{l_j}) = b(nm)$.
@@ -121,9 +120,9 @@ Thus there are infinitely many abundant integers $n$ whose prime
 factors are in the set $P$.
 
 Now we assume that there exists infinitely many abundant integers 
-$n$ whose prime factors compose $P$. Let $p_i \in P$. Given any
-positive integer $r$, we have that that $np_i^r$ is abundant. 
-Hence,
+ whose prime factors compose $P$. Let $p_i \in P$. Given any
+positive integer $r$ and abundant integer $n$ whose prime factors 
+compose $P$, we have that that $np_i^r$ is abundant. Hence,
 %
 $$ b_\infty(P) = \prod_{1 \leq i \leq k} \lim_{m_i \rightarrow 
 \infty} ( \frac{p_i^{m_{i} + 1} -1}{(p_i -1)p_{i}^{m_{i}}}) > 2 .$$
@@ -151,7 +150,8 @@ Let $p$ and $q$ be primes such that $p < q$. Then $b_\infty(\{q\})
 less than $b(p^1)$.
 \end{theorem}
 
-The proof of Theorem \ref{prime_ineq} is straightforward.
+The proof of Theorem \ref{prime_ineq} is straightforward. It is worth noting that if $q$ is 
+prime and $q - 1$ is treated as if it were prime, then $b_\infty(\{q\}) = b(q)$ 
 
 Another important function we will need describes what happens 
 when some exponents are fixed and some exponents are allowed to
@@ -208,5 +208,6 @@ $$ b(n) \Delta_+(p_i, m_i) = b(p_i n) .$$
 \end{theorem}
 
 The proof for {\ref{dp_def}} is straightforward.
+
 
 \end{document} 
