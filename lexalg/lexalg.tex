@@ -35,33 +35,6 @@ is a sequence of $d$ elements and $P$ is a sequence of $i < d$
 elements. We say that $Q$ is $P$-initiated if the first $i$
 elements of $Q$ is the sequence $P$.
 
-As $\mathcal{P}_d$ is a finite set with a total ordering,
-$\mathcal{P}_d$ has a minimum and a maximum element. We now want
-to find the minimum of $\mathcal{P}_d$ for $d = 3, 4, 5, 6$ as
-this will help us in the base case of Theorem {\ref{opan_alg}}.
-Dickson showed that $min(\mathcal{P}_3) = \{3, 5, 7\}$ and
-$min(\mathcal{P}_4) = \{3, 5, 7, 11\}$. This leaves us to show
-$min(\mathcal{P}_5) = \{3, 5, 7, 11, 13\}$ and $min(\mathcal{P}_6)
-= \{3, 5, 7, 11, 389, 397\}$.
-
-To show that $min(\mathcal{P}_5) = \{3, 5, 7, 11, 13\}$, we use
-the fact that $3^1 5^1 7^1 11^1 13^1$ is an OPAN. There cannot
-exist a set of 5 odd primes $P < \{3, 5, 7, 11, 13\}$, and
-therefore we are done.
-
-To show that $min(\mathcal{P}_6) = \{3, 5, 7, 11, 389, 397\}$, we
-note that $3^1 5^1 7^1 11^1 p^1$ is an OPAN when $p$ is a prime
-such that $13 \leq p \leq 383$. Therefore, any lexicographical
-predecessor of $\{3, 5, 7, 11, 389, 397\}$ cannot exist in
-$\mathcal{P}_6$ as it would not meet the requirement of being
-associated with an OPAN with 6 divisors. Since $3^1 5^1 7^1 11^1 
-389^1 397^1$ is an OPAN, we have that $\{3, 5, 7, 11, 389, 397\}$
-is the minimum element in $\mathcal{P}_6$.
-
-To generalize Theorem {\ref{opan_alg}}, it would be useful if we
-could find the minimum of $\mathcal{P}_d$ for any $d$. This,
-however, goes beyond our scope of research.
-
 Suppose $P \in \mathcal{P}_d$. We define $lex(P)$ to be the set
 of all $Q \in \mathcal{P}_d$ such that $Q < P$. For example,  
 $lex(\{3,5,13\}) = \{\{3, 5, 7\}, \{3, 5, 11\}\}$.
