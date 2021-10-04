@@ -1,15 +1,17 @@
 %\documentclass[../paper.txt]{article}
 \documentclass[../paper.tex]{subfiles}
 \begin{document}
-\section{Exponent Theorems and The Exponent Algorithm}
+\section{Exponent Sequences: Theorems and Definitions}
 
 Let $r$ and $n$ be positive integers such that $r$ divides $n$. We
-say $r$ is a divisor of $n$ of order $0$ if and only if $r = n$.
-For each $i \geq 1$, we say that $r$ is a divisor of $n$ of order
-$i$ in case there exists a prime $p$ such that $pr$ is a divisor
+say \textit{$r$ is a divisor of $n$ of order $0$} if and only if $r = n$.
+For each $i \geq 1$, we say that \textit{$r$ is a divisor of $n$ of order
+$i$} in case there exists a prime $p$ such that $pr$ is a divisor
 of $n$ of order $i - 1$. We remark that each divisor $r$ of $n$ has a 
 unique well-defined order $k$ for some nonnegative integer $k$. For example, 
-$3^2 5^1 13^1$ is a divisor of $3^3 5^2 13^1$ of order $2$. 
+$3^2 5^1 13^1$ is a divisor of $3^3 5^2 13^1$ of order $2$. (To quickly 
+determine the order of a divisor, sum the exponents in the prime 
+factorization of the divisor and compare it to $n$)
 
 A related notion is \textit{incomplete primes}. Suppose $r$ divides 
 $n$, and $p$ is a prime. We say that $p$ is incomplete in $r$ with 

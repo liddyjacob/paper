@@ -6,12 +6,13 @@ For an integer $n$, if the sum of the proper divisors of
 $n$ equals or exceeds $n$, then we say that $n$ is an 
 \textit{abundant number}.  An abundant number is said to be 
 \textit{primitive} if none of its proper divisors are abundant. 
-An abundant number must have at least one primitive abundant 
-divisor. In 1913, Dickson proved that for an arbitrary positive
-integer $d$ there exists only finitely many odd primitive abundant
-numbers having exactly $d$ distinct prime divisors. In 2017, all 
-odd primitive abundant numbers with up to $5$ distinct prime 
-divisors have been found by Di\v{c}i\={u}nas. In this paper, we 
+By definition, an abundant number must have at least one primitive 
+abundant divisor. In 1913, Dickson proved the following: 
+for an arbitrary positive integer $d$ there exists only finitely 
+many odd primitive abundant numbers having exactly $d$ distinct 
+prime divisors. In 2017, all odd primitive abundant numbers with 
+up to $5$ distinct prime divisors have been found by Di\v{c}i\={u}nas. 
+In this paper, we 
 describe a fast algorithm that finds all odd primitive abundant 
 numbers with $d$ distinct prime divisors. We use this algorithm 
 to find all odd primitive abundant numbers with $6$ distinct prime
@@ -22,9 +23,9 @@ prime divisors.
 \end{abstract}
 
 \section{Introduction}
-The proper divisors of a positive integer $n$ are the positive
-divisors of $n$ that are less than $n$. We denote the set of 
-proper divisors of n by $\textit{A}_{n}$.
+The proper divisors of a positive integer $n$ is the set of 
+positive divisors of $n$ excluding $n$. We denote 
+the set of proper divisors of $n$ by $\textit{A}_{n}$.
 
 We define the function 
 %
@@ -52,9 +53,10 @@ pseudoperfect or perfect. The smallest weird number is 70, and
 all known weird numbers are even.
 
 If $n$ is abundant and all of its proper divisors are deficient,
-we say that $n$ is a primitive abundant number. An abundant number must 
-have at least one primitive abundant divisor. The smallest primitive abundant 
-number is 6, by our definition. Some authors exclude perfect
+we say that $n$ is a \textit{primitive abundant number.} 
+An abundant number must 
+have at least one primitive abundant divisor. By our definition,
+the smallest primitive abundant number is 6. Some authors exclude perfect
 numbers from abundant numbers, in which case the smallest primitive abundant
 number is 20. This paper focuses
 on odd primitive abundant numbers, which we refer to as OPANs
@@ -68,14 +70,13 @@ $w$ exists, it can be shown that $w$ is an OPAN or $w$ is the
 multiple of a weird OPAN.
 
 Our purpose is to find an algorithm that enumerates all OPANs
-with a fixed number of unique prime divisors $d$. With this, we
+with a fixed number of unique prime divisors. With this, we
 classify all OPANs with $5$ prime divisors as weird, perfect, or pseudoperfect.
 We found that all OPANs with $3, 4$, or $5$ divisors are pseudoperfect,
 which allows us to conclude that an odd weird number and an odd perfect number must have at least $6$ unique prime factors.
 
-In this paper, we succeed in finding the described algorithm. 
-We prove that the algorithm does indeed find all OPANs with $3, 4, 5, $ and $6$
-unique prime divisors. We wish to generalize the proof to $d$ divisors.
+In this paper, we succeed in finding the described algorithm. We 
+find all odd primitive numbers with $6$ prime divisors or less. 
 Finding all OPANs with $6$ prime divisors 
 was previously an unsolved problem\cite{amato}.
 
@@ -83,7 +84,7 @@ Through implementing the algorithm in Section 5, we were able to find the
 number of OPANs with 6 divisors. We found that $|OPAN(6)| = 59687996404445$
 
 
-The largest odd primitive abundant number with 6 divisors is:
+The largest odd primitive abundant number with 6 divisors is
 $3^{38} 5^{28} 17^{16} 257^8 65537^4 4294967291^2$. It has 116 digits.
 
 

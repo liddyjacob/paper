@@ -28,7 +28,7 @@ Also, if $n$ and $m$ are positive integers greater than 1, then
   b(n) < b(nm). % \leq b(n)b(m)
 \end{equation}
 
-To show this, we first suppose that $m$ and $n$ share no prime factors.
+To show \ref{inc_ineq}, we first suppose that $m$ and $n$ share no prime factors.
 Thus if the prime factorization of $n$ is $p_1^{s_1} p_2^{s_2} ... p_i^{s_i}$ 
 and the prime factorization of $m$ is $r_1^{l_1} r_2^{l_2} ... r_j^{l_j}$,
 then the unique prime factorization of $mn$ is 
@@ -51,8 +51,8 @@ $m = q_1^{t_1} q_2^{t_2} ... q_i^{t_i}
 r_1^{e_1} r_2^{e_2} ... r_j^{e_j}$ where 
 $q_1, q_2, ..., q_i$ are prime factors that $n$ and $m$ share,
 and each $r$ is a prime factor that divides $m$ but not $n$.
-Suppose that $m$ and $n$ share at least one prime factor, as the 
-other case was discussed in the previous paragraph.
+Suppose that $m$ and $n$ share at least one prime factor, as 
+we have discussed otherwise.
 %
 Let $n' = n q_1^{s_1} q_2^{s_2} ... q_i^{s_i} =
 p_1^{s'_1} p_2^{s'_2} ... p_d^{s'_d}$, where each $s'_i \geq s_i$.
@@ -63,8 +63,10 @@ Thus $b(n) < b(n') \leq b(mn)$. Hence, $b(n)$ is a
 multiplicatively increasing function.
 \\
 
-Taking the limit of $b(p^m)$ as $m$ goes to infinity, we have that
+Let $p$ be a prime, and consider the following limit: 
 $\lim_{m \rightarrow \infty}b(p^m) = \frac{p}{p-1}$.
+The fact that this limit exists allows us to see of a set
+of primes can form an abundant number.
 Applying this to the sequence of primes $P = \{p_1, p_2, ..., p_d\}$,
 we define $b_{\infty}(P)$ by
 
@@ -101,7 +103,7 @@ Hence , we can allow
 $$\prod_{1 \leq i \leq k} \frac{p_i^{m_{i} + 1} -1}
 {(p_i -1)p_{i}^{m_{i}}}$$ 
 to be arbitrarily close to $L$ for large 
-enough exponents $m_i$. Since $L$ is greater than two, there exists a
+enough integers $m_i$. Since $L$ is greater than two, there exists a
 collection of positive integers $m_1, m_2, ... , m_k$ such that 
 % 
 $$L > \prod_{1 \leq i \leq k} \frac{p_i^{m_{i} + 1} -1}
@@ -179,6 +181,8 @@ Let $P$ be a sequence of primes $P = \{p_1, p_2, ..., p_d\}$,
 and let $E = \{m_1, ..., m_d\}$ be a sequence of positive integers
 with the same cardinality as $P$. We define the positive integer 
 $\nu(P,E)$ by $\nu(P,E) = p_1^{m_1} p_2^{m_2} ... p_d^{m_d}$. 
+This notation is useful as we will be dealing directly with
+the exponents of prime numbers in the first half of this paper.
 
 We now prove the following theorem, making use of the above
 definitions:
@@ -187,7 +191,7 @@ definitions:
 Let $P = \{p_1, p_2, ... p_d\}$ be a sequence of primes, and let
 $E = \{m_1, m_2, ..., m_d\}$ be a sequence of exponents. Let $n =
 \nu(P,E)$. Let I be a nonempty subset of $\{1, ..., d\}$. The 
-condition $mb(P,E,I) \leq 2$ holds if and only if there exists an 
+condition $mb(P,E,I) \geq 2$ holds if and only if there exists an 
 abundant number $k$ such that $n$ divides $k$ and every prime 
 divisor of $k/n$ is a member of $\{p_i \mid i \in I\}$.
 \end{theorem}
@@ -199,6 +203,8 @@ For any given prime $p$ and positive integer $m$, we define the
 rational number $\Delta_+(p,m)$ by
 $$\Delta_+(p,m) = \frac{p^{m+2} - 1}{ p (p^{m + 1} -
 1)} .$$
+$\Delta_+(p,m)$ was defined so that the following theorem will
+be true.
 
 \begin{theorem}\label{dp_def}
 Suppose $n = p_1^{m_1} p_2^{m_2} ... p_i^{m_i} ... p_d^{m_d}$.
